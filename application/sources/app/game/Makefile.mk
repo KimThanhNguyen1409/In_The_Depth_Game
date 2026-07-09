@@ -1,0 +1,1 @@
+include sources/app/game/in_the_depth_game/Makefile.mk
