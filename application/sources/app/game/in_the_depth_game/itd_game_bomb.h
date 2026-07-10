@@ -12,8 +12,6 @@
 #include "task_list.h"
 #include "task_display.h"
 
-#include "itd_game_mainsub.h"
-
 #define BOMB_SIZE_BITMAP_X (12)
 #define BOMB_SIZE_BITMAP_Y (12)
 
@@ -36,5 +34,6 @@ typedef struct
     uint8_t y;
 } itd_game_bomb_t;
 
-extern itd_game_bomb_t bomb[BOMB_NUMBER_MAX];
+extern uint8_t bomb_number;
+extern itd_game_bomb_t bombs[BOMB_NUMBER_MAX];
 #endif /*_ITD_GAME_BOMB_H_*/

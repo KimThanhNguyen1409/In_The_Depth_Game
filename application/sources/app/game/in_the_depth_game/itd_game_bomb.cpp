@@ -1,18 +1,18 @@
 #include "itd_game_bomb.h"
 
-itd_game_bomb_t bomb[BOMB_NUMBER_MAX];
+itd_game_bomb_t bombs[BOMB_NUMBER_MAX];
+uint8_t bomb_number = BOMB_INITAL_NUMBER + rand() % (BOMB_NUMBER_MAX - BOMB_INITAL_NUMBER + 1);
 static void itd_game_bomb_reset_all()
 {
     for (int i = 0; i < BOMB_NUMBER_MAX; i++)
     {
-        bomb[i].x = 0;
-        bomb[i].y = 0;
-        bomb[i].visible = BLACK;
+        bombs[i].x = 0;
+        bombs[i].y = 0;
+        bombs[i].visible = BLACK;
     }
 }
 void itd_game_bomb_handle(ak_msg_t *msg)
 {
-    int spawn_number = BOMB_INITAL_NUMBER + rand() % (BOMB_NUMBER_MAX - BOMB_INITAL_NUMBER + 1);
     switch (msg->sig)
     {
     case ITD_GAME_BOMB_SETUP:
@@ -21,24 +21,24 @@ void itd_game_bomb_handle(ak_msg_t *msg)
         break;
     case ITD_GAME_BOMB_SPAWN:
         APP_DBG_SIG("ITD_GAME_BOMB_SPAWN");
-        for (int i = 0; i < spawn_number; i++)
+        for (int i = 0; i < bomb_number; i++)
         {
-            bomb[i].x = BOMB_SPAWN_AXIS_X_MIN + rand() % (BOMB_SPAWN_AXIS_X_MAX - BOMB_SPAWN_AXIS_X_MIN + 1);
-            bomb[i].y = BOMB_SPAWN_AXIS_Y_MIN + rand() % (BOMB_SPAWN_AXIS_Y_MAX - BOMB_SPAWN_AXIS_Y_MIN + 1);
-            bomb[i].visible = WHITE;
+            bombs[i].x = BOMB_SPAWN_AXIS_X_MIN + rand() % (BOMB_SPAWN_AXIS_X_MAX - BOMB_SPAWN_AXIS_X_MIN + 1);
+            bombs[i].y = BOMB_SPAWN_AXIS_Y_MIN + rand() % (BOMB_SPAWN_AXIS_Y_MAX - BOMB_SPAWN_AXIS_Y_MIN + 1);
+            bombs[i].visible = WHITE;
         }
         break;
     case ITD_GAME_BOMB_GO:
         APP_DBG_SIG("ITD_GAME_BOMB_GO");
-        for (int i = 0; i < spawn_number; i++)
+        for (int i = 0; i < bomb_number; i++)
         {
-            if (bomb[i].visible != BLACK)
+            if (bombs[i].visible != BLACK)
                 continue;
-            bomb[i].x -= BOMB_STEP_AXIS_X;
-            if (bomb[i].x <= BOMB_DESPAWN_AXIS_X)
+            bombs[i].x -= BOMB_STEP_AXIS_X;
+            if (bombs[i].x <= BOMB_DESPAWN_AXIS_X)
             {
-                bomb[i].visible = BLACK;
-                bomb[i].x = 0;
+                bombs[i].visible = BLACK;
+                bombs[i].x = 0;
             }
         }
         break;

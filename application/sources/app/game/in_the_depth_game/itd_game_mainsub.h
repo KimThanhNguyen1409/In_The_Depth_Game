@@ -16,6 +16,8 @@
 #include "itd_game_bomb.h"
 #include "itd_game_boom.h"
 #include "itd_game_spike.h"
+#include "itd_game_coin.h"
+#include "itd_game_heart.h"
 
 #define MAINSUB_SIZE_BITMAP_X (20)
 #define MAINSUB_SIZE_BITMAP_Y (16)
@@ -37,13 +39,13 @@ typedef struct
 {
     uint8_t x;
     uint8_t y;
-    uint8_t action_image;
     bool visible;
 
 } itd_game_mainsub_t;
 
 extern itd_game_mainsub_t mainsub;
 
-extern bool itd_game_mainsub_check_hit(uint8_t bo);
-
+extern bool itd_game_mainsub_check_hit_by_bomb(uint8_t bo);
+extern bool itd_game_mainsub_check_hit_by_spike(uint8_t sp, uint8_t type);
+extern bool itd_game_mainsb_check_get_coin(uint8_t co);
 #endif /*_ITD_GAME_MAINSUB_H_*/
