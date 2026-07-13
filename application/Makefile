@@ -16,12 +16,12 @@ SOC_SRAM_BYTES = 16384	 # 16KB
 FLASH_BASE_ADDR_VAL = 0x08000000
 
 # Name of build target ex: ak-base-kit-stm32l151-application.bin
-NAME_MODULE = ak-base-kit-stm32l151-application
+NAME_MODULE = In_the_depth_game-application
 PROJECT = $(NAME_MODULE)
 
-GCC_PATH			= $(HOME)/Workspace/Tools/gcc-arm-none-eabi-10.3-2021.10
-PROGRAMER_PATH		= $(HOME)/workspace/tools/STM32CubeProgrammer/bin
-OPENOCD_CFG_PATH	= /usr/local/share/openocd/scripts/board/stm32ldiscovery.cfg
+GCC_PATH            = C:/Users/Admin/Documents/Tools/GNU-Arm-Embedded-Toolchain/10-2021.10
+PROGRAMER_PATH      = C:/PROGRA~1/STMicroelectronics/STM32Cube/STM32CubeProgrammer/bin
+OPENOCD_CFG_PATH    = /usr/local/share/openocd/scripts/board/stm32ldiscovery.cfg
 
 # App start address, that need sync with declare in linker file and interrupt vector table.
 APP_START_ADDR_VAL = 0x08003000
@@ -74,7 +74,7 @@ include sources/libraries/Makefile.mk
 include sources/sys/Makefile.mk
 include sources/networks/Makefile.mk
 include sources/platform/stm32l/Makefile.mk
-
+include sources/app/game/in_the_depth_game/Makefile.mk
 OBJECTS_DIR = build_$(NAME_MODULE)
 TARGET = $(OBJECTS_DIR)/$(NAME_MODULE).axf
 
@@ -277,7 +277,7 @@ flash: all
 ifdef dev
 	ak-flash $(dev) $(TARGET:.axf=.bin) $(APP_START_ADDR_VAL)
 else
-	$(PROGRAMER_PATH)/STM32_Programmer.sh -c port=SWD -w $(TARGET:.axf=.bin) $(APP_START_ADDR_VAL) -rst
+	$(PROGRAMER_PATH)/STM32_Programmer_CLI.exe -c port=SWD -w $(TARGET:.axf=.bin) $(APP_START_ADDR_VAL) -rst
 endif
 
 .PHONY: com
