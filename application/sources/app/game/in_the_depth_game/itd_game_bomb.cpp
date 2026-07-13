@@ -16,19 +16,25 @@ void itd_game_bomb_handle(ak_msg_t *msg)
     switch (msg->sig)
     {
     case ITD_GAME_BOMB_SETUP:
+    {
         APP_DBG_SIG("ITD_GAME_BOMB_SETUP");
         itd_game_bomb_reset_all();
-        break;
+    }
+    break;
     case ITD_GAME_BOMB_SPAWN:
+    {
         APP_DBG_SIG("ITD_GAME_BOMB_SPAWN");
         for (int i = 0; i < bomb_number; i++)
         {
             bombs[i].x = BOMB_SPAWN_AXIS_X_MIN + rand() % (BOMB_SPAWN_AXIS_X_MAX - BOMB_SPAWN_AXIS_X_MIN + 1);
             bombs[i].y = BOMB_SPAWN_AXIS_Y_MIN + rand() % (BOMB_SPAWN_AXIS_Y_MAX - BOMB_SPAWN_AXIS_Y_MIN + 1);
             bombs[i].visible = WHITE;
+            break;
         }
-        break;
+    }
+    break;
     case ITD_GAME_BOMB_GO:
+    {
         APP_DBG_SIG("ITD_GAME_BOMB_GO");
         for (int i = 0; i < bomb_number; i++)
         {
@@ -41,10 +47,14 @@ void itd_game_bomb_handle(ak_msg_t *msg)
                 bombs[i].x = 0;
             }
         }
-        break;
+    }
+    break;
     case ITD_GAME_BOMB_RESET:
+    {
         APP_DBG_SIG("ITD_GAME_BOMB_RESET");
         itd_game_bomb_reset_all();
+    }
+    break;
     default:
         break;
     }

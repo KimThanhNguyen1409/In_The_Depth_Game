@@ -155,9 +155,12 @@ extern "C"
 	{
 		AC_DISPLAY_RENDER_SCREEN = AK_SYS_DEFINE_SIG,
 		AC_DISPLAY_INITIAL = AK_USER_DEFINE_SIG,
-		AC_DISPLAY_BUTON_MODE_PRESSED,
-		AC_DISPLAY_BUTON_UP_PRESSED,
-		AC_DISPLAY_BUTON_DOWN_PRESSED,
+		AC_DISPLAY_BUTTON_MODE_PRESSED,
+		AC_DISPLAY_BUTTON_MODE_RELEASE,
+		AC_DISPLAY_BUTTON_UP_PRESSED,
+		AC_DISPLAY_BUTTON_UP_RELEASE,
+		AC_DISPLAY_BUTTON_DOWN_PRESSED,
+		AC_DISPLAY_BUTTON_DOWN_RELEASE,
 		AC_DISPLAY_SHOW_LOGO,
 		AC_DISPLAY_SHOW_IDLE,
 		AC_DISPLAY_SHOW_IDLE_BALL_MOVING_UPDATE,
@@ -208,9 +211,12 @@ extern "C"
 	{
 		ITD_GAME_MAINSUB_SETUP = ITD_GAME_DEFIN_SIG,
 		ITD_GAME_MAINSUB_GO_UP,
+		ITD_GAME_MAINSUB_GO_DOWN,
 		ITD_GAME_MAINSUB_DENATOR_BY_BOMB,
 		ITD_GAME_MAINSUB_DENATOR_BY_SPIKE,
-		ITD_GAME_MAINSUB_GO_DOWN,
+		ITD_GAME_MAINSUB_GET_COIN,
+		ITD_GAME_MAINSUB_APPLY_BUFF,
+		ITD_GAME_MAINSUB_UPDATE,
 		ITD_GAME_MAINSUB_RESET
 	};
 	/*****************************************************************************/
@@ -223,7 +229,6 @@ extern "C"
 	{
 		ITD_GAME_BOMB_SETUP = ITD_GAME_DEFIN_SIG,
 		ITD_GAME_BOMB_SPAWN,
-		ITD_GAME_BOMB_ACTIVE,
 		ITD_GAME_BOMB_GO,
 		ITD_GAME_BOMB_RESET
 	};
@@ -252,6 +257,20 @@ extern "C"
 		ITD_GAME_HEART_RESET
 	};
 	/*****************************************************************************/
+	/* In the depth game 'GIFT' task define
+	 */
+	/*****************************************************************************/
+	/* define timer */
+	/* define signal */
+	enum
+	{
+		ITD_GAME_GIFT_SETUP = ITD_GAME_DEFIN_SIG,
+		ITD_GAME_GIFT_SPAWN,
+		ITD_GAME_GIFT_GO,
+		ITD_GAME_GIFT_GIVE_BUFF,
+		ITD_GAME_GIFT_RESET
+	};
+	/*****************************************************************************/
 	/* In the depth game 'COIN' task define
 	 */
 	/*****************************************************************************/
@@ -261,7 +280,6 @@ extern "C"
 	{
 		ITD_GAME_COIN_SETUP = ITD_GAME_DEFIN_SIG,
 		ITD_GAME_COIN_SPAWN,
-		ITD_GAME_COIN_ACTIVE,
 		ITD_GAME_COIN_GO,
 		ITD_GAME_COIN_RESET
 	};
@@ -288,10 +306,8 @@ extern "C"
 	{
 		ITD_GAME_BORDER_SETUP = ITD_GAME_DEFIN_SIG,
 		ITD_GAME_BORDER_CHECK_GAME_OVER,
-		ITD_GAME_BORDER_CHECK_HEART,
-		ITD_GAME_BORDER_CHECK_POINT,
 		ITD_GAME_BORDER_UPDATE,
-		ITD_GAME_BODER_RESET
+		ITD_GAME_BORDER_RESET
 	};
 	/*****************************************************************************/
 	/* DBG task define

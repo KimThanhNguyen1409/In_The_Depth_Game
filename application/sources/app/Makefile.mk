@@ -1,8 +1,9 @@
 include sources/app/screens/Makefile.mk
 
 CFLAGS		+= -I./sources/app
+CFLAGS		+= -I./sources/app/game/in_the_depth_game
 CPPFLAGS	+= -I./sources/app
-
+CPPFLAGS	+= -I./sources/app/game/in_the_depth_game
 VPATH += sources/app
 
 # CPP source files

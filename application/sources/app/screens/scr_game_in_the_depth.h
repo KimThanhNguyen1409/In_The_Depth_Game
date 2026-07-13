@@ -10,7 +10,7 @@
 #include "sys_dbg.h"
 
 #include "app.h"
-#include "app_bsp.h"
+// #include "app_bsp.h"
 #include "app_dbg.h"
 #include "task_list.h"
 #include "task_display.h"
@@ -23,6 +23,7 @@
 #include "itd_game_heart.h"
 #include "itd_game_mainsub.h"
 #include "itd_game_spike.h"
+#include "itd_game_gift.h"
 
 #define GAME_START (0)
 #define GAME_PLAY (1)
@@ -37,6 +38,6 @@ extern void itd_game_bomb_display();
 extern void itd_game_boom_display();
 extern void itd_game_spike_display();
 extern void itd_game_coin_display();
-extern void itd_game_border_display();
+extern void itd_game_heart_display();
 
-#endif
+#endif /*_SCR_GAME_IN_THE_DEPTH_H_*/

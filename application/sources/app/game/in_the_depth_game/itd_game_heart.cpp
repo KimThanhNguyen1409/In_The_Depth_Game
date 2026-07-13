@@ -16,36 +16,39 @@ void itd_game_heart_handle(ak_msg_t *msg)
     switch (msg->sig)
     {
     case ITD_GAME_HEART_SETUP:
+    {
         APP_DBG_SIG("ITD_GAME_HEART_SETUP");
         current_heart = HEART_MAX_NUMBER;
         for (uint8_t i = 0; i < current_heart; i++)
         {
-            hearts[i].x += HEART_AXIS_X + i * HEART_DISTANCE_AXIS_X;
+            hearts[i].x = HEART_AXIS_X + i * HEART_DISTANCE_AXIS_X;
             hearts[i].y = HEART_AXIS_Y;
             hearts[i].visible = WHITE;
         }
-        break;
+    }
+    break;
     case ITD_GAME_HEART_UPDATE:
+    {
         APP_DBG_SIG("ITD_GAME_HEAR_UPDATE");
-        for (uint8_t i = 0; i < BOMB_NUMBER_MAX; i++)
+        for (uint8_t i = 0; i < HEART_MAX_NUMBER; i++)
         {
-            if (itd_game_mainsub_check_hit_by_bomb(i))
+            if (i < current_heart)
             {
-                hearts[current_heart].visible = BLACK;
+                hearts[i].visible = WHITE;
+            }
+            else
+            {
+                hearts[i].visible = BLACK;
             }
         }
-        for (uint8_t i = 0; i < SPIKE_NUMBER; i++)
-        {
-            if (itd_game_mainsub_check_hit_by_spike(i, spikes[i].type))
-            {
-                hearts[current_heart].visible = BLACK;
-            }
-        }
-        break;
+    }
+    break;
     case ITD_GAME_HEART_RESET:
+    {
         APP_DBG_SIG("ITD_GAME_HEART_RESET");
         itd_game_heart_reset_all();
-        break;
+    }
+    break;
     default:
         break;
     }

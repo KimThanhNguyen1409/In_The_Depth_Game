@@ -26,6 +26,7 @@
 
 #define SPIKE_TRIPLE_SPAWN_X (125)
 #define SPIKE_SINGLE_SPAWN_X (125)
+#define SPIKE_SPAWN_Y (64)
 
 #define SPIKE_STEP_X (2)
 
@@ -39,6 +40,6 @@ typedef struct
     bool visible;
 } itd_game_spike_t;
 
-extern itd_game_spike_t spike[SPIKE_NUMBER];
+extern itd_game_spike_t spikes[SPIKE_NUMBER];
 
 #endif

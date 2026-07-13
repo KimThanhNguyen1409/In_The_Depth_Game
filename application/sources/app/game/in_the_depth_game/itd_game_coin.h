@@ -16,7 +16,7 @@
 #include "itd_game_mainsub.h"
 
 #define COIN_SIZE_BITMAP_X (16)
-#define COIN_SIZE_BITMAP_Y (16)
+#define COIN_SIZE_BITMAP_Y (12)
 
 #define COIN_INITAL_NUMBER 3
 #define COIN_NUMBER_MAX 6
@@ -39,6 +39,6 @@ typedef struct
 
 extern uint8_t coin_number;
 extern uint8_t current_coin;
-extern itd_game_coin_t coin[COIN_NUMBER_MAX];
+extern itd_game_coin_t coins[COIN_NUMBER_MAX];
 
 #endif

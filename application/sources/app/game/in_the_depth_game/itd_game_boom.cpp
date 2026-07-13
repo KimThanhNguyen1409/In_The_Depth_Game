@@ -29,10 +29,13 @@ void itd_game_boom_handle(ak_msg_t *msg)
     switch (msg->sig)
     {
     case ITD_GAME_BOOM_SETUP:
+    {
         APP_DBG_SIG("ITD_GAME_BOOM_SETUP");
         itd_game_boom_reset_all();
-        break;
+    }
+    break;
     case ITD_GAME_BOOM_UPDATE:
+    {
         APP_DBG_SIG("ITD_GAME_BOOM_UPDATE");
         for (uint8_t i = 0; i < BOOM_NUMBER; i++)
         {
@@ -41,7 +44,7 @@ void itd_game_boom_handle(ak_msg_t *msg)
                 if (boom[i].action_image >= 6)
                 {
                     boom[i].action_image = 1;
-                    boom[i].visible == BLACK;
+                    boom[i].visible = BLACK;
                 }
                 else
                 {
@@ -49,11 +52,14 @@ void itd_game_boom_handle(ak_msg_t *msg)
                 }
             }
         }
-        break;
+    }
+    break;
     case ITD_GAME_BOOM_RESET:
+    {
         APP_DBG_SIG("ITD_GAME_BOOM_RESET");
         itd_game_boom_reset_all();
-        break;
+    }
+    break;
     default:
         break;
     }

@@ -20,13 +20,13 @@ void itd_game_frame_display()
     view_render.drawLine(0, 16, 128, 16, WHITE);
 }
 
-static void view_scr_game_in_th_depth();
+static void view_scr_game_in_the_depth();
 
 view_dynamic_t dyn_view_in_the_depth = {
     {
         .item_type = ITEM_TYPE_DYNAMIC,
     },
-    view_scr_game_in_th_depth};
+    view_scr_game_in_the_depth};
 
 view_screen_t scr_game_in_the_depth = {
     &dyn_view_in_the_depth,
@@ -120,5 +120,147 @@ void itd_game_heart_display()
         if (hearts[i].visible != WHITE)
             continue;
         view_render.drawBitmap(hearts[i].x, hearts[i].y, heart, HEART_SIZE_BITMAP_X, HEART_SIZE_BITMAP_Y, WHITE);
+    }
+}
+void itd_game_gift_display()
+{
+    for (uint8_t i = 0; i < gift_number; i++)
+    {
+        if (gifts[i].visible != WHITE)
+            continue;
+        view_render.drawBitmap(gifts[i].x, gifts[i].y, gift, GIFT_SIZE_BITMAP_X, GIFT_SIZE_BITMAP_Y, WHITE);
+    }
+}
+void itd_game_buff_display()
+{
+    view_render.setTextSize(1);
+    view_render.setTextColor(WHITE);
+    view_render.setCursor(60, 8);
+    view_render.print("GET BUFF");
+    for (uint8_t i = 0; i < 3; i++)
+    {
+        view_render.drawRect(16 + i * 24, 16, 32, 32, WHITE);
+        view_render.setCursor(20 + i * 16, 16);
+    }
+}
+void view_scr_game_in_the_depth()
+{
+    if (itd_game_state == GAME_PLAY)
+    {
+        itd_game_mainsub_display();
+        itd_game_bomb_display();
+        itd_game_boom_display();
+        itd_game_coin_display();
+        itd_game_heart_display();
+        itd_game_spike_display();
+    }
+    else if (itd_game_state == GAME_OVER)
+    {
+        view_render.setTextSize(2);
+        view_render.setCursor(60, 32);
+        view_render.print("GAME OVER");
+    }
+}
+void scr_game_in_the_depth_handle(ak_msg_t *msg)
+{
+    switch (msg->sig)
+    {
+    case SCREEN_ENTRY:
+    {
+        APP_DBG_SIG("ITD_GAME SCREEN_ENTRY\n");
+        task_post_pure_msg(ITD_GAME_MAINSUB_ID, ITD_GAME_MAINSUB_SETUP);
+        task_post_pure_msg(ITD_GAME_BOMB_ID, ITD_GAME_BOMB_SETUP);
+        task_post_pure_msg(ITD_GAME_BOOM_ID, ITD_GAME_BOOM_SETUP);
+        task_post_pure_msg(ITD_GAME_COIN_ID, ITD_GAME_COIN_SETUP);
+        task_post_pure_msg(ITD_GAME_HEART_ID, ITD_GAME_HEART_SETUP);
+        task_post_pure_msg(ITD_GAME_BORDER_ID, ITD_GAME_BORDER_SETUP);
+        task_post_pure_msg(ITD_GAME_SPIKE_ID, ITD_GAME_SPIKE_SETUP);
+        task_post_pure_msg(ITD_GAME_GIFT_ID, ITD_GAME_GIFT_SETUP);
+        itd_game_state = GAME_PLAY;
+        mainsub_dir = MAINSUB_NONE;
+        timer_remove_attr(AC_TASK_DISPLAY_ID, AC_DISPLAY_SHOW_IDLE);
+        timer_set(AC_TASK_DISPLAY_ID,
+                  ITD_GAME_TIME_TICK,
+                  ITD_GAME_TIME_TICK_INTERVAL,
+                  TIMER_PERIODIC);
+    }
+    break;
+    case ITD_GAME_TIME_TICK:
+    {
+        APP_DBG_SIG("ITD_GAME_TIME_TICK\n");
+        if (itd_game_state != GAME_PLAY)
+            break;
+        if (mainsub_dir == MAINSUB_UP)
+            task_post_pure_msg(ITD_GAME_MAINSUB_ID, ITD_GAME_MAINSUB_GO_UP);
+        if (mainsub_dir == MAINSUB_DOWN)
+            task_post_pure_msg(ITD_GAME_MAINSUB_ID, ITD_GAME_MAINSUB_GO_DOWN);
+        task_post_pure_msg(ITD_GAME_BOMB_ID, ITD_GAME_BOMB_SPAWN);
+        task_post_pure_msg(ITD_GAME_BOMB_ID, ITD_GAME_BOMB_GO);
+        task_post_pure_msg(ITD_GAME_SPIKE_ID, ITD_GAME_SPIKE_SPAWN);
+        task_post_pure_msg(ITD_GAME_SPIKE_ID, ITD_GAME_SPIKE_GO);
+        task_post_pure_msg(ITD_GAME_COIN_ID, ITD_GAME_COIN_SPAWN);
+        task_post_pure_msg(ITD_GAME_COIN_ID, ITD_GAME_COIN_GO);
+        task_post_pure_msg(ITD_GAME_MAINSUB_ID, ITD_GAME_MAINSUB_DENATOR_BY_BOMB);
+        task_post_pure_msg(ITD_GAME_MAINSUB_ID, ITD_GAME_MAINSUB_DENATOR_BY_SPIKE);
+        task_post_pure_msg(ITD_GAME_MAINSUB_ID, ITD_GAME_MAINSUB_GET_COIN);
+        task_post_pure_msg(ITD_GAME_MAINSUB_ID, ITD_GAME_MAINSUB_APPLY_BUFF);
+        task_post_pure_msg(ITD_GAME_BOOM_ID, ITD_GAME_BOOM_UPDATE);
+        task_post_pure_msg(ITD_GAME_BORDER_ID, ITD_GAME_BORDER_CHECK_GAME_OVER);
+        task_post_pure_msg(ITD_GAME_BORDER_ID, ITD_GAME_BORDER_UPDATE);
+    }
+    break;
+    case ITD_GAME_RESET:
+    {
+        APP_DBG_SIG("ITD_GAME_RESET\n");
+        if (itd_game_state != GAME_PLAY)
+            break;
+        timer_remove_attr(AC_TASK_DISPLAY_ID, ITD_GAME_TIME_TICK);
+        task_post_pure_msg(ITD_GAME_MAINSUB_ID, ITD_GAME_MAINSUB_RESET);
+        task_post_pure_msg(ITD_GAME_BOMB_ID, ITD_GAME_BOMB_RESET);
+        task_post_pure_msg(ITD_GAME_SPIKE_ID, ITD_GAME_SPIKE_RESET);
+        task_post_pure_msg(ITD_GAME_COIN_ID, ITD_GAME_COIN_RESET);
+        task_post_pure_msg(ITD_GAME_HEART_ID, ITD_GAME_HEART_RESET);
+        task_post_pure_msg(ITD_GAME_BORDER_ID, ITD_GAME_BORDER_RESET);
+        task_post_pure_msg(ITD_GAME_BOOM_ID, ITD_GAME_BOOM_RESET);
+        task_post_pure_msg(ITD_GAME_GIFT_ID, ITD_GAME_GIFT_RESET);
+        itd_game_state = GAME_OVER;
+        timer_set(AC_TASK_DISPLAY_ID,
+                  ITD_GAME_EXIT_GAME,
+                  ITD_GAME_TIME_EXIT_INTERVAL,
+                  TIMER_ONE_SHOT);
+    }
+    case AC_DISPLAY_BUTTON_DOWN_PRESSED:
+    {
+        APP_DBG_SIG("ITD_GAME BTN_DOWN_PRESSED\n");
+        mainsub_dir = MAINSUB_DOWN;
+    }
+    break;
+    case AC_DISPLAY_BUTTON_DOWN_RELEASE:
+    {
+        APP_DBG_SIG("ITD_GAME BTN_DOWN_RELEASE\n");
+        if (mainsub_dir == MAINSUB_DOWN)
+            mainsub_dir = MAINSUB_NONE;
+    }
+    case AC_DISPLAY_BUTTON_UP_PRESSED:
+    {
+        APP_DBG_SIG("ITD_GAME BTN_UP_PRESSED\n");
+        mainsub_dir = MAINSUB_UP;
+    }
+    break;
+    case AC_DISPLAY_BUTTON_UP_RELEASE:
+    {
+        APP_DBG_SIG("ITD_GAME BTN_UP_RELEASE\n");
+        if (mainsub_dir == MAINSUB_UP)
+            mainsub_dir = MAINSUB_NONE;
+    }
+    break;
+    case ITD_GAME_EXIT_GAME:
+    {
+        APP_DBG_SIG("ITD_GAME_EXIT_GAME\n");
+        itd_game_state = GAME_OVER;
+    }
+    break;
+    default:
+        break;
     }
 }

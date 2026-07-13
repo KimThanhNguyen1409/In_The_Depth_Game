@@ -14,6 +14,8 @@ extern const unsigned char PROGMEM boom_IV[];
 extern const unsigned char PROGMEM boom_V[];
 extern const unsigned char PROGMEM boom_VI[];
 extern const unsigned char PROGMEM coin[];
+extern const unsigned char PROGMEM barrier[];
+extern const unsigned char PROGMEM gift[];
 extern const unsigned char PROGMEM spike_triple[];
 extern const unsigned char PROGMEM spike_single[];
 /*--------------------------------Start menu Objects--------------------------------*/

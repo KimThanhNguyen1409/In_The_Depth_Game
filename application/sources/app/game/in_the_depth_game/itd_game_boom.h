@@ -28,8 +28,8 @@ typedef struct
     uint8_t action_image;
 } itd_game_boom_t;
 
-itd_game_boom_t boom[BOOM_NUMBER];
+extern itd_game_boom_t boom[BOOM_NUMBER];
 
-extern void boom_spawn(uint16_t x, uint16_t y);
+extern void itd_game_boom_spawn(uint16_t x, uint16_t y);
 
 #endif
