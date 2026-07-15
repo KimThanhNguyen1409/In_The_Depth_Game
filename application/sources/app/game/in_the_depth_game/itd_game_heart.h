@@ -22,10 +22,10 @@
 
 #define HEART_MAX_NUMBER (3)
 
-#define HEART_AXIS_X (16)
-#define HEART_AXIS_Y (4)
+#define HEART_AXIS_X (2)
+#define HEART_AXIS_Y (2)
 
-#define HEART_DISTANCE_AXIS_X (6)
+#define HEART_DISTANCE_AXIS_X (14)
 
 typedef struct
 {

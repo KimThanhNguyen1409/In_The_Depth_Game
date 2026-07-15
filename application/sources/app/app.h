@@ -172,21 +172,6 @@ extern "C"
 		AC_DISPLAY_SHOW_MODBUS_PULL_UPDATE,
 		AC_DISPLAY_SHOW_MODBUS_PULL_SLEEP
 	};
-
-	/*****************************************************************************/
-	/*  ZIGBEE task define
-	 */
-	/*****************************************************************************/
-	/* define timer */
-	/* define signal */
-	enum
-	{
-		AC_ZIGBEE_INIT = AK_USER_DEFINE_SIG,
-		AC_ZIGBEE_FORCE_START_COODINATOR,
-		AC_ZIGBEE_START_COODINATOR,
-		AC_ZIGBEE_PERMIT_JOINING_REQ,
-		AC_ZIGBEE_ZCL_CMD_HANDLER
-	};
 /*****************************************************************************/
 /* In the depth game 'SCREEN' task define
  */

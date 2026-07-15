@@ -10,7 +10,6 @@
 #include "sys_dbg.h"
 
 #include "app.h"
-// #include "app_bsp.h"
 #include "app_dbg.h"
 #include "task_list.h"
 #include "task_display.h"
@@ -18,12 +17,12 @@
 
 #include "itd_game_bomb.h"
 #include "itd_game_boom.h"
-#include "itd_game_border.h"
+// #include "itd_game_border.h"
 #include "itd_game_coin.h"
-#include "itd_game_heart.h"
+// #include "itd_game_heart.h"
 #include "itd_game_mainsub.h"
 #include "itd_game_spike.h"
-#include "itd_game_gift.h"
+// #include "itd_game_gift.h"
 
 #define GAME_START (0)
 #define GAME_PLAY (1)

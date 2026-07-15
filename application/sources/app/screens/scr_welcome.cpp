@@ -41,8 +41,8 @@ void view_scr_welcome()
 	view_render.drawBitmap(0,
 						   0,
 						   main_sub,
-						   119,
-						   62,
+						   20,
+						   16,
 						   WHITE);
 
 	view_render.setTextSize(1);
@@ -88,7 +88,7 @@ void scr_welcome_handle(ak_msg_t *msg)
 	{
 		APP_DBG_SIG("AC_DISPLAY_BUTON_MODE_PRESSED\n");
 		timer_remove_attr(AC_TASK_DISPLAY_ID, AC_DISPLAY_WELCOME_TEXT_ANIM_TICK);
-		SCREEN_TRAN(scr_idle_handle, &scr_idle);
+		SCREEN_TRAN(scr_game_in_the_depth_handle, &scr_game_in_the_depth);
 	}
 	break;
 

@@ -24,13 +24,24 @@ void itd_game_bomb_handle(ak_msg_t *msg)
     case ITD_GAME_BOMB_SPAWN:
     {
         APP_DBG_SIG("ITD_GAME_BOMB_SPAWN");
-        for (int i = 0; i < bomb_number; i++)
-        {
-            bombs[i].x = BOMB_SPAWN_AXIS_X_MIN + rand() % (BOMB_SPAWN_AXIS_X_MAX - BOMB_SPAWN_AXIS_X_MIN + 1);
-            bombs[i].y = BOMB_SPAWN_AXIS_Y_MIN + rand() % (BOMB_SPAWN_AXIS_Y_MAX - BOMB_SPAWN_AXIS_Y_MIN + 1);
-            bombs[i].visible = WHITE;
-            break;
+        static uint8_t bomb_cooldown = 0; 
+        
+        if (bomb_cooldown > 0) {
+            bomb_cooldown--; 
+        } 
+        else {
+            for (int i = 0; i < bomb_number; i++)
+            {
+                if(bombs[i].visible == WHITE) continue;
+                
+                bombs[i].x = BOMB_SPAWN_AXIS_X_MIN + rand() % (BOMB_SPAWN_AXIS_X_MAX - BOMB_SPAWN_AXIS_X_MIN + 1);
+                bombs[i].y = BOMB_SPAWN_AXIS_Y_MIN + rand() % (BOMB_SPAWN_AXIS_Y_MAX - BOMB_SPAWN_AXIS_Y_MIN + 1);
+                bombs[i].visible = WHITE;
+                bomb_cooldown = 8 + rand() % 8; 
+                break; 
+            }
         }
+
     }
     break;
     case ITD_GAME_BOMB_GO:
@@ -38,13 +49,16 @@ void itd_game_bomb_handle(ak_msg_t *msg)
         APP_DBG_SIG("ITD_GAME_BOMB_GO");
         for (int i = 0; i < bomb_number; i++)
         {
-            if (bombs[i].visible != BLACK)
+            if (bombs[i].visible != WHITE)
                 continue;
-            bombs[i].x -= BOMB_STEP_AXIS_X;
-            if (bombs[i].x <= BOMB_DESPAWN_AXIS_X)
+            if (bombs[i].x <= BOMB_DESPAWN_AXIS_X + BOMB_STEP_AXIS_X)
             {
                 bombs[i].visible = BLACK;
                 bombs[i].x = 0;
+            }
+            else
+            {
+                bombs[i].x -=BOMB_STEP_AXIS_X;    
             }
         }
     }

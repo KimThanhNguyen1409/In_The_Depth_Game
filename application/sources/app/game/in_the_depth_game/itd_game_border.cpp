@@ -9,7 +9,7 @@ void itd_game_border_reset_all()
 {
     itd_game_score = 0;
     itd_game_time = 0;
-    itd_game_heart = 0;
+    itd_game_heart = 3;
     is_game_over = false;
 }
 
@@ -26,7 +26,7 @@ void itd_game_border_handle(ak_msg_t *msg)
     case ITD_GAME_BORDER_CHECK_GAME_OVER:
     {
         APP_DBG_SIG("ITD_GAME_BORDER_GAME_OVER");
-        if (itd_game_heart == 0 && !is_game_over)
+        if (itd_game_heart == 0 && is_game_over == false)
         {
             is_game_over = true;
             task_post_pure_msg(AC_TASK_DISPLAY_ID, ITD_GAME_RESET);

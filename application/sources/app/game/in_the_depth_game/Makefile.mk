@@ -10,4 +10,4 @@ SOURCES_CPP 	+= sources/app/game/in_the_depth_game/itd_game_spike.cpp
 SOURCES_CPP 	+= sources/app/game/in_the_depth_game/itd_game_heart.cpp
 SOURCES_CPP 	+= sources/app/game/in_the_depth_game/itd_game_coin.cpp
 SOURCES_CPP 	+= sources/app/game/in_the_depth_game/itd_game_border.cpp
-SOURCES_CPP		+= sources/app/game/in_the_depth_game/itd_game_gift.cpp
+# SOURCES_CPP		+= sources/app/game/in_the_depth_game/itd_game_gift.cpp

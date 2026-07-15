@@ -15,7 +15,7 @@
 #define BOMB_SIZE_BITMAP_X (12)
 #define BOMB_SIZE_BITMAP_Y (12)
 
-#define BOMB_NUMBER_MAX (10)
+#define BOMB_NUMBER_MAX (7)
 #define BOMB_INITAL_NUMBER (3)
 
 #define BOMB_DESPAWN_AXIS_X (10)
@@ -23,7 +23,7 @@
 #define BOMB_STEP_AXIS_X (3)
 
 #define BOMB_SPAWN_AXIS_X_MAX (120)
-#define BOMB_SPAWN_AXIS_X_MIN (100)
+#define BOMB_SPAWN_AXIS_X_MIN (110)
 #define BOMB_SPAWN_AXIS_Y_MIN (20)
 #define BOMB_SPAWN_AXIS_Y_MAX (50)
 

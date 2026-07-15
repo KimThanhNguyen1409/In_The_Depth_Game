@@ -26,15 +26,15 @@
 #define MAINSUB_AXIS_X (16)
 #define MAINSUB_AXIS_Y (32)
 
-#define MAINSUB_STEP_AXIS_Y (3)
+#define MAINSUB_STEP_AXIS_Y (4)
 
-#define MAINSUB_HITBOX_LEFT_OFFSET (12)
-#define MAINSUB_HITBOX_RIGHT_OFFSET (19)
+#define MAINSUB_HITBOX_LEFT_OFFSET (11)
+#define MAINSUB_HITBOX_RIGHT_OFFSET (17)
 #define MAINSUB_HITBOX_TOP_OFFSET (1)
 #define MAINSUB_HITBOX_BOTTOM_OFFSET (9)
 
 #define MAINSUB_AXIS_Y_MAX (64)
-#define MAINSUB_AXIS_Y_MIN (18)
+#define MAINSUB_AXIS_Y_MIN (15)
 
 typedef struct
 {
@@ -43,7 +43,6 @@ typedef struct
     bool visible;
     uint8_t shield_heart = 0;
     uint8_t invincibility_time = 0;
-
 } itd_game_mainsub_t;
 
 extern itd_game_mainsub_t mainsub;
@@ -51,5 +50,5 @@ extern itd_game_mainsub_t mainsub;
 extern bool itd_game_mainsub_check_hit_by_bomb(uint8_t bo);
 extern bool itd_game_mainsub_check_hit_by_spike(uint8_t sp, uint8_t type);
 extern bool itd_game_mainsub_check_get_coin(uint8_t co);
-extern bool itd_game_mainsub_check_get_gift(uint8_t gi);
+// extern bool itd_game_mainsub_check_get_gift(uint8_t gi);
 #endif /*_ITD_GAME_MAINSUB_H_*/

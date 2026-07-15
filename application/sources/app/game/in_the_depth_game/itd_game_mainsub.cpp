@@ -4,8 +4,8 @@ itd_game_mainsub_t mainsub;
 
 bool itd_game_mainsub_check_hit_by_bomb(uint8_t bo)
 {
-    if (mainsub.invincibility_time > 0)
-        return false;
+    // if (mainsub.invincibility_time > 0)
+    //     return false;
     return ((((int16_t)bombs[bo].x) + BOMB_SIZE_BITMAP_X > mainsub.x + MAINSUB_HITBOX_LEFT_OFFSET) &&
             (((int16_t)bombs[bo].x) < mainsub.x + MAINSUB_HITBOX_RIGHT_OFFSET) &&
             (((int16_t)bombs[bo].y) + BOMB_SIZE_BITMAP_Y > mainsub.y + MAINSUB_HITBOX_TOP_OFFSET) &&
@@ -13,8 +13,8 @@ bool itd_game_mainsub_check_hit_by_bomb(uint8_t bo)
 }
 bool itd_game_mainsub_check_hit_by_spike(uint8_t sp, uint8_t type)
 {
-    if (mainsub.invincibility_time > 0)
-        return false;
+    // if (mainsub.invincibility_time > 0)
+    //     return false;
     if (type == 2)
     {
         return (((int16_t)spikes[sp].x + SPIKE_SINGLE_SIZE_BITMAP_X > mainsub.x + MAINSUB_HITBOX_LEFT_OFFSET) &&
@@ -38,13 +38,13 @@ bool itd_game_mainsub_check_get_coin(uint8_t co)
             (((int16_t)coins[co].y) + COIN_SIZE_BITMAP_Y > mainsub.y + MAINSUB_HITBOX_TOP_OFFSET) &&
             (((int16_t)coins[co].y) < mainsub.y + MAINSUB_HITBOX_BOTTOM_OFFSET));
 }
-bool itd_game_mainsub_check_get_gift(uint8_t gi)
-{
-    return ((((int16_t)gifts[gi].x) + GIFT_SIZE_BITMAP_X > mainsub.x + MAINSUB_HITBOX_LEFT_OFFSET) &&
-            (((int16_t)gifts[gi].x) < mainsub.x + MAINSUB_HITBOX_RIGHT_OFFSET) &&
-            (((int16_t)gifts[gi].y) + GIFT_SIZE_BITMAP_Y > mainsub.y + MAINSUB_HITBOX_TOP_OFFSET) &&
-            (((int16_t)gifts[gi].y) < mainsub.y + MAINSUB_HITBOX_BOTTOM_OFFSET));
-}
+// bool itd_game_mainsub_check_get_gift(uint8_t gi)
+// {
+//     return ((((int16_t)gifts[gi].x) + GIFT_SIZE_BITMAP_X > mainsub.x + MAINSUB_HITBOX_LEFT_OFFSET) &&
+//             (((int16_t)gifts[gi].x) < mainsub.x + MAINSUB_HITBOX_RIGHT_OFFSET) &&
+//             (((int16_t)gifts[gi].y) + GIFT_SIZE_BITMAP_Y > mainsub.y + MAINSUB_HITBOX_TOP_OFFSET) &&
+//             (((int16_t)gifts[gi].y) < mainsub.y + MAINSUB_HITBOX_BOTTOM_OFFSET));
+// }
 void itd_game_mainsub_handle(ak_msg_t *msg)
 {
     switch (msg->sig)
@@ -140,34 +140,34 @@ void itd_game_mainsub_handle(ak_msg_t *msg)
         }
     }
     break;
-    case ITD_GAME_MAINSUB_APPLY_BUFF:
-    {
-        APP_DBG_SIG("ITD_GAME_MAINSUB_APPLY_BUFF");
-        buff_type_t applied_buff = (buff_type_t)(*(uint8_t *)msg->sig);
-        switch (applied_buff)
-        {
-        case GET_HEART:
-            if (current_heart < 3)
-            {
-                current_heart++;
-            }
-            break;
-        case GET_BARRIER:
-            mainsub.shield_heart++;
-            break;
-        case GET_BONUS_COIN:
-            current_coin *= 4;
-            break;
-        case GET_NUKE:
-            task_post_pure_msg(ITD_GAME_BOMB_ID, ITD_GAME_BOMB_RESET);
-            task_post_pure_msg(ITD_GAME_SPIKE_ID, ITD_GAME_SPIKE_RESET);
-            task_post_pure_msg(ITD_GAME_COIN_ID, ITD_GAME_COIN_RESET);
-            break;
-        default:
-            break;
-        }
-    }
-    break;
+    // case ITD_GAME_MAINSUB_APPLY_BUFF:
+    // {
+    //     APP_DBG_SIG("ITD_GAME_MAINSUB_APPLY_BUFF");
+    //     buff_type_t applied_buff = (buff_type_t)(*(uint8_t *)msg->sig);
+    //     switch (applied_buff)
+    //     {
+    //     case GET_HEART:
+    //         // if (current_heart < 3)
+    //         // {
+    //         //     current_heart++;
+    //         // }
+    //         // break;
+    //     case GET_BARRIER:
+    //         mainsub.shield_heart++;
+    //         break;
+    //     case GET_BONUS_COIN:
+    //         current_coin *= 4;
+    //         break;
+    //     case GET_NUKE:
+    //         task_post_pure_msg(ITD_GAME_BOMB_ID, ITD_GAME_BOMB_RESET);
+    //         task_post_pure_msg(ITD_GAME_SPIKE_ID, ITD_GAME_SPIKE_RESET);
+    //         task_post_pure_msg(ITD_GAME_COIN_ID, ITD_GAME_COIN_RESET);
+    //         break;
+    //     default:
+    //         break;
+    //     }
+    // }
+    // break;
     case ITD_GAME_MAINSUB_UPDATE:
     {
         APP_DBG_SIG("ITD_GAME_MAINSUB_UPDATE");

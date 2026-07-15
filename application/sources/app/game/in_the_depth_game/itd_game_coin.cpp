@@ -29,10 +29,11 @@ void itd_game_coin_handle(ak_msg_t *msg)
         APP_DBG_SIG("ITD_GAME_COIN_SPAWN");
         for (int i = 0; i < coin_number; i++)
         {
+            if (coins[i].visible == WHITE) 
+                continue;
             coins[i].x = COIN_SPAWN_AXIS_X_MIN + rand() % (COIN_SPAWN_AXIS_X_MAX - COIN_SPAWN_AXIS_X_MIN);
             coins[i].y = COIN_SPAWN_AXIS_Y_MIN + rand() % (COIN_SPAWN_AXIS_Y_MAX - COIN_SPAWN_AXIS_Y_MIN);
             coins[i].visible = WHITE;
-            break;
         }
     }
     break;
@@ -43,11 +44,13 @@ void itd_game_coin_handle(ak_msg_t *msg)
         {
             if (coins[i].visible != WHITE)
                 continue;
-            coins[i].x -= COIN_STEP_AXIS_X;
-            if (coins[i].x <= COIN_DESPAWN_AXIS_X)
+            if (coins[i].x <= COIN_DESPAWN_AXIS_X + COIN_STEP_AXIS_X)
             {
                 coins[i].x = 0;
                 coins[i].visible = BLACK;
+            }
+            else{
+                coins[i].x -= COIN_STEP_AXIS_X;
             }
         }
     }

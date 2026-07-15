@@ -26,19 +26,21 @@ void itd_game_spike_handle(ak_msg_t *msg)
         APP_DBG_SIG("ITD_GAME_SPIKE_SPAWN");
         for (int i = 0; i < SPIKE_NUMBER; i++)
         {
+            if(spikes[i].visible == WHITE)
+                continue;
             int type = 2 + rand() % 2;
             if (type == 3)
             {
                 spikes[i].type = SPIKE_TRIPLE_TYPE;
                 spikes[i].x = SPIKE_TRIPLE_SPAWN_X;
-                spikes[i].y = SPIKE_SPAWN_Y;
+                spikes[i].y = SPIKE_TRIPLE_SPAWN_Y;
                 spikes[i].visible = WHITE;
             }
             else if (type == 2)
             {
                 spikes[i].type = SPIKE_SINGLE_TYPE;
                 spikes[i].x = SPIKE_SINGLE_SPAWN_X;
-                spikes[i].y = SPIKE_SPAWN_Y;
+                spikes[i].y = SPIKE_SINGLE_SPAWN_Y;
                 spikes[i].visible = WHITE;
             }
         }

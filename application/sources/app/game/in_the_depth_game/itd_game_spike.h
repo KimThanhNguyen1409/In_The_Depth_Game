@@ -26,8 +26,8 @@
 
 #define SPIKE_TRIPLE_SPAWN_X (125)
 #define SPIKE_SINGLE_SPAWN_X (125)
-#define SPIKE_SPAWN_Y (64)
-
+#define SPIKE_TRIPLE_SPAWN_Y (50)
+#define SPIKE_SINGLE_SPAWN_Y (40)
 #define SPIKE_STEP_X (2)
 
 #define SPIKE_DESPAWN_AXIS_X (10)

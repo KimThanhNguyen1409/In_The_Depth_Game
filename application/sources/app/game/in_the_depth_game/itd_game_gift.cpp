@@ -4,23 +4,23 @@ itd_game_gift_t gifts[GIFT_NUMBER_MAX];
 uint8_t gift_number = 1 + rand() % (GIFT_NUMBER_MAX - 1);
 buff_type_t current_options[3];
 
-void itd_game_generate_buff_options()
-{
-    uint8_t count = 0;
-    while (count < 3)
-    {
-        buff_type_t rand_buff = (buff_type_t)(rand() % 4);
-        for (uint8_t i = 0; i < count; i++)
-        {
-            if (current_options[i] == rand_buff)
-            {
-                break;
-            }
-        }
-        current_options[count] = rand_buff;
-        count++;    
-    }
-}
+// void itd_game_generate_buff_options()
+// {
+//     uint8_t count = 0;
+//     while (count < 3)
+//     {
+//         buff_type_t rand_buff = (buff_type_t)(rand() % 4);
+//         for (uint8_t i = 0; i < count; i++)
+//         {
+//             if (current_options[i] == rand_buff)
+//             {
+//                 break;
+//             }
+//         }
+//         current_options[count] = rand_buff;
+//         count++;    
+//     }
+// }
 
 void itd_game_gift_restet_all()
 {

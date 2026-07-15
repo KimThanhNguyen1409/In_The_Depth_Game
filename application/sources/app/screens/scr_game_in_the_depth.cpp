@@ -11,13 +11,13 @@ void itd_game_frame_display()
 {
     view_render.setTextSize(1);
     view_render.setTextColor(WHITE);
-    view_render.setCursor(32, 8);
-    view_render.print("SCORE:");
+    view_render.setCursor(48, 4);
+    view_render.print("S:");
     view_render.print(itd_game_score);
-    view_render.setCursor(80, 8);
-    view_render.print("TIME:");
-    view_render.print(itd_game_time);
-    view_render.drawLine(0, 16, 128, 16, WHITE);
+    view_render.setCursor(90, 4);
+    view_render.print("T:");
+    view_render.print(itd_game_time / 10);
+    view_render.drawLine(0, 15, 128, 15, WHITE);
 }
 
 static void view_scr_game_in_the_depth();
@@ -41,7 +41,7 @@ void itd_game_mainsub_display()
     if (mainsub.visible != WHITE)
         return;
     const unsigned char *frame = main_sub;
-    view_render.drawBitmap(16, 40, frame, MAINSUB_SIZE_BITMAP_X, MAINSUB_SIZE_BITMAP_Y, WHITE);
+    view_render.drawBitmap(mainsub.x, mainsub.y, frame, MAINSUB_SIZE_BITMAP_X, MAINSUB_SIZE_BITMAP_Y, WHITE);
 }
 
 void itd_game_bomb_display()
@@ -115,38 +115,39 @@ void itd_game_boom_display()
 }
 void itd_game_heart_display()
 {
-    for (uint8_t i = 0; i < current_heart; i++)
+    for (uint8_t i = 0; i < current_heart && i < HEART_MAX_NUMBER; i++)
     {
         if (hearts[i].visible != WHITE)
             continue;
         view_render.drawBitmap(hearts[i].x, hearts[i].y, heart, HEART_SIZE_BITMAP_X, HEART_SIZE_BITMAP_Y, WHITE);
     }
 }
-void itd_game_gift_display()
-{
-    for (uint8_t i = 0; i < gift_number; i++)
-    {
-        if (gifts[i].visible != WHITE)
-            continue;
-        view_render.drawBitmap(gifts[i].x, gifts[i].y, gift, GIFT_SIZE_BITMAP_X, GIFT_SIZE_BITMAP_Y, WHITE);
-    }
-}
-void itd_game_buff_display()
-{
-    view_render.setTextSize(1);
-    view_render.setTextColor(WHITE);
-    view_render.setCursor(60, 8);
-    view_render.print("GET BUFF");
-    for (uint8_t i = 0; i < 3; i++)
-    {
-        view_render.drawRect(16 + i * 24, 16, 32, 32, WHITE);
-        view_render.setCursor(20 + i * 16, 16);
-    }
-}
+// void itd_game_gift_display()
+// {
+//     for (uint8_t i = 0; i < gift_number; i++)
+//     {
+//         if (gifts[i].visible != WHITE)
+//             continue;
+//         view_render.drawBitmap(gifts[i].x, gifts[i].y, gift, GIFT_SIZE_BITMAP_X, GIFT_SIZE_BITMAP_Y, WHITE);
+//     }
+// }
+// void itd_game_buff_display()
+// {
+//     view_render.setTextSize(1);
+//     view_render.setTextColor(WHITE);
+//     view_render.setCursor(60, 8);
+//     view_render.print("GET BUFF");
+//     for (uint8_t i = 0; i < 3; i++)
+//     {
+//         view_render.drawRect(16 + i * 24, 16, 32, 32, WHITE);
+//         view_render.setCursor(20 + i * 16, 16);
+//     }
+// }
 void view_scr_game_in_the_depth()
 {
     if (itd_game_state == GAME_PLAY)
     {
+        itd_game_frame_display();
         itd_game_mainsub_display();
         itd_game_bomb_display();
         itd_game_boom_display();
@@ -175,7 +176,7 @@ void scr_game_in_the_depth_handle(ak_msg_t *msg)
         task_post_pure_msg(ITD_GAME_HEART_ID, ITD_GAME_HEART_SETUP);
         task_post_pure_msg(ITD_GAME_BORDER_ID, ITD_GAME_BORDER_SETUP);
         task_post_pure_msg(ITD_GAME_SPIKE_ID, ITD_GAME_SPIKE_SETUP);
-        task_post_pure_msg(ITD_GAME_GIFT_ID, ITD_GAME_GIFT_SETUP);
+        // task_post_pure_msg(ITD_GAME_GIFT_ID, ITD_GAME_GIFT_SETUP);
         itd_game_state = GAME_PLAY;
         mainsub_dir = MAINSUB_NONE;
         timer_remove_attr(AC_TASK_DISPLAY_ID, AC_DISPLAY_SHOW_IDLE);
@@ -203,7 +204,9 @@ void scr_game_in_the_depth_handle(ak_msg_t *msg)
         task_post_pure_msg(ITD_GAME_MAINSUB_ID, ITD_GAME_MAINSUB_DENATOR_BY_BOMB);
         task_post_pure_msg(ITD_GAME_MAINSUB_ID, ITD_GAME_MAINSUB_DENATOR_BY_SPIKE);
         task_post_pure_msg(ITD_GAME_MAINSUB_ID, ITD_GAME_MAINSUB_GET_COIN);
-        task_post_pure_msg(ITD_GAME_MAINSUB_ID, ITD_GAME_MAINSUB_APPLY_BUFF);
+        task_post_pure_msg(ITD_GAME_HEART_ID, ITD_GAME_HEART_UPDATE);
+        task_post_pure_msg(ITD_GAME_MAINSUB_ID, ITD_GAME_MAINSUB_UPDATE);
+        // task_post_pure_msg(ITD_GAME_MAINSUB_ID, ITD_GAME_MAINSUB_APPLY_BUFF);
         task_post_pure_msg(ITD_GAME_BOOM_ID, ITD_GAME_BOOM_UPDATE);
         task_post_pure_msg(ITD_GAME_BORDER_ID, ITD_GAME_BORDER_CHECK_GAME_OVER);
         task_post_pure_msg(ITD_GAME_BORDER_ID, ITD_GAME_BORDER_UPDATE);
@@ -212,23 +215,26 @@ void scr_game_in_the_depth_handle(ak_msg_t *msg)
     case ITD_GAME_RESET:
     {
         APP_DBG_SIG("ITD_GAME_RESET\n");
-        if (itd_game_state != GAME_PLAY)
-            break;
-        timer_remove_attr(AC_TASK_DISPLAY_ID, ITD_GAME_TIME_TICK);
-        task_post_pure_msg(ITD_GAME_MAINSUB_ID, ITD_GAME_MAINSUB_RESET);
-        task_post_pure_msg(ITD_GAME_BOMB_ID, ITD_GAME_BOMB_RESET);
-        task_post_pure_msg(ITD_GAME_SPIKE_ID, ITD_GAME_SPIKE_RESET);
-        task_post_pure_msg(ITD_GAME_COIN_ID, ITD_GAME_COIN_RESET);
-        task_post_pure_msg(ITD_GAME_HEART_ID, ITD_GAME_HEART_RESET);
-        task_post_pure_msg(ITD_GAME_BORDER_ID, ITD_GAME_BORDER_RESET);
-        task_post_pure_msg(ITD_GAME_BOOM_ID, ITD_GAME_BOOM_RESET);
-        task_post_pure_msg(ITD_GAME_GIFT_ID, ITD_GAME_GIFT_RESET);
-        itd_game_state = GAME_OVER;
-        timer_set(AC_TASK_DISPLAY_ID,
-                  ITD_GAME_EXIT_GAME,
-                  ITD_GAME_TIME_EXIT_INTERVAL,
-                  TIMER_ONE_SHOT);
+        if(itd_game_heart == 0){
+            if (itd_game_state != GAME_PLAY)
+                break;
+            timer_remove_attr(AC_TASK_DISPLAY_ID, ITD_GAME_TIME_TICK);
+            task_post_pure_msg(ITD_GAME_MAINSUB_ID, ITD_GAME_MAINSUB_RESET);
+            task_post_pure_msg(ITD_GAME_BOMB_ID, ITD_GAME_BOMB_RESET);
+            task_post_pure_msg(ITD_GAME_SPIKE_ID, ITD_GAME_SPIKE_RESET);
+            task_post_pure_msg(ITD_GAME_COIN_ID, ITD_GAME_COIN_RESET);
+            task_post_pure_msg(ITD_GAME_HEART_ID, ITD_GAME_HEART_RESET);
+            task_post_pure_msg(ITD_GAME_BORDER_ID, ITD_GAME_BORDER_RESET);
+            task_post_pure_msg(ITD_GAME_BOOM_ID, ITD_GAME_BOOM_RESET);
+            // task_post_pure_msg(ITD_GAME_GIFT_ID, ITD_GAME_GIFT_RESET);
+            itd_game_state = GAME_OVER;
+            timer_set(AC_TASK_DISPLAY_ID,
+                    ITD_GAME_EXIT_GAME,
+                    ITD_GAME_TIME_EXIT_INTERVAL,
+                    TIMER_ONE_SHOT);
+        }
     }
+    break;
     case AC_DISPLAY_BUTTON_DOWN_PRESSED:
     {
         APP_DBG_SIG("ITD_GAME BTN_DOWN_PRESSED\n");
@@ -241,6 +247,7 @@ void scr_game_in_the_depth_handle(ak_msg_t *msg)
         if (mainsub_dir == MAINSUB_DOWN)
             mainsub_dir = MAINSUB_NONE;
     }
+    break;
     case AC_DISPLAY_BUTTON_UP_PRESSED:
     {
         APP_DBG_SIG("ITD_GAME BTN_UP_PRESSED\n");
