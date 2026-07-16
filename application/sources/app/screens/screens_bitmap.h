@@ -7,6 +7,7 @@
 extern const unsigned char PROGMEM main_sub[];
 extern const unsigned char PROGMEM bomb[];
 extern const unsigned char PROGMEM heart[];
+extern const unsigned char PROGMEM shield[];
 extern const unsigned char PROGMEM boom_I[];
 extern const unsigned char PROGMEM boom_II[];
 extern const unsigned char PROGMEM boom_III[];

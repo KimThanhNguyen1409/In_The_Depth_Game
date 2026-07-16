@@ -17,16 +17,19 @@
 
 #include "itd_game_bomb.h"
 #include "itd_game_boom.h"
-// #include "itd_game_border.h"
+#include "itd_game_border.h"
 #include "itd_game_coin.h"
-// #include "itd_game_heart.h"
+#include "itd_game_heart.h"
 #include "itd_game_mainsub.h"
 #include "itd_game_spike.h"
-// #include "itd_game_gift.h"
+#include "itd_game_gift.h"
 
 #define GAME_START (0)
 #define GAME_PLAY (1)
 #define GAME_OVER (2)
+
+#define SHIELD_BITMAP_SIZE_X (12)
+#define SHIELD_BITMAP_SIZE_Y (12)
 
 extern view_dynamic_t dyn_view_in_the_depth;
 extern view_screen_t scr_game_in_the_depth;

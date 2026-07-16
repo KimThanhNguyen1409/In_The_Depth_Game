@@ -11,15 +11,28 @@ void itd_game_frame_display()
 {
     view_render.setTextSize(1);
     view_render.setTextColor(WHITE);
-    view_render.setCursor(48, 4);
+    view_render.setCursor(14, 4);
+    view_render.print("X");
+    view_render.print(itd_game_heart);
+    view_render.drawBitmap(26, 2, shield, SHIELD_BITMAP_SIZE_X, SHIELD_BITMAP_SIZE_Y, WHITE);
+    view_render.setCursor(38, 4);
+    view_render.print("X");
+    view_render.print(itd_game_shield);
+    view_render.setCursor(54, 4);
     view_render.print("S:");
     view_render.print(itd_game_score);
-    view_render.setCursor(90, 4);
-    view_render.print("T:");
+    view_render.setCursor(92, 4);
+    view_render.print("T:");    
     view_render.print(itd_game_time / 10);
     view_render.drawLine(0, 15, 128, 15, WHITE);
 }
-
+void itd_game_particle_display(){
+    for(uint8_t i = 0; i < 128; i += 8){
+        view_render.drawPixel(i, 30, WHITE);
+        view_render.drawPixel(i, 45, WHITE);
+        view_render.drawPixel(i, 60, WHITE);
+    }
+}
 static void view_scr_game_in_the_depth();
 
 view_dynamic_t dyn_view_in_the_depth = {
@@ -32,16 +45,13 @@ view_screen_t scr_game_in_the_depth = {
     &dyn_view_in_the_depth,
     ITEM_NULL,
     ITEM_NULL,
-
     .focus_item = 0,
 };
-
 void itd_game_mainsub_display()
 {
     if (mainsub.visible != WHITE)
         return;
-    const unsigned char *frame = main_sub;
-    view_render.drawBitmap(mainsub.x, mainsub.y, frame, MAINSUB_SIZE_BITMAP_X, MAINSUB_SIZE_BITMAP_Y, WHITE);
+    view_render.drawBitmap(mainsub.x, mainsub.y, main_sub, MAINSUB_SIZE_BITMAP_X, MAINSUB_SIZE_BITMAP_Y, WHITE);
 }
 
 void itd_game_bomb_display()
@@ -122,44 +132,45 @@ void itd_game_heart_display()
         view_render.drawBitmap(hearts[i].x, hearts[i].y, heart, HEART_SIZE_BITMAP_X, HEART_SIZE_BITMAP_Y, WHITE);
     }
 }
-// void itd_game_gift_display()
-// {
-//     for (uint8_t i = 0; i < gift_number; i++)
-//     {
-//         if (gifts[i].visible != WHITE)
-//             continue;
-//         view_render.drawBitmap(gifts[i].x, gifts[i].y, gift, GIFT_SIZE_BITMAP_X, GIFT_SIZE_BITMAP_Y, WHITE);
-//     }
-// }
-// void itd_game_buff_display()
-// {
-//     view_render.setTextSize(1);
-//     view_render.setTextColor(WHITE);
-//     view_render.setCursor(60, 8);
-//     view_render.print("GET BUFF");
-//     for (uint8_t i = 0; i < 3; i++)
-//     {
-//         view_render.drawRect(16 + i * 24, 16, 32, 32, WHITE);
-//         view_render.setCursor(20 + i * 16, 16);
-//     }
-// }
+void itd_game_gift_display()
+{
+    for (uint8_t i = 0; i < gift_number; i++)
+    {
+        if (gifts[i].visible != WHITE)
+            continue;
+        view_render.drawBitmap(gifts[i].x, gifts[i].y, gift, GIFT_SIZE_BITMAP_X, GIFT_SIZE_BITMAP_Y, WHITE);
+    }
+}
 void view_scr_game_in_the_depth()
 {
     if (itd_game_state == GAME_PLAY)
     {
         itd_game_frame_display();
+        itd_game_particle_display();
         itd_game_mainsub_display();
         itd_game_bomb_display();
         itd_game_boom_display();
         itd_game_coin_display();
         itd_game_heart_display();
         itd_game_spike_display();
+        itd_game_gift_display();
     }
     else if (itd_game_state == GAME_OVER)
     {
         view_render.setTextSize(2);
         view_render.setCursor(60, 32);
         view_render.print("GAME OVER");
+    }
+}
+void scr_game_itd_view_buff(ak_msg_t *msg){
+    switch (msg->sig)
+    {
+    case ITD_GAME_TIME_TICK:
+        
+        break;
+    
+    default:
+        break;
     }
 }
 void scr_game_in_the_depth_handle(ak_msg_t *msg)
@@ -176,7 +187,7 @@ void scr_game_in_the_depth_handle(ak_msg_t *msg)
         task_post_pure_msg(ITD_GAME_HEART_ID, ITD_GAME_HEART_SETUP);
         task_post_pure_msg(ITD_GAME_BORDER_ID, ITD_GAME_BORDER_SETUP);
         task_post_pure_msg(ITD_GAME_SPIKE_ID, ITD_GAME_SPIKE_SETUP);
-        // task_post_pure_msg(ITD_GAME_GIFT_ID, ITD_GAME_GIFT_SETUP);
+        task_post_pure_msg(ITD_GAME_GIFT_ID, ITD_GAME_GIFT_SETUP);
         itd_game_state = GAME_PLAY;
         mainsub_dir = MAINSUB_NONE;
         timer_remove_attr(AC_TASK_DISPLAY_ID, AC_DISPLAY_SHOW_IDLE);
@@ -201,12 +212,14 @@ void scr_game_in_the_depth_handle(ak_msg_t *msg)
         task_post_pure_msg(ITD_GAME_SPIKE_ID, ITD_GAME_SPIKE_GO);
         task_post_pure_msg(ITD_GAME_COIN_ID, ITD_GAME_COIN_SPAWN);
         task_post_pure_msg(ITD_GAME_COIN_ID, ITD_GAME_COIN_GO);
+        task_post_pure_msg(ITD_GAME_GIFT_ID, ITD_GAME_GIFT_SPAWN);
+        task_post_pure_msg(ITD_GAME_GIFT_ID, ITD_GAME_GIFT_GO);
         task_post_pure_msg(ITD_GAME_MAINSUB_ID, ITD_GAME_MAINSUB_DENATOR_BY_BOMB);
         task_post_pure_msg(ITD_GAME_MAINSUB_ID, ITD_GAME_MAINSUB_DENATOR_BY_SPIKE);
         task_post_pure_msg(ITD_GAME_MAINSUB_ID, ITD_GAME_MAINSUB_GET_COIN);
+        task_post_pure_msg(ITD_GAME_MAINSUB_ID, ITD_GAME_MAINSUB_GET_GIFT);
         task_post_pure_msg(ITD_GAME_HEART_ID, ITD_GAME_HEART_UPDATE);
         task_post_pure_msg(ITD_GAME_MAINSUB_ID, ITD_GAME_MAINSUB_UPDATE);
-        // task_post_pure_msg(ITD_GAME_MAINSUB_ID, ITD_GAME_MAINSUB_APPLY_BUFF);
         task_post_pure_msg(ITD_GAME_BOOM_ID, ITD_GAME_BOOM_UPDATE);
         task_post_pure_msg(ITD_GAME_BORDER_ID, ITD_GAME_BORDER_CHECK_GAME_OVER);
         task_post_pure_msg(ITD_GAME_BORDER_ID, ITD_GAME_BORDER_UPDATE);
@@ -226,7 +239,7 @@ void scr_game_in_the_depth_handle(ak_msg_t *msg)
             task_post_pure_msg(ITD_GAME_HEART_ID, ITD_GAME_HEART_RESET);
             task_post_pure_msg(ITD_GAME_BORDER_ID, ITD_GAME_BORDER_RESET);
             task_post_pure_msg(ITD_GAME_BOOM_ID, ITD_GAME_BOOM_RESET);
-            // task_post_pure_msg(ITD_GAME_GIFT_ID, ITD_GAME_GIFT_RESET);
+            task_post_pure_msg(ITD_GAME_GIFT_ID, ITD_GAME_GIFT_RESET);
             itd_game_state = GAME_OVER;
             timer_set(AC_TASK_DISPLAY_ID,
                     ITD_GAME_EXIT_GAME,
