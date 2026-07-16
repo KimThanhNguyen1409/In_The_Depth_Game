@@ -3,13 +3,14 @@
 static bool is_game_over = false;
 uint16_t itd_game_score = 0;
 uint16_t itd_game_time = 0;
-uint16_t itd_game_heart = 0;
-
+uint8_t itd_game_heart = 0;
+uint8_t itd_game_shield = 0;
 void itd_game_border_reset_all()
 {
     itd_game_score = 0;
     itd_game_time = 0;
     itd_game_heart = 3;
+    itd_game_shield = 0;
     is_game_over = false;
 }
 
@@ -38,6 +39,7 @@ void itd_game_border_handle(ak_msg_t *msg)
         APP_DBG_SIG("ITD_GAME_BORDER_UPDATE");
         itd_game_score = 10 * current_coin;
         itd_game_heart = current_heart;
+        itd_game_shield = mainsub.shield_heart;
         itd_game_time++;
     }
     break;

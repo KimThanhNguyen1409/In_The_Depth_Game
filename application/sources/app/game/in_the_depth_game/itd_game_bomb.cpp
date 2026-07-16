@@ -32,16 +32,16 @@ void itd_game_bomb_handle(ak_msg_t *msg)
         else {
             for (int i = 0; i < bomb_number; i++)
             {
-                if(bombs[i].visible == WHITE) continue;
+                if(bombs[i].visible == WHITE) 
+                    continue;
                 
-                bombs[i].x = BOMB_SPAWN_AXIS_X_MIN + rand() % (BOMB_SPAWN_AXIS_X_MAX - BOMB_SPAWN_AXIS_X_MIN + 1);
-                bombs[i].y = BOMB_SPAWN_AXIS_Y_MIN + rand() % (BOMB_SPAWN_AXIS_Y_MAX - BOMB_SPAWN_AXIS_Y_MIN + 1);
+                bombs[i].x = BOMB_SPAWN_AXIS_X_MIN + rand() % (BOMB_SPAWN_AXIS_X_MAX - BOMB_SPAWN_AXIS_X_MIN + 1) + BOMB_SPAWN_LEFT_OFFSET;
+                bombs[i].y = BOMB_SPAWN_AXIS_Y_MIN + rand() % (BOMB_SPAWN_AXIS_Y_MAX - BOMB_SPAWN_AXIS_Y_MIN + 1) + BOMB_SPAWN_TOP_OFFSET;
                 bombs[i].visible = WHITE;
                 bomb_cooldown = 8 + rand() % 8; 
                 break; 
             }
         }
-
     }
     break;
     case ITD_GAME_BOMB_GO:

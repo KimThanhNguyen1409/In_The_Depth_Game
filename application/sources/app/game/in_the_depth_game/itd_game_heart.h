@@ -25,7 +25,7 @@
 #define HEART_AXIS_X (2)
 #define HEART_AXIS_Y (2)
 
-#define HEART_DISTANCE_AXIS_X (14)
+
 
 typedef struct
 {

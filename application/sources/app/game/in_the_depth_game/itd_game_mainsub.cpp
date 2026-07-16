@@ -4,8 +4,9 @@ itd_game_mainsub_t mainsub;
 
 bool itd_game_mainsub_check_hit_by_bomb(uint8_t bo)
 {
-    // if (mainsub.invincibility_time > 0)
-    //     return false;
+    if (mainsub.invincibility_time > 0){
+        return false;
+    }
     return ((((int16_t)bombs[bo].x) + BOMB_SIZE_BITMAP_X > mainsub.x + MAINSUB_HITBOX_LEFT_OFFSET) &&
             (((int16_t)bombs[bo].x) < mainsub.x + MAINSUB_HITBOX_RIGHT_OFFSET) &&
             (((int16_t)bombs[bo].y) + BOMB_SIZE_BITMAP_Y > mainsub.y + MAINSUB_HITBOX_TOP_OFFSET) &&
@@ -13,8 +14,9 @@ bool itd_game_mainsub_check_hit_by_bomb(uint8_t bo)
 }
 bool itd_game_mainsub_check_hit_by_spike(uint8_t sp, uint8_t type)
 {
-    // if (mainsub.invincibility_time > 0)
-    //     return false;
+    if (mainsub.invincibility_time > 0){
+        return false;
+    }
     if (type == 2)
     {
         return (((int16_t)spikes[sp].x + SPIKE_SINGLE_SIZE_BITMAP_X > mainsub.x + MAINSUB_HITBOX_LEFT_OFFSET) &&
@@ -38,13 +40,13 @@ bool itd_game_mainsub_check_get_coin(uint8_t co)
             (((int16_t)coins[co].y) + COIN_SIZE_BITMAP_Y > mainsub.y + MAINSUB_HITBOX_TOP_OFFSET) &&
             (((int16_t)coins[co].y) < mainsub.y + MAINSUB_HITBOX_BOTTOM_OFFSET));
 }
-// bool itd_game_mainsub_check_get_gift(uint8_t gi)
-// {
-//     return ((((int16_t)gifts[gi].x) + GIFT_SIZE_BITMAP_X > mainsub.x + MAINSUB_HITBOX_LEFT_OFFSET) &&
-//             (((int16_t)gifts[gi].x) < mainsub.x + MAINSUB_HITBOX_RIGHT_OFFSET) &&
-//             (((int16_t)gifts[gi].y) + GIFT_SIZE_BITMAP_Y > mainsub.y + MAINSUB_HITBOX_TOP_OFFSET) &&
-//             (((int16_t)gifts[gi].y) < mainsub.y + MAINSUB_HITBOX_BOTTOM_OFFSET));
-// }
+bool itd_game_mainsub_check_get_gift(uint8_t gi)
+{
+    return ((((int16_t)gifts[gi].x) + GIFT_SIZE_BITMAP_X > mainsub.x + MAINSUB_HITBOX_LEFT_OFFSET) &&
+            (((int16_t)gifts[gi].x) < mainsub.x + MAINSUB_HITBOX_RIGHT_OFFSET) &&
+            (((int16_t)gifts[gi].y) + GIFT_SIZE_BITMAP_Y > mainsub.y + MAINSUB_HITBOX_TOP_OFFSET) &&
+            (((int16_t)gifts[gi].y) < mainsub.y + MAINSUB_HITBOX_BOTTOM_OFFSET));
+}
 void itd_game_mainsub_handle(ak_msg_t *msg)
 {
     switch (msg->sig)
@@ -100,6 +102,11 @@ void itd_game_mainsub_handle(ak_msg_t *msg)
             bombs[i].visible = BLACK;
             itd_game_boom_spawn(mainsub.x, mainsub.y);
             mainsub.visible = BLACK;
+            if(mainsub.shield_heart != 0)
+            {
+                mainsub.shield_heart--;
+                break;
+            }
             current_heart--;
             break;
         }
@@ -120,6 +127,11 @@ void itd_game_mainsub_handle(ak_msg_t *msg)
             spikes[i].visible = BLACK;
             itd_game_boom_spawn(mainsub.x, mainsub.y);
             mainsub.visible = BLACK;
+            if(mainsub.shield_heart != 0)
+            {
+                mainsub.shield_heart--;
+                break;
+            }
             current_heart--;
             break;
         }
@@ -140,34 +152,75 @@ void itd_game_mainsub_handle(ak_msg_t *msg)
         }
     }
     break;
-    // case ITD_GAME_MAINSUB_APPLY_BUFF:
-    // {
-    //     APP_DBG_SIG("ITD_GAME_MAINSUB_APPLY_BUFF");
-    //     buff_type_t applied_buff = (buff_type_t)(*(uint8_t *)msg->sig);
-    //     switch (applied_buff)
-    //     {
-    //     case GET_HEART:
-    //         // if (current_heart < 3)
-    //         // {
-    //         //     current_heart++;
-    //         // }
-    //         // break;
-    //     case GET_BARRIER:
-    //         mainsub.shield_heart++;
-    //         break;
-    //     case GET_BONUS_COIN:
-    //         current_coin *= 4;
-    //         break;
-    //     case GET_NUKE:
-    //         task_post_pure_msg(ITD_GAME_BOMB_ID, ITD_GAME_BOMB_RESET);
-    //         task_post_pure_msg(ITD_GAME_SPIKE_ID, ITD_GAME_SPIKE_RESET);
-    //         task_post_pure_msg(ITD_GAME_COIN_ID, ITD_GAME_COIN_RESET);
-    //         break;
-    //     default:
-    //         break;
-    //     }
-    // }
-    // break;
+    case ITD_GAME_MAINSUB_GET_GIFT:
+    {
+        APP_DBG_SIG("ITD_GAME_MAINSUB_GET_GIFT");
+        for(uint8_t i = 0; i < gift_number; i++)
+        {
+            if(gifts[i].visible != WHITE)
+                continue;
+            if(!itd_game_mainsub_check_get_gift(i))
+                continue;
+            gifts[i].visible = BLACK;
+            gifts[i].x = 0;
+            switch (gifts[i].buff)
+            {
+            case GET_HEART:
+            {
+                APP_DBG_SIG("ITD_GAME_MAINSUB_GET_HEART");
+                if(current_heart < 3)
+                {
+                    current_heart++;
+                }
+                
+            }
+            break;
+            case GET_SHIELD:
+            {
+                APP_DBG_SIG("ITD_GAME_MAINSUB_GET_SHIELD");
+                if(mainsub.shield_heart == 0 || mainsub.shield_heart < 3)
+                {
+                    mainsub.shield_heart++;
+                }
+            }
+            break;
+            case GET_BONUS_COIN:
+            {
+                APP_DBG_SIG("ITD_GAME_MAINSUB_GET_BONUS_COIN");
+                current_coin += 10;
+            }
+            break;
+            case GET_NUKE:
+            {
+                APP_DBG_SIG("ITD_GAME_MAINSUB_GET_NUKE");
+                static uint8_t nuke_time_last = 20;
+                if(nuke_time_last > 0)
+                {
+                    nuke_time_last--;
+                    for(uint8_t i = 0; i < bomb_number; i++)
+                    {
+                        itd_game_boom_spawn(bombs[i].x, bombs[i].y);
+                    }
+                    task_post_pure_msg(ITD_GAME_BOMB_ID, ITD_GAME_BOMB_RESET);
+                    for(uint8_t i = 0; i < SPIKE_NUMBER; i++)
+                    {
+                        itd_game_boom_spawn(spikes[i].x, spikes[i].y);
+                    }
+                    task_post_pure_msg(ITD_GAME_SPIKE_ID, ITD_GAME_SPIKE_RESET);
+                }
+                else
+                {
+                    nuke_time_last = 0;
+                }
+            }
+            break;
+            default:
+                break;
+            }
+            // mainsub.applied_buff = gifts[i].buff;
+        }
+    }
+    break;
     case ITD_GAME_MAINSUB_UPDATE:
     {
         APP_DBG_SIG("ITD_GAME_MAINSUB_UPDATE");

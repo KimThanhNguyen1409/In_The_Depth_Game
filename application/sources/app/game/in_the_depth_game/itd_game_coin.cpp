@@ -27,13 +27,22 @@ void itd_game_coin_handle(ak_msg_t *msg)
     case ITD_GAME_COIN_SPAWN:
     {
         APP_DBG_SIG("ITD_GAME_COIN_SPAWN");
-        for (int i = 0; i < coin_number; i++)
+        static uint8_t coin_cooldown = 0;
+        if(coin_cooldown > 0){
+            coin_cooldown--; 
+        }
+        else
         {
-            if (coins[i].visible == WHITE) 
-                continue;
-            coins[i].x = COIN_SPAWN_AXIS_X_MIN + rand() % (COIN_SPAWN_AXIS_X_MAX - COIN_SPAWN_AXIS_X_MIN);
-            coins[i].y = COIN_SPAWN_AXIS_Y_MIN + rand() % (COIN_SPAWN_AXIS_Y_MAX - COIN_SPAWN_AXIS_Y_MIN);
-            coins[i].visible = WHITE;
+            for (int i = 0; i < coin_number; i++)
+            {
+                if (coins[i].visible == WHITE) 
+                    continue;
+                coins[i].x = COIN_SPAWN_AXIS_X_MIN + rand() % (COIN_SPAWN_AXIS_X_MAX - COIN_SPAWN_AXIS_X_MIN) + COIN_SPAWN_LEFT_OFFSET;
+                coins[i].y = COIN_SPAWN_AXIS_Y_MIN + rand() % (COIN_SPAWN_AXIS_Y_MAX - COIN_SPAWN_AXIS_Y_MIN) + COIN_SPAWN_TOP_OFFSET;
+                coins[i].visible = WHITE;
+                coin_cooldown = 8 + rand() % 8;
+                break;
+            }
         }
     }
     break;

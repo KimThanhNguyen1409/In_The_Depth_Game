@@ -20,6 +20,6 @@
 
 extern uint16_t itd_game_score;
 extern uint16_t itd_game_time;
-extern uint16_t itd_game_heart;
-
+extern uint8_t itd_game_heart;
+extern uint8_t itd_game_shield;
 #endif /*_ITD_GAME_BORDER_H_*/

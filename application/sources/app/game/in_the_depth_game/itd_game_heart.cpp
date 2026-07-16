@@ -21,7 +21,7 @@ void itd_game_heart_handle(ak_msg_t *msg)
         current_heart = HEART_MAX_NUMBER;
         for (uint8_t i = 0; i < current_heart; i++)
         {
-            hearts[i].x = HEART_AXIS_X + i * HEART_DISTANCE_AXIS_X;
+            hearts[i].x = HEART_AXIS_X;
             hearts[i].y = HEART_AXIS_Y;
             hearts[i].visible = WHITE;
         }

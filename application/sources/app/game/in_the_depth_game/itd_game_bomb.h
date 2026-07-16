@@ -15,17 +15,20 @@
 #define BOMB_SIZE_BITMAP_X (12)
 #define BOMB_SIZE_BITMAP_Y (12)
 
-#define BOMB_NUMBER_MAX (7)
+#define BOMB_NUMBER_MAX (5)
 #define BOMB_INITAL_NUMBER (3)
 
 #define BOMB_DESPAWN_AXIS_X (10)
 
 #define BOMB_STEP_AXIS_X (3)
 
-#define BOMB_SPAWN_AXIS_X_MAX (120)
-#define BOMB_SPAWN_AXIS_X_MIN (110)
-#define BOMB_SPAWN_AXIS_Y_MIN (20)
+#define BOMB_SPAWN_AXIS_X_MAX (135)
+#define BOMB_SPAWN_AXIS_X_MIN (128)
+#define BOMB_SPAWN_AXIS_Y_MIN (15)
 #define BOMB_SPAWN_AXIS_Y_MAX (50)
+
+#define BOMB_SPAWN_LEFT_OFFSET (2)
+#define BOMB_SPAWN_TOP_OFFSET (2)
 
 typedef struct
 {
