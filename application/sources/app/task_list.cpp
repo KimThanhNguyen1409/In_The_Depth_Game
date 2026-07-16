@@ -25,6 +25,7 @@ const task_t app_task_table[] = {
 	/*************************************************************************/
         {ITD_GAME_MAINSUB_ID, TASK_PRI_LEVEL_4, itd_game_mainsub_handle},
         {ITD_GAME_BOMB_ID, TASK_PRI_LEVEL_4, itd_game_bomb_handle},
+		{ITD_GAME_GIFT_ID, TASK_PRI_LEVEL_4, itd_game_gift_handle},
         {ITD_GAME_COIN_ID, TASK_PRI_LEVEL_4, itd_game_coin_handle},
         {ITD_GAME_BOOM_ID, TASK_PRI_LEVEL_4, itd_game_boom_handle},
 		{ITD_GAME_HEART_ID, TASK_PRI_LEVEL_4, itd_game_heart_handle},
