@@ -44,11 +44,6 @@ void itd_game_coin_handle(ak_msg_t *msg)
                 break;
             }
         }
-    }
-    break;
-    case ITD_GAME_COIN_GO:
-    {
-        APP_DBG_SIG("ITD_GAME_COIN_GO");
         for (int i = 0; i < coin_number; i++)
         {
             if (coins[i].visible != WHITE)

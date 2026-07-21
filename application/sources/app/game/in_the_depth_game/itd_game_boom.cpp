@@ -9,6 +9,7 @@ static void itd_game_boom_reset_all()
         boom[i].x = 0;
         boom[i].y = 0;
         boom[i].visible = BLACK;
+
     }
 }
 void itd_game_boom_spawn(uint16_t x, uint16_t y)

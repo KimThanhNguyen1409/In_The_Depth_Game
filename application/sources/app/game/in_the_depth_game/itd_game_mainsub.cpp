@@ -1,10 +1,11 @@
 #include "itd_game_mainsub.h"
 
 itd_game_mainsub_t mainsub;
-
+uint8_t damage_taken = 0;
 bool itd_game_mainsub_check_hit_by_bomb(uint8_t bo)
 {
-    if (mainsub.invincibility_time > 0){
+    if (mainsub.invincibility_time > 0)
+    {
         return false;
     }
     return ((((int16_t)bombs[bo].x) + BOMB_SIZE_BITMAP_X > mainsub.x + MAINSUB_HITBOX_LEFT_OFFSET) &&
@@ -14,7 +15,8 @@ bool itd_game_mainsub_check_hit_by_bomb(uint8_t bo)
 }
 bool itd_game_mainsub_check_hit_by_spike(uint8_t sp, uint8_t type)
 {
-    if (mainsub.invincibility_time > 0){
+    if (mainsub.invincibility_time > 0)
+    {
         return false;
     }
     if (type == 2)
@@ -87,59 +89,62 @@ void itd_game_mainsub_handle(ak_msg_t *msg)
         }
     }
     break;
-    case ITD_GAME_MAINSUB_DENATOR_BY_BOMB:
+    case ITD_GAME_MAINSUB_UPDATE:
     {
-        APP_DBG_SIG("ITD_GAME_MAINSUB_DENATOR_BY_BOMB");
+        APP_DBG_SIG("ITD_GAME_MAINSUB_UPDATE");
         if (mainsub.invincibility_time > 0)
-            break;
-        for (uint8_t i = 0; i < bomb_number; i++)
         {
-            if (bombs[i].visible != WHITE)
-                continue;
-            if (!itd_game_mainsub_check_hit_by_bomb(i))
-                continue;
-            mainsub.invincibility_time = 60;
-            bombs[i].visible = BLACK;
-            itd_game_boom_spawn(mainsub.x, mainsub.y);
-            mainsub.visible = BLACK;
-            if(mainsub.shield_heart != 0)
+            mainsub.invincibility_time--;
+            if (mainsub.invincibility_time % 4 == 0)
             {
-                mainsub.shield_heart--;
-                break;
+                mainsub.visible = (mainsub.visible == WHITE) ? BLACK : WHITE;
             }
-            current_heart--;
-            break;
         }
-    }
-    break;
-    case ITD_GAME_MAINSUB_DENATOR_BY_SPIKE:
-    {
-        APP_DBG_SIG("ITD_GAME_MAINSUB_DENATOR_BY_SPIKE");
-        if (mainsub.invincibility_time > 0)
-            break;
-        for (uint8_t i = 0; i < SPIKE_NUMBER; i++)
+        else
         {
-            if (spikes[i].visible != WHITE)
-                continue;
-            if (!itd_game_mainsub_check_hit_by_spike(i, spikes[i].type))
-                continue;
-            mainsub.invincibility_time = 60;
-            spikes[i].visible = BLACK;
-            itd_game_boom_spawn(mainsub.x, mainsub.y);
-            mainsub.visible = BLACK;
-            if(mainsub.shield_heart != 0)
-            {
-                mainsub.shield_heart--;
-                break;
-            }
-            current_heart--;
-            break;
+            mainsub.visible = WHITE;
         }
-    }
-    break;
-    case ITD_GAME_MAINSUB_GET_COIN:
-    {
-        APP_DBG_SIG("ITD_GAME_MAINSUB_GET_COIN");
+        if (mainsub.invincibility_time == 0)
+        {
+            for (uint8_t i = 0; i < bomb_number; i++)
+            {
+                if (bombs[i].visible == WHITE && itd_game_mainsub_check_hit_by_bomb(i))
+                {
+                    mainsub.invincibility_time = 60;
+                    bombs[i].visible = BLACK;
+                    itd_game_boom_spawn(mainsub.x, mainsub.y);
+                    mainsub.visible = BLACK;
+                    if (mainsub.shield_heart != 0){
+                        mainsub.shield_heart -= mainsub.damage_taken;
+                    }
+                    else if (current_heart > 0){
+                        current_heart -= mainsub.damage_taken;
+                        if(current_heart < 0)
+                            current_heart = 0;
+                    }
+                    break;
+                }
+            }
+            for (uint8_t i = 0; i < SPIKE_NUMBER; i++)
+            {
+                if (spikes[i].visible == WHITE && itd_game_mainsub_check_hit_by_spike(i, spikes[i].type))
+                {
+                    mainsub.invincibility_time = 60;
+                    spikes[i].visible = BLACK;
+                    itd_game_boom_spawn(mainsub.x, mainsub.y);
+                    mainsub.visible = BLACK;
+                    if (mainsub.shield_heart != 0){
+                        mainsub.shield_heart -= mainsub.damage_taken;
+                    }   
+                    else if (current_heart > 0){
+                        current_heart -= mainsub.damage_taken;
+                        if(current_heart < 0)
+                            current_heart = 0;
+                    }
+                    break;
+                }
+            }
+        }
         for (uint8_t i = 0; i < coin_number; i++)
         {
             if (coins[i].visible != WHITE)
@@ -150,16 +155,11 @@ void itd_game_mainsub_handle(ak_msg_t *msg)
             coins[i].x = 0;
             current_coin++;
         }
-    }
-    break;
-    case ITD_GAME_MAINSUB_GET_GIFT:
-    {
-        APP_DBG_SIG("ITD_GAME_MAINSUB_GET_GIFT");
-        for(uint8_t i = 0; i < gift_number; i++)
+        for (uint8_t i = 0; i < gift_number; i++)
         {
-            if(gifts[i].visible != WHITE)
+            if (gifts[i].visible != WHITE)
                 continue;
-            if(!itd_game_mainsub_check_get_gift(i))
+            if (!itd_game_mainsub_check_get_gift(i))
                 continue;
             gifts[i].visible = BLACK;
             gifts[i].x = 0;
@@ -168,17 +168,16 @@ void itd_game_mainsub_handle(ak_msg_t *msg)
             case GET_HEART:
             {
                 APP_DBG_SIG("ITD_GAME_MAINSUB_GET_HEART");
-                if(current_heart < 3)
+                if (current_heart < 3)
                 {
                     current_heart++;
                 }
-                
             }
             break;
             case GET_SHIELD:
             {
                 APP_DBG_SIG("ITD_GAME_MAINSUB_GET_SHIELD");
-                if(mainsub.shield_heart == 0 || mainsub.shield_heart < 3)
+                if (mainsub.shield_heart == 0 || mainsub.shield_heart < 3)
                 {
                     mainsub.shield_heart++;
                 }
@@ -194,15 +193,15 @@ void itd_game_mainsub_handle(ak_msg_t *msg)
             {
                 APP_DBG_SIG("ITD_GAME_MAINSUB_GET_NUKE");
                 static uint8_t nuke_time_last = 20;
-                if(nuke_time_last > 0)
+                if (nuke_time_last > 0)
                 {
                     nuke_time_last--;
-                    for(uint8_t i = 0; i < bomb_number; i++)
+                    for (uint8_t i = 0; i < bomb_number; i++)
                     {
                         itd_game_boom_spawn(bombs[i].x, bombs[i].y);
                     }
                     task_post_pure_msg(ITD_GAME_BOMB_ID, ITD_GAME_BOMB_RESET);
-                    for(uint8_t i = 0; i < SPIKE_NUMBER; i++)
+                    for (uint8_t i = 0; i < SPIKE_NUMBER; i++)
                     {
                         itd_game_boom_spawn(spikes[i].x, spikes[i].y);
                     }
@@ -214,27 +213,7 @@ void itd_game_mainsub_handle(ak_msg_t *msg)
                 }
             }
             break;
-            default:
-                break;
             }
-            // mainsub.applied_buff = gifts[i].buff;
-        }
-    }
-    break;
-    case ITD_GAME_MAINSUB_UPDATE:
-    {
-        APP_DBG_SIG("ITD_GAME_MAINSUB_UPDATE");
-        if (mainsub.invincibility_time > 0)
-        {
-            mainsub.invincibility_time--;
-            if (mainsub.invincibility_time % 4 == 0)
-            {
-                mainsub.visible = (mainsub.visible == WHITE) ? BLACK : WHITE;
-            }
-        }
-        else
-        {
-            mainsub.visible = WHITE;
         }
     }
     break;

@@ -39,11 +39,6 @@ void itd_game_gift_handle(ak_msg_t *msg)
             gifts[i].buff = (buff_type_t)(rand() % 4);
             gift_cooldown = 6 + rand() % 6;
         }
-    }
-    break;
-    case ITD_GAME_GIFT_GO:
-    {
-        APP_DBG_SIG("ITD_GAME_GIFT_GO");
         for (uint8_t i = 0; i < gift_number; i++)
         {
             if (gifts[i].visible != WHITE)

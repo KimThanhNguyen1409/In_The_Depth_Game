@@ -44,17 +44,12 @@ void itd_game_spike_handle(ak_msg_t *msg)
                 spikes[i].visible = WHITE;
             }
         }
-    }
-    break;
-    case ITD_GAME_SPIKE_GO:
-    {
-        APP_DBG_SIG("ITD_GAME_SPIKE_GO");
         for (int i = 0; i < SPIKE_NUMBER; i++)
         {
             if (spikes[i].visible != WHITE)
                 continue;
             spikes[i].x -= SPIKE_STEP_X;
-            if (spikes[i].x <= SPIKE_DESPAWN_AXIS_X)
+            if (spikes[i].x <= SPIKE_DESPAWN_AXIS_X + SPIKE_STEP_X)
             {
                 spikes[i].visible = BLACK;
                 spikes[i].x = 0;

@@ -1,5 +1,5 @@
 #include "itd_game_bomb.h"
-
+uint8_t bonus_speed = 0;
 itd_game_bomb_t bombs[BOMB_NUMBER_MAX];
 uint8_t bomb_number = BOMB_INITAL_NUMBER + rand() % (BOMB_NUMBER_MAX - BOMB_INITAL_NUMBER + 1);
 static void itd_game_bomb_reset_all()
@@ -42,11 +42,6 @@ void itd_game_bomb_handle(ak_msg_t *msg)
                 break; 
             }
         }
-    }
-    break;
-    case ITD_GAME_BOMB_GO:
-    {
-        APP_DBG_SIG("ITD_GAME_BOMB_GO");
         for (int i = 0; i < bomb_number; i++)
         {
             if (bombs[i].visible != WHITE)
@@ -58,7 +53,7 @@ void itd_game_bomb_handle(ak_msg_t *msg)
             }
             else
             {
-                bombs[i].x -=BOMB_STEP_AXIS_X;    
+                bombs[i].x -=  (BOMB_STEP_AXIS_X + bonus_speed);    
             }
         }
     }

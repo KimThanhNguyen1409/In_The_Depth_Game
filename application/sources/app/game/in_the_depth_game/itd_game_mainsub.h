@@ -43,8 +43,9 @@ typedef struct
     bool visible;
     uint8_t shield_heart = 0;
     uint8_t invincibility_time = 0;
-    // buff_type_t applied_buff; 
+    uint8_t damage_taken = 0;
 } itd_game_mainsub_t;
+
 
 extern itd_game_mainsub_t mainsub;
 
