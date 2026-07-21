@@ -3,10 +3,8 @@
 #define MAINSUB_NONE (0)
 #define MAINSUB_UP (1)
 #define MAINSUB_DOWN (2)
-
-static uint8_t itd_game_state;
 static uint8_t mainsub_dir = MAINSUB_NONE;
-
+static uint8_t itd_game_state = GAME_OVER;
 void itd_game_frame_display()
 {
     view_render.setTextSize(1);
@@ -157,20 +155,13 @@ void view_scr_game_in_the_depth()
     }
     else if (itd_game_state == GAME_OVER)
     {
-        view_render.setTextSize(2);
-        view_render.setCursor(60, 32);
-        view_render.print("GAME OVER");
-    }
-}
-void scr_game_itd_view_buff(ak_msg_t *msg){
-    switch (msg->sig)
-    {
-    case ITD_GAME_TIME_TICK:
-        
-        break;
-    
-    default:
-        break;
+        view_render.clear();
+        view_render.drawBitmap(0, 0, ground, 128, 64, WHITE);
+        view_render.setTextSize(1);
+        view_render.setCursor(40, 8);
+        view_render.print("YOU SINK");
+        view_render.drawBitmap(90, 40, grass, 16, 16, WHITE);
+        view_render.drawBitmap(110, 50, grass, 16, 16, WHITE);
     }
 }
 void scr_game_in_the_depth_handle(ak_msg_t *msg)
@@ -189,7 +180,6 @@ void scr_game_in_the_depth_handle(ak_msg_t *msg)
         task_post_pure_msg(ITD_GAME_SPIKE_ID, ITD_GAME_SPIKE_SETUP);
         task_post_pure_msg(ITD_GAME_GIFT_ID, ITD_GAME_GIFT_SETUP);
         itd_game_state = GAME_PLAY;
-        mainsub_dir = MAINSUB_NONE;
         timer_remove_attr(AC_TASK_DISPLAY_ID, AC_DISPLAY_SHOW_IDLE);
         timer_set(AC_TASK_DISPLAY_ID,
                   ITD_GAME_TIME_TICK,
@@ -202,22 +192,18 @@ void scr_game_in_the_depth_handle(ak_msg_t *msg)
         APP_DBG_SIG("ITD_GAME_TIME_TICK\n");
         if (itd_game_state != GAME_PLAY)
             break;
-        if (mainsub_dir == MAINSUB_UP)
-            task_post_pure_msg(ITD_GAME_MAINSUB_ID, ITD_GAME_MAINSUB_GO_UP);
-        if (mainsub_dir == MAINSUB_DOWN)
+        if(mainsub_dir == MAINSUB_DOWN)
+        {
             task_post_pure_msg(ITD_GAME_MAINSUB_ID, ITD_GAME_MAINSUB_GO_DOWN);
+        }
+        else if(mainsub_dir == MAINSUB_UP)
+        {
+            task_post_pure_msg(ITD_GAME_MAINSUB_ID, ITD_GAME_MAINSUB_GO_UP);
+        }
         task_post_pure_msg(ITD_GAME_BOMB_ID, ITD_GAME_BOMB_SPAWN);
-        task_post_pure_msg(ITD_GAME_BOMB_ID, ITD_GAME_BOMB_GO);
         task_post_pure_msg(ITD_GAME_SPIKE_ID, ITD_GAME_SPIKE_SPAWN);
-        task_post_pure_msg(ITD_GAME_SPIKE_ID, ITD_GAME_SPIKE_GO);
         task_post_pure_msg(ITD_GAME_COIN_ID, ITD_GAME_COIN_SPAWN);
-        task_post_pure_msg(ITD_GAME_COIN_ID, ITD_GAME_COIN_GO);
         task_post_pure_msg(ITD_GAME_GIFT_ID, ITD_GAME_GIFT_SPAWN);
-        task_post_pure_msg(ITD_GAME_GIFT_ID, ITD_GAME_GIFT_GO);
-        task_post_pure_msg(ITD_GAME_MAINSUB_ID, ITD_GAME_MAINSUB_DENATOR_BY_BOMB);
-        task_post_pure_msg(ITD_GAME_MAINSUB_ID, ITD_GAME_MAINSUB_DENATOR_BY_SPIKE);
-        task_post_pure_msg(ITD_GAME_MAINSUB_ID, ITD_GAME_MAINSUB_GET_COIN);
-        task_post_pure_msg(ITD_GAME_MAINSUB_ID, ITD_GAME_MAINSUB_GET_GIFT);
         task_post_pure_msg(ITD_GAME_HEART_ID, ITD_GAME_HEART_UPDATE);
         task_post_pure_msg(ITD_GAME_MAINSUB_ID, ITD_GAME_MAINSUB_UPDATE);
         task_post_pure_msg(ITD_GAME_BOOM_ID, ITD_GAME_BOOM_UPDATE);
@@ -248,29 +234,29 @@ void scr_game_in_the_depth_handle(ak_msg_t *msg)
         }
     }
     break;
-    case AC_DISPLAY_BUTTON_DOWN_PRESSED:
-    {
-        APP_DBG_SIG("ITD_GAME BTN_DOWN_PRESSED\n");
-        mainsub_dir = MAINSUB_DOWN;
-    }
-    break;
-    case AC_DISPLAY_BUTTON_DOWN_RELEASE:
-    {
-        APP_DBG_SIG("ITD_GAME BTN_DOWN_RELEASE\n");
-        if (mainsub_dir == MAINSUB_DOWN)
-            mainsub_dir = MAINSUB_NONE;
-    }
-    break;
     case AC_DISPLAY_BUTTON_UP_PRESSED:
     {
-        APP_DBG_SIG("ITD_GAME BTN_UP_PRESSED\n");
+        APP_DBG_SIG("AC_DISPLAY_BTN_UP_PRESSED");
         mainsub_dir = MAINSUB_UP;
     }
     break;
     case AC_DISPLAY_BUTTON_UP_RELEASE:
     {
-        APP_DBG_SIG("ITD_GAME BTN_UP_RELEASE\n");
-        if (mainsub_dir == MAINSUB_UP)
+        APP_DBG_SIG("AC_DISPLAY_BTN_UP_RELEASE");
+        if(mainsub_dir == MAINSUB_UP)
+            mainsub_dir = MAINSUB_NONE;
+    }
+    break;
+    case AC_DISPLAY_BUTTON_DOWN_PRESSED:
+    {
+        APP_DBG_SIG("AC_DISPLAY_BTN_DOWN_PRESSED");
+        mainsub_dir = MAINSUB_DOWN;
+    }
+    break;
+    case AC_DISPLAY_BUTTON_DOWN_RELEASE:
+    {
+        APP_DBG_SIG("AC_DISPLAY_BTN_DOWN_RELEASE");
+        if(mainsub_dir == MAINSUB_DOWN)
             mainsub_dir = MAINSUB_NONE;
     }
     break;
@@ -278,6 +264,7 @@ void scr_game_in_the_depth_handle(ak_msg_t *msg)
     {
         APP_DBG_SIG("ITD_GAME_EXIT_GAME\n");
         itd_game_state = GAME_OVER;
+        SCREEN_TRAN(scr_game_over_handle, &scr_game_over);
     }
     break;
     default:

@@ -47,4 +47,8 @@ extern void scr_welcome_handle(ak_msg_t *msg);
 extern view_dynamic_t dyn_view_in_the_depth;
 extern view_screen_t scr_game_in_the_depth;
 extern void scr_game_in_the_depth_handle(ak_msg_t *msg);
+/*scr_game_over*/
+extern view_dynamic_t dyn_view_game_over;
+extern view_screen_t scr_game_over;
+extern void scr_game_over_handle(ak_msg_t *msg);
 #endif //__SCREENS_H__

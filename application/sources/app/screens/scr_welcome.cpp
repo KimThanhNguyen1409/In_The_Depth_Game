@@ -1,25 +1,18 @@
 #include "scr_welcome.h"
 
-#define WELCOME_TEXT_LINE_1_LEN (8)
-#define WELCOME_TEXT_LINE_2_LEN (5)
-#define WELCOME_TEXT_TOTAL_LEN (WELCOME_TEXT_LINE_1_LEN + WELCOME_TEXT_LINE_2_LEN)
+#define SEAGRASS_BITMAP_AXIS_X (20)
+#define SEAGRASS_BITMAP_AXIS_Y (40)
+#define SEAGRASS_NUMBER (7)
 
-static uint8_t welcome_text_index = 0;
-static const char *welcome_text_line_1 = "Welcome";
-static const char *welcome_text_line_2 = "to AK";
+typedef struct{
+	uint8_t x;
+	uint8_t y;
+	uint8_t action_image;
+} itd_game_seagrass_t;
+
+static itd_game_seagrass_t seagrasses[SEAGRASS_NUMBER];
 
 static void view_scr_welcome();
-
-static void welcome_print_text_partial(const char *text, uint8_t max_chars)
-{
-	if (text == (const char *)0)
-		return;
-
-	for (uint8_t i = 0; i < max_chars && text[i] != '\0'; i++)
-	{
-		view_render.print(text[i]);
-	}
-}
 
 view_dynamic_t dyn_view_welcome = {
 	{
@@ -34,26 +27,56 @@ view_screen_t scr_welcome = {
 
 	.focus_item = 0,
 };
+void itd_game_seagrass_display(){
+	uint8_t i = 0;
+	for (i = 0; i < SEAGRASS_NUMBER; i++)
+    {
 
+        const unsigned char *frame = seagrass_I;
+        uint8_t w = SEAGRASS_BITMAP_AXIS_X;
+        uint8_t h = SEAGRASS_BITMAP_AXIS_Y;
+        if (seagrasses[i].action_image == 2)
+        {
+            frame = seagrass_II;
+        }
+        else if (seagrasses[i].action_image == 3)
+        {
+            frame = seagrass_III;
+        }
+        else if (seagrasses[i].action_image == 4)
+        {
+            frame = seagrass_IV;
+        }
+        else if (seagrasses[i].action_image == 5)
+        {
+            frame = seagrass_V;
+        }
+        else if (seagrasses[i].action_image == 6)
+        {
+            frame = seagrass_VI;
+        }
+		else if (seagrasses[i].action_image == 7)
+		{
+			frame = seagrass_VII;
+			i = 0;
+		}
+        view_render.drawBitmap(50, 50, frame, w, h, WHITE);
+		seagrasses->action_image++;
+		
+    }
+}
 void view_scr_welcome()
 {
 	view_render.clear();
-	view_render.drawBitmap(0,
-						   0,
-						   main_sub,
-						   20,
-						   16,
-						   WHITE);
-
+	view_render.drawFastHLine(0, 40, 128, WHITE);
+	view_render.drawBitmap(10, 45, stone, 20, 20, WHITE);
+	view_render.drawBitmap(100, 40, stone, 20, 20, WHITE);
+	view_render.drawBitmap(50, 38, crab, 32 ,32, WHITE);
 	view_render.setTextSize(1);
-	view_render.setTextColor(WHITE);
-	view_render.setCursor(76, 12);
-	welcome_print_text_partial(welcome_text_line_1, welcome_text_index);
-	view_render.setCursor(84, 25);
-	if (welcome_text_index > WELCOME_TEXT_LINE_1_LEN)
-	{
-		welcome_print_text_partial(welcome_text_line_2, welcome_text_index - WELCOME_TEXT_LINE_1_LEN);
-	}
+    view_render.setCursor(24, 4);
+    view_render.print("IN THE DEPTH");
+	view_render.setCursor(24, 8);
+	
 }
 
 void scr_welcome_handle(ak_msg_t *msg)
@@ -63,8 +86,7 @@ void scr_welcome_handle(ak_msg_t *msg)
 	case SCREEN_ENTRY:
 	{
 		APP_DBG_SIG("SCREEN_ENTRY\n");
-		welcome_text_index = 0;
-		BUZZER_PlaySound(BUZZER_SOUND_WELCOME);
+		// BUZZER_PlaySound(BUZZER_SOUND_WELCOME);
 		timer_set(AC_TASK_DISPLAY_ID, AC_DISPLAY_WELCOME_TEXT_ANIM_TICK, AC_DISPLAY_WELCOME_TEXT_ANIM_TICK_INTERVAL, TIMER_PERIODIC);
 		timer_set(AC_TASK_DISPLAY_ID, AC_DISPLAY_SHOW_IDLE, AC_DISPLAY_IDLE_INTERVAL, TIMER_ONE_SHOT);
 	}
@@ -73,14 +95,8 @@ void scr_welcome_handle(ak_msg_t *msg)
 	case AC_DISPLAY_WELCOME_TEXT_ANIM_TICK:
 	{
 		APP_DBG_SIG("AC_DISPLAY_WELCOME_TEXT_ANIM_TICK\n");
-		if (welcome_text_index < WELCOME_TEXT_TOTAL_LEN)
-		{
-			welcome_text_index++;
-		}
-		else
-		{
-			timer_remove_attr(AC_TASK_DISPLAY_ID, AC_DISPLAY_WELCOME_TEXT_ANIM_TICK);
-		}
+		timer_remove_attr(AC_TASK_DISPLAY_ID, AC_DISPLAY_WELCOME_TEXT_ANIM_TICK);
+		
 	}
 	break;
 
@@ -88,7 +104,8 @@ void scr_welcome_handle(ak_msg_t *msg)
 	{
 		APP_DBG_SIG("AC_DISPLAY_BUTON_MODE_PRESSED\n");
 		timer_remove_attr(AC_TASK_DISPLAY_ID, AC_DISPLAY_WELCOME_TEXT_ANIM_TICK);
-		SCREEN_TRAN(scr_game_in_the_depth_handle, &scr_game_in_the_depth);
+		// SCREEN_TRAN(scr_game_in_the_depth_handle, &scr_game_in_the_depth);
+		SCREEN_TRAN(scr_game_menu_handle, &scr_game_menu);
 	}
 	break;
 
