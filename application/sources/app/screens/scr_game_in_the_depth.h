@@ -15,6 +15,9 @@
 #include "task_display.h"
 #include "view_render.h"
 
+#include "eeprom.h"
+#include "app_eeprom.h"
+
 #include "itd_game_bomb.h"
 #include "itd_game_boom.h"
 #include "itd_game_border.h"
@@ -31,9 +34,14 @@
 #define SHIELD_BITMAP_SIZE_X (12)
 #define SHIELD_BITMAP_SIZE_Y (12)
 
+#define SEABOTTOM_BITMAP_AXIS_X (128)
+#define SEABOTTOM_BITMAP_AXIS_Y (10)
+
 extern view_dynamic_t dyn_view_in_the_depth;
 extern view_screen_t scr_game_in_the_depth;
 extern void scr_game_in_the_depth_handle(ak_msg_t *msg);
+
+extern itd_game_setting_t settingsetup;
 
 extern void itd_game_mainsub_display();
 extern void itd_game_bomb_display();

@@ -3,8 +3,13 @@
 #define MAINSUB_NONE (0)
 #define MAINSUB_UP (1)
 #define MAINSUB_DOWN (2)
+
 static uint8_t mainsub_dir = MAINSUB_NONE;
 static uint8_t itd_game_state = GAME_OVER;
+static uint8_t grid_offset_x = 0;
+
+itd_game_setting_t settingsetup;
+
 void itd_game_frame_display()
 {
     view_render.setTextSize(1);
@@ -23,12 +28,14 @@ void itd_game_frame_display()
     view_render.print("T:");    
     view_render.print(itd_game_time / 10);
     view_render.drawLine(0, 15, 128, 15, WHITE);
+    view_render.drawBitmap(0, 54, seabottom, SEABOTTOM_BITMAP_AXIS_X, SEABOTTOM_BITMAP_AXIS_Y, WHITE);
 }
 void itd_game_particle_display(){
-    for(uint8_t i = 0; i < 128; i += 8){
-        view_render.drawPixel(i, 30, WHITE);
-        view_render.drawPixel(i, 45, WHITE);
-        view_render.drawPixel(i, 60, WHITE);
+    for(uint8_t i = 0; i <= 128; i += 8){
+        view_render.drawPixel(i - grid_offset_x, 18, WHITE);
+        view_render.drawPixel(i - grid_offset_x, 28, WHITE);
+        view_render.drawPixel(i - grid_offset_x, 38, WHITE);
+        view_render.drawPixel(i - grid_offset_x, 48, WHITE);
     }
 }
 static void view_scr_game_in_the_depth();
@@ -70,13 +77,14 @@ void itd_game_spike_display()
         {
             if (spikes[i].visible != WHITE)
                 continue;
-            view_render.drawBitmap(spikes[i].x, spikes[i].y, spike_single, SPIKE_SINGLE_SIZE_BITMAP_X, SPIKE_SINGLE_SIZE_BITMAP_Y, WHITE);
+            view_render.drawBitmap(spikes[i].x, spikes[i].y, spike_tall, SPIKE_TALL_SIZE_BITMAP_X, SPIKE_TALL_SIZE_BITMAP_Y, WHITE);
+               
         }
         else
         {
             if (spikes[i].visible != WHITE)
                 continue;
-            view_render.drawBitmap(spikes[i].x, spikes[i].y, spike_triple, SPIKE_TRIPLE_SIZE_BITMAP_X, SPIKE_TRIPLE_SIZE_BITMAP_Y, WHITE);
+             view_render.drawBitmap(spikes[i].x, spikes[i].y, spike_short, SPIKE_SHORT_SIZE_BITMAP_X, SPIKE_SHORT_SIZE_BITMAP_Y, WHITE);
         }
     }
 }
@@ -156,12 +164,10 @@ void view_scr_game_in_the_depth()
     else if (itd_game_state == GAME_OVER)
     {
         view_render.clear();
-        view_render.drawBitmap(0, 0, ground, 128, 64, WHITE);
-        view_render.setTextSize(1);
-        view_render.setCursor(40, 8);
-        view_render.print("YOU SINK");
-        view_render.drawBitmap(90, 40, grass, 16, 16, WHITE);
-        view_render.drawBitmap(110, 50, grass, 16, 16, WHITE);
+        view_render.drawBitmap(32, 0, sub_sinking, 64, 64, WHITE);
+        view_render.drawBitmap(0, 58, seabottom, SEABOTTOM_BITMAP_AXIS_X, SEABOTTOM_BITMAP_AXIS_Y, WHITE);
+        view_render.drawBitmap(38, 0, sink_letter, 64, 7, WHITE);
+        BUZZER_PlaySound(BUZZER_SOUND_GOODBYE);
     }
 }
 void scr_game_in_the_depth_handle(ak_msg_t *msg)
@@ -171,6 +177,8 @@ void scr_game_in_the_depth_handle(ak_msg_t *msg)
     case SCREEN_ENTRY:
     {
         APP_DBG_SIG("ITD_GAME SCREEN_ENTRY\n");
+        itd_game_setting_read(&settings);
+        BUZZER_Silent(settings.sound ? BUZZER_SILENT_OFF : BUZZER_SILENT_ON); 
         task_post_pure_msg(ITD_GAME_MAINSUB_ID, ITD_GAME_MAINSUB_SETUP);
         task_post_pure_msg(ITD_GAME_BOMB_ID, ITD_GAME_BOMB_SETUP);
         task_post_pure_msg(ITD_GAME_BOOM_ID, ITD_GAME_BOOM_SETUP);
@@ -192,6 +200,9 @@ void scr_game_in_the_depth_handle(ak_msg_t *msg)
         APP_DBG_SIG("ITD_GAME_TIME_TICK\n");
         if (itd_game_state != GAME_PLAY)
             break;
+        grid_offset_x++;
+        if(grid_offset_x >= 8)
+            grid_offset_x = 0;
         if(mainsub_dir == MAINSUB_DOWN)
         {
             task_post_pure_msg(ITD_GAME_MAINSUB_ID, ITD_GAME_MAINSUB_GO_DOWN);
@@ -217,6 +228,8 @@ void scr_game_in_the_depth_handle(ak_msg_t *msg)
         if(itd_game_heart == 0){
             if (itd_game_state != GAME_PLAY)
                 break;
+            scores.score_now = itd_game_score;
+            time_last = itd_game_time;
             timer_remove_attr(AC_TASK_DISPLAY_ID, ITD_GAME_TIME_TICK);
             task_post_pure_msg(ITD_GAME_MAINSUB_ID, ITD_GAME_MAINSUB_RESET);
             task_post_pure_msg(ITD_GAME_BOMB_ID, ITD_GAME_BOMB_RESET);
