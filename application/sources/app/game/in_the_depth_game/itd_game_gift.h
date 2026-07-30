@@ -18,11 +18,8 @@
 #include "itd_game_heart.h"
 #include "itd_game_spike.h"
 
-#define GIFT_SIZE_BITMAP_X (16)
-#define GIFT_SIZE_BITMAP_Y (16)
-
-#define BARRIER_BITMAP_SIZE_X (16);
-#define BARRIER_BITMAP_SIZE_Y (16);
+#define GIFT_SIZE_BITMAP_X (8)
+#define GIFT_SIZE_BITMAP_Y (8)
 
 #define GIFT_NUMBER_MAX (2)
 #define GIFT_INITAL_NUMBER (1)
@@ -32,10 +29,10 @@
 
 #define GIFT_STEP_AXIS_X (2)
 
-#define GIFT_SPAWN_AXIS_X_MAX (230)
-#define GIFT_SPAWN_AXIS_X_MIN (220)
+#define GIFT_SPAWN_AXIS_X_MAX (250)
+#define GIFT_SPAWN_AXIS_X_MIN (240)
 #define GIFT_SPAWN_AXIS_Y_MIN (20)
-#define GIFT_SPAWN_AXIS_Y_MAX (50)
+#define GIFT_SPAWN_AXIS_Y_MAX (42)
 
 #define GIFT_SPAWN_TOP_OFFSET (2)
 #define GIFT_SPAWN_LEFT_OFFSET (2)

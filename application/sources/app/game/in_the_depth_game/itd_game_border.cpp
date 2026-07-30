@@ -5,6 +5,7 @@ uint16_t itd_game_score = 0;
 uint16_t itd_game_time = 0;
 uint8_t itd_game_heart = 0;
 uint8_t itd_game_shield = 0;
+uint16_t time_last;
 void itd_game_border_reset_all()
 {
     itd_game_score = 0;

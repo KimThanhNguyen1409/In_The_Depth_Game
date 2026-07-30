@@ -19,6 +19,13 @@ void itd_game_bomb_handle(ak_msg_t *msg)
     {
         APP_DBG_SIG("ITD_GAME_BOMB_SETUP");
         itd_game_bomb_reset_all();
+        if (settings.speed_mode == ITD_GAME_SETTING_SPEED_NOR) {
+            bonus_speed = 0;
+        } else if (settings.speed_mode == ITD_GAME_SETTING_SPEED_FAST) {
+            bonus_speed = 4;
+        } else if (settings.speed_mode == ITD_GAME_SETTING_SPEED_FLASH) {
+            bonus_speed = 7;
+        }
     }
     break;
     case ITD_GAME_BOMB_SPAWN:

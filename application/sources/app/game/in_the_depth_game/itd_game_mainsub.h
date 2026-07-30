@@ -13,6 +13,9 @@
 #include "task_list.h"
 #include "task_display.h"
 
+#include "eeprom.h"
+#include "app_eeprom.h"
+
 #include "itd_game_bomb.h"
 #include "itd_game_boom.h"
 #include "itd_game_spike.h"
@@ -20,7 +23,7 @@
 #include "itd_game_heart.h"
 #include "itd_game_gift.h"
 
-#define MAINSUB_SIZE_BITMAP_X (20)
+#define MAINSUB_SIZE_BITMAP_X (28)
 #define MAINSUB_SIZE_BITMAP_Y (16)
 
 #define MAINSUB_AXIS_X (16)
@@ -33,7 +36,7 @@
 #define MAINSUB_HITBOX_TOP_OFFSET (1)
 #define MAINSUB_HITBOX_BOTTOM_OFFSET (9)
 
-#define MAINSUB_AXIS_Y_MAX (55)
+#define MAINSUB_AXIS_Y_MAX (42)
 #define MAINSUB_AXIS_Y_MIN (15)
 
 typedef struct
@@ -43,7 +46,7 @@ typedef struct
     bool visible;
     uint8_t shield_heart = 0;
     uint8_t invincibility_time = 0;
-    uint8_t damage_taken = 0;
+    uint8_t damage_taken = 1;
 } itd_game_mainsub_t;
 
 

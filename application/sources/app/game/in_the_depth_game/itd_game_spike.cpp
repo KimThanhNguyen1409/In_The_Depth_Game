@@ -31,16 +31,16 @@ void itd_game_spike_handle(ak_msg_t *msg)
             int type = 2 + rand() % 2;
             if (type == 3)
             {
-                spikes[i].type = SPIKE_TRIPLE_TYPE;
-                spikes[i].x = SPIKE_TRIPLE_SPAWN_X - SPIKE_SPAWN_OFFSET;
-                spikes[i].y = SPIKE_TRIPLE_SPAWN_Y; 
+                spikes[i].type = SPIKE_SHORT_TYPE;
+                spikes[i].x = SPIKE_SHORT_SPAWN_X;
+                spikes[i].y = SPIKE_SHORT_SPAWN_Y; 
                 spikes[i].visible = WHITE;
             }
             else if (type == 2)
             {
-                spikes[i].type = SPIKE_SINGLE_TYPE;
-                spikes[i].x = SPIKE_SINGLE_SPAWN_X - SPIKE_SPAWN_OFFSET;
-                spikes[i].y = SPIKE_SINGLE_SPAWN_Y;
+                spikes[i].type = SPIKE_TALL_TYPE;
+                spikes[i].x = SPIKE_TALL_SPAWN_X;
+                spikes[i].y = SPIKE_TALL_SPAWN_Y;
                 spikes[i].visible = WHITE;
             }
         }

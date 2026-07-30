@@ -13,25 +13,22 @@
 #include "task_list.h"
 #include "task_display.h"
 
-#define SPIKE_TRIPLE_SIZE_BITMAP_X (32)
-#define SPIKE_TRIPLE_SIZE_BITMAP_Y (16)
+#define SPIKE_SHORT_SIZE_BITMAP_X (16)
+#define SPIKE_SHORT_SIZE_BITMAP_Y (16)
 
-#define SPIKE_SINGLE_SIZE_BITMAP_X (16)
-#define SPIKE_SINGLE_SIZE_BITMAP_Y (32)
+#define SPIKE_TALL_SIZE_BITMAP_X (16)
+#define SPIKE_TALL_SIZE_BITMAP_Y (32)
 
-#define SPIKE_TRIPLE_TYPE (3)
-#define SPIKE_SINGLE_TYPE (2)
+#define SPIKE_SHORT_TYPE (3)
+#define SPIKE_TALL_TYPE (2)
 
 #define SPIKE_NUMBER (3)
 
-#define SPIKE_TRIPLE_SPAWN_X (190)
-#define SPIKE_SINGLE_SPAWN_X (200)
-#define SPIKE_TRIPLE_SPAWN_Y (50)
-#define SPIKE_SINGLE_SPAWN_Y (40)
+#define SPIKE_SHORT_SPAWN_X (190)
+#define SPIKE_TALL_SPAWN_X (210)
+#define SPIKE_SHORT_SPAWN_Y (42)
+#define SPIKE_TALL_SPAWN_Y (30)
 #define SPIKE_STEP_X (2)
-
-#define SPIKE_SPAWN_OFFSET (2) 
-
 
 #define SPIKE_DESPAWN_AXIS_X (10)
 
