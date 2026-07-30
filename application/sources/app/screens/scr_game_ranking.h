@@ -17,9 +17,13 @@
 
 #include "screens.h"
 #include "screens_bitmap.h"
+#include "scr_game_menu.h"
 
-view_screen_t view_scr_game_ranking();
-view_dynamic_t dyn_view_scr_game_ranking();
+#define CHAIN_BITMAP_AXIS_X (10)
+#define CHAIN_BITMAP_AXIS_Y (40)
 
+extern view_dynamic_t dyn_view_item_game_ranking;
+extern view_screen_t scr_game_ranking;
+extern void scr_game_ranking_handle(ak_msg_t *msg);
 
 #endif
