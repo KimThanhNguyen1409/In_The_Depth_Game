@@ -42,7 +42,6 @@
 #include "task_rf24_if.h"
 #include "task_uart_if.h"
 #include "task_display.h"
-#include "task_zigbee.h"
 
 /* sys include */
 #include "sys_boot.h"

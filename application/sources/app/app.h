@@ -149,7 +149,7 @@ extern "C"
 #define AC_DISPLAY_MINIMUM_SCREEN_RENDER_INTERVAL_MS (50) /* 50ms => Max 20 FPS */
 #define AC_DISPLAY_IDLE_INTERVAL (15000)
 #define AC_DISPLAY_WELCOME_TEXT_ANIM_TICK_INTERVAL (120)
-
+#define AC_DISPLAY
 	/* define signal */
 	enum
 	{
@@ -170,7 +170,8 @@ extern "C"
 		AC_DISPLAY_SHOW_MERRY_CHRISTMAS_SNOW_MOVING_UPDATE,
 		AC_DISPLAY_SHOW_MERRY_CHRISTMAS_SLEEP,
 		AC_DISPLAY_SHOW_MODBUS_PULL_UPDATE,
-		AC_DISPLAY_SHOW_MODBUS_PULL_SLEEP
+		AC_DISPLAY_SHOW_MODBUS_PULL_SLEEP,
+		AC_DISPLAY_ANIMATION_TICK
 	};
 /*****************************************************************************/
 /* In the depth game 'SCREEN' task define
@@ -198,11 +199,6 @@ extern "C"
 		ITD_GAME_MAINSUB_SETUP = ITD_GAME_DEFIN_SIG,
 		ITD_GAME_MAINSUB_GO_UP,
 		ITD_GAME_MAINSUB_GO_DOWN,
-		ITD_GAME_MAINSUB_DENATOR_BY_BOMB,
-		ITD_GAME_MAINSUB_DENATOR_BY_SPIKE,
-		ITD_GAME_MAINSUB_GET_COIN,
-		ITD_GAME_MAINSUB_GET_GIFT,
-		ITD_GAME_MAINSUB_APPLY_BUFF,
 		ITD_GAME_MAINSUB_UPDATE,
 		ITD_GAME_MAINSUB_RESET
 	};
@@ -216,7 +212,6 @@ extern "C"
 	{
 		ITD_GAME_BOMB_SETUP = ITD_GAME_DEFIN_SIG,
 		ITD_GAME_BOMB_SPAWN,
-		ITD_GAME_BOMB_GO,
 		ITD_GAME_BOMB_RESET
 	};
 	/*****************************************************************************/
@@ -253,8 +248,6 @@ extern "C"
 	{
 		ITD_GAME_GIFT_SETUP = ITD_GAME_DEFIN_SIG,
 		ITD_GAME_GIFT_SPAWN,
-		ITD_GAME_GIFT_GO,
-		ITD_GAME_GIFT_GIVE_BUFF,
 		ITD_GAME_GIFT_RESET
 	};
 	/*****************************************************************************/
@@ -267,7 +260,6 @@ extern "C"
 	{
 		ITD_GAME_COIN_SETUP = ITD_GAME_DEFIN_SIG,
 		ITD_GAME_COIN_SPAWN,
-		ITD_GAME_COIN_GO,
 		ITD_GAME_COIN_RESET
 	};
 	/*****************************************************************************/
@@ -280,7 +272,6 @@ extern "C"
 	{
 		ITD_GAME_SPIKE_SETUP = ITD_GAME_DEFIN_SIG,
 		ITD_GAME_SPIKE_SPAWN,
-		ITD_GAME_SPIKE_GO,
 		ITD_GAME_SPIKE_RESET
 	};
 	/*****************************************************************************/
