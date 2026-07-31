@@ -23,22 +23,38 @@ view_screen_t scr_game_ranking = {
 };
 
 void view_scr_game_ranking(){
-    view_render.setTextSize(1);
-    view_render.setTextColor(BLACK);
     const uint8_t c_x[3] = {20, 64, 108};
     const uint8_t c_r[3] = {16, 22, 16};
     const uint8_t c_y[3] = {c1_y , c2_y, c3_y}; 
-    const uint8_t y_off[3] = {8, 10, 8};
+    const uint8_t y_off[3] = {16, 10, 16};
     const uint8_t chain_x[3] = {14, 58, 102};
-    const uint8_t text_x[3] = {10, 58, 98};
     const uint16_t text_score[3] = {scores.score_2st, scores.score_1st, scores.score_3rd};
     const char *text[] = {"2nd", "1st", "3nd"};
     for(uint8_t j = 0; j < 3; j ++){
-        view_render.fillCircle(c_x[j], c_y[j], c_r[j], WHITE);
+        view_render.setTextColor(WHITE);
+        view_render.setTextSize(1);
+        view_render.fillCircle(c_x[j], c_y[j], c_r[j], BLACK);
+        if(j == 1){
+            view_render.setTextColor(BLACK);
+            view_render.fillCircle(c_x[j], c_y[j], c_r[j], WHITE);
+        }else{
+            view_render.drawCircle(c_x[j], c_y[j], c_r[j], WHITE);
+        }
         view_render.drawBitmap(chain_x[j], c_y[j] + y_off[j], chain, 10, 40, WHITE);
-        view_render.setCursor(text_x[j], c_y[j] - y_off[j]);
+        view_render.setCursor(c_x[j] - 9, c_y[j] - 8);
         view_render.print(text[j]);
-        view_render.setCursor(text_x[j], c_y[j]);
+
+        uint8_t num_digits = 1;
+        if(text_score[j] == 10) 
+            num_digits = 2;
+        if(text_score[j] == 100) 
+            num_digits = 3;
+        if(text_score[j] == 1000) 
+            num_digits = 4;
+        if(text_score[j] == 10000) 
+            num_digits = 5;
+        uint8_t score_w = num_digits * 6;
+        view_render.setCursor(c_x[j] - (score_w / 2), c_y[j] + 2);
         view_render.print(text_score[j]);
     }
    

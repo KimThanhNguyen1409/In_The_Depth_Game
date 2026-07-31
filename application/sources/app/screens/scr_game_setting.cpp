@@ -23,14 +23,18 @@ void view_scr_game_setting(){
         uint8_t bub_x = 5 + i * 30;                                                                                                           
         uint8_t bub_y = 64 - ((bub_colddown * i + 2 * 15) % 64);                                                                              
         view_render.drawCircle(bub_x, bub_y, 1 + (i % 2), WHITE);                                                                             
-    }                                                                                                                                                                                                
-    uint8_t setting_title_w = 58;                  
-    view_render.drawBitmap((128 - setting_title_w)/2, 2, setting_letter, setting_title_w, 7, WHITE);                                   
+    }   
+    view_render.setTextColor(WHITE);
+    view_render.setTextSize(1);                                                                                                                                                                                             
+    // uint8_t setting_title_w = 58;                  
+    // view_render.drawBitmap((128 - setting_title_w)/2, 2, setting_letter, setting_title_w, 7, WHITE);                                   
+    view_render.setCursor(40, 2);
+    view_render.print("SETTING");
     view_render.drawFastHLine(0, 11, 128, WHITE);                                                    
                                                                     
-    uint8_t y_pos[4] = {13, 25, 37, 49};                                                                                              
+    uint8_t y_pos[4] = {15, 29, 43, 55};                                                                                              
                                                                                                           
-    const uint8_t* title[4] = {mode_letter, speed_letter, sound_letter, exit_letter};                                                               
+    const char* title[4] = {"MODE", "SPEED", "SOUND", "EXIT"};                                                               
                                                                            
     const uint8_t title_w[4] = {40, 40, 40, 32};                                                                                           
     const uint8_t text_h = 7;                                                                                     
@@ -38,11 +42,15 @@ void view_scr_game_setting(){
     for(uint8_t i = 0; i < 4; i++){                                                                                                    
                                                                                         
         if(game_setting_index == i)                                                                                                  
-            view_render.drawBitmap(2, y_pos[i] - 1, setting_sub, 16, 12 ,WHITE);                                                                                                                                                                                                                                      
+            view_render.drawBitmap(2, y_pos[i] - 2, setting_sub, 16, 12 ,WHITE);                                                                                                                                                                                                                                      
         if(i < 3){                                                                                                                     
-            view_render.drawBitmap(22, y_pos[i], title[i], title_w[i], text_h, WHITE);                                                  
+            // view_render.drawBitmap(22, y_pos[i], title[i], title_w[i], text_h, WHITE);   
+            view_render.setCursor(22, y_pos[i]);    
+            view_render.print(title[i]);                                           
         }else{
-            view_render.drawBitmap(48, y_pos[i], exit_letter, title_w[i], text_h, WHITE);
+            // view_render.drawBitmap(48, y_pos[i], exit_letter, title_w[i], text_h, WHITE);
+            view_render.setCursor(50, y_pos[i]);    
+            view_render.print(title[i]); 
         }                                                                                                                                                                                                 
         switch (i)                                                                                                                     
         {                                                                                                                              
@@ -72,12 +80,14 @@ void view_scr_game_setting(){
             } else {
                 view_render.fillCircle(71, y_pos[i]+3, 3, WHITE);
             }  
-            view_render.drawBitmap(92, y_pos[i], settings.sound ? on_letter : off_letter, 24, 7,  WHITE);
+            // view_render.drawBitmap(92, y_pos[i], settings.sound ? on_letter : off_letter, 24, 7,  WHITE);
+            view_render.setCursor(92, y_pos[i]);
+            view_render.print(settings.sound ? "ON" : "OFF");
         }
             break;
         }
     }
-    view_render.drawBitmap(0, 58, seabottom, SEABOTTOM_BITMAP_AXIS_X, SEABOTTOM_BITMAP_AXIS_Y, WHITE);
+    // view_render.drawBitmap(0, 58, seabottom, SEABOTTOM_BITMAP_AXIS_X, SEABOTTOM_BITMAP_AXIS_Y, WHITE);
     view_render.setTextColor(WHITE);
 
 }

@@ -24,15 +24,19 @@ void view_scr_game_over(){
             uint8_t bub_y = 64 - ((bub_cooldown * i + 2 * 15) % 64);                                                                                 
             view_render.drawCircle(bub_x, bub_y, 1 + (i % 2), WHITE);                                                                             
         }                                           
-    view_render.drawBitmap(4, 2, gameover_sub, 120, 40, WHITE);                                                                        
-    view_render.drawBitmap(30, 17, score_letter, 64, 7, WHITE);           
-    view_render.setCursor(76, 17);                                                                                                     
+    view_render.drawBitmap(4, 1, gameover_sub, 120, 40, WHITE);                                                                        
+    // view_render.drawBitmap(30, 18, score_letter, 64, 7, WHITE); 
+    view_render.setCursor(29, 18);
+    view_render.print("SCORE");          
+    view_render.setCursor(75, 18);                                                                                                     
     view_render.print(scores.score_now);                                                                                                                                                                                                          
-    view_render.drawBitmap(30, 25, time_letter, 64, 7, WHITE);                                                                         
-    view_render.setCursor(76, 26);                                                                                                     
+    // view_render.drawBitmap(30, 26, time_letter, 64, 7, WHITE);       
+    view_render.setCursor(29, 26);
+    view_render.print("TIME");                                                                    
+    view_render.setCursor(75, 26);                                                                                                     
     view_render.print(time_last / 10);                                                                                                 
     const uint8_t btn_cx[3] = {26, 64, 102}; 
-    const uint8_t btn_cy = 52;               
+    const uint8_t btn_cy = 51;               
     const uint8_t btn_r = 12;                
     const uint8_t* btn_icons[3] = {retry, rank, home};
     const uint8_t btn_w[3] = {20, 20, 22};

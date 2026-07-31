@@ -20,18 +20,6 @@ extern const unsigned char PROGMEM gift[];
 extern const unsigned char PROGMEM spike_short[];
 extern const unsigned char PROGMEM spike_tall[];
 /*--------------------------------Start menu Objects--------------------------------*/
-extern const unsigned char PROGMEM dive_letter[];
-extern const unsigned char PROGMEM setting_letter[];
-extern const unsigned char PROGMEM rank_letter[];
-extern const unsigned char PROGMEM mode_letter[];
-extern const unsigned char PROGMEM speed_letter[];
-extern const unsigned char PROGMEM sound_letter[];
-extern const unsigned char PROGMEM exit_letter[];
-extern const unsigned char PROGMEM on_letter[];
-extern const unsigned char PROGMEM off_letter[];
-extern const unsigned char PROGMEM sink_letter[];
-extern const unsigned char PROGMEM score_letter[];
-extern const unsigned char PROGMEM time_letter[];
 extern const unsigned char PROGMEM skull[];
 extern const unsigned char PROGMEM fish[];
 extern const unsigned char PROGMEM chain[];

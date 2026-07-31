@@ -163,10 +163,14 @@ void view_scr_game_in_the_depth()
     }
     else if (itd_game_state == GAME_OVER)
     {
+        view_render.setTextColor(1);
+        view_render.setTextColor(WHITE);
         view_render.clear();
         view_render.drawBitmap(32, 0, sub_sinking, 64, 64, WHITE);
         view_render.drawBitmap(0, 58, seabottom, SEABOTTOM_BITMAP_AXIS_X, SEABOTTOM_BITMAP_AXIS_Y, WHITE);
-        view_render.drawBitmap(38, 0, sink_letter, 64, 7, WHITE);
+        // view_render.drawBitmap(38, 0, sink_letter, 64, 7, WHITE);
+        view_render.setCursor(38, 0);
+        view_render.print("YOU SINK");
         BUZZER_PlaySound(BUZZER_SOUND_GOODBYE);
     }
 }
@@ -243,7 +247,7 @@ void scr_game_in_the_depth_handle(ak_msg_t *msg)
             timer_set(AC_TASK_DISPLAY_ID,
                     ITD_GAME_EXIT_GAME,
                     ITD_GAME_TIME_EXIT_INTERVAL,
-                    TIMER_ONE_SHOT);
+                    TIMER_ONE_SHOT);            
         }
     }
     break;

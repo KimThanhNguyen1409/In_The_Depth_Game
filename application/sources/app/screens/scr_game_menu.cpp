@@ -2,7 +2,7 @@
 
 
 static int8_t fishes_x[3] = {-10, -30, -20};                                                                                        
-static uint8_t fishes_y[3] = {45, 50, 52};                                                                                           
+static uint8_t fishes_y[3] = {48, 50, 52};                                                                                           
 static uint8_t fishes_speed[3] = {2, 1, 3};                                                                                          
 static uint8_t m_seagrass_frame = 1;  
 uint8_t bub_x = rand() % 128;
@@ -32,7 +32,9 @@ void menu_seagrass_display(){
     else if (m_seagrass_frame == 6) frame = seagrass_VI;                                                                               
     else if (m_seagrass_frame == 7) frame = seagrass_VII;                                                                              
                                                                                                                                                                      
-    view_render.drawBitmap(54, 46, frame, w, h, WHITE);                           
+    view_render.drawBitmap(10, 50, frame, w, h, WHITE);
+	view_render.drawBitmap(54, 54, frame, w, h, WHITE);
+	view_render.drawBitmap(104, 46, frame, w, h, WHITE);                         
 } 
 void view_scr_game_menu(){
     static uint32_t bub_colddown = 0;
@@ -43,27 +45,30 @@ void view_scr_game_menu(){
 		view_render.drawCircle(bub_x, bub_y, 1 + (i % 2), WHITE);
     }
     view_render.drawBitmap(0, 58, seabottom, SEABOTTOM_BITMAP_AXIS_X, SEABOTTOM_BITMAP_AXIS_Y, WHITE);
-    const uint8_t *title[4] = {dive_letter, setting_letter, rank_letter, exit_letter};                                                                        
-    const uint8_t text_w[4] = {32, 58, 32, 32};    
+    const char *title[4] = {"DIVE", "SETTING", "RANK", "EXIT"};                                                                        
+    const uint8_t text_pos[4] = {52, 42, 52, 52};    
     const uint8_t text_h = 7;                                                                                                                                                                                         
-    const uint8_t c_x[4] = {15, 46, 78, 110};                                                                                          
-    const uint8_t c_y[4] = {34, 24, 30, 24};                                                                                           
+    const uint8_t c_x[4] = {15, 47, 79, 111};                                                                                          
+    const uint8_t c_y[4] = {30, 30, 30, 30};                                                                                           
     const uint8_t chain_x[4] = {10, 40, 72, 106};                                                                                      
     const uint8_t chain_y[4] = {42, 32, 40, 32};                                                                                                                                                                                                                              
     const uint8_t *icons[4] = {main_sub, setting, rank, exit_icon};                                                                    
     const uint8_t icons_w[4] = {MAINSUB_SIZE_BITMAP_X, SETTING_BITMAP_AXIS_X, RANK_BITMAP_AXIS_X, EXIT_BITMAP_AXIS_X};                 
     const uint8_t icons_h[4] = {MAINSUB_SIZE_BITMAP_Y, SETTING_BITMAP_AXIS_Y, RANK_BITMAP_AXIS_Y, EXIT_BITMAP_AXIS_Y};                                                                                                                                                            
     for(uint8_t i = 0; i < 4; i++){                                                                                                    
-        view_render.drawBitmap(chain_x[i], chain_y[i], chain, 10, 40, WHITE);     
+        // view_render.drawBitmap(chain_x[i], chain_y[i], chain, 10, 40, WHITE);     
         int8_t off_x[4] = {0, 0, 0, 2};
-        int8_t off_y[4] = {-1, -2, 0, -1};                                                                                                                                                                                                
+        int8_t off_y[4] = {-1, -2, 0, 1};                                                                                                                                                                                                
         uint8_t imgx = c_x[i] - icons_w[i] / 2 + off_x[i];                                                                                        
         uint8_t imgy = c_y[i] - icons_h[i] / 2 + off_y[i];                                                                                                                                                                                                                               
         if (game_menu_index == i) {                                                                                                                                                                    
             view_render.fillCircle(c_x[i], c_y[i], 15, WHITE);                                                                         
             view_render.drawBitmap(imgx, imgy, icons[i], icons_w[i], icons_h[i], BLACK);            
-            uint8_t text_x = (128 - text_w[i]) / 2; 
-            view_render.drawBitmap(text_x, 1, title[i], text_w[i], text_h, WHITE);                                                                                                                                                      
+            // uint8_t text_x = (128 - text_w[i]) / 2; 
+            // view_render.drawBitmap(text_x, 1, title[i], text_w[i], text_h, WHITE);  
+            view_render.setCursor(text_pos[i], 1);
+            view_render.print(title[i]);
+
         } else {                                                                                                                                                                  
             view_render.fillCircle(c_x[i], c_y[i], 14, BLACK);                                                                         
             view_render.drawCircle(c_x[i], c_y[i], 15, WHITE);

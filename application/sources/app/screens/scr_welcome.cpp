@@ -48,9 +48,9 @@ void itd_game_seagrass_display(){
 		{
 			frame = seagrass_VII;
 		}
-        view_render.drawBitmap(10, 46, frame, w, h, WHITE);
+        view_render.drawBitmap(10, 50, frame, w, h, WHITE);
 		view_render.drawBitmap(54, 46, frame, w, h, WHITE);
-		view_render.drawBitmap(84, 46, frame, w, h, WHITE);
+		view_render.drawBitmap(84, 54, frame, w, h, WHITE);
 
 }
 void view_scr_welcome()
