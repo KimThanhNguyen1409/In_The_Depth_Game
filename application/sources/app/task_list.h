@@ -101,7 +101,9 @@ extern void itd_game_border_handle(ak_msg_t *);
 extern void itd_game_coin_handle(ak_msg_t *);
 extern void itd_game_gift_handle(ak_msg_t *);
 extern void scr_game_in_the_depth_handle(ak_msg_t *);
-
+extern void scr_game_menu_handle(ak_msg_t *);
+extern void scr_game_setting_handle(ak_msg_t *);
+extern void scr_game_ranking_handle(ak_msg_t *);
 /* RF24 NETWORK TASK */
 extern void task_rf24_phy(ak_msg_t *);
 extern void task_rf24_mac(ak_msg_t *);

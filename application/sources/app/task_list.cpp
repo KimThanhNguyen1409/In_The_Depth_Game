@@ -30,9 +30,11 @@ const task_t app_task_table[] = {
         {ITD_GAME_BOOM_ID, TASK_PRI_LEVEL_4, itd_game_boom_handle},
 		{ITD_GAME_HEART_ID, TASK_PRI_LEVEL_4, itd_game_heart_handle},
         {ITD_GAME_SPIKE_ID, TASK_PRI_LEVEL_4, itd_game_spike_handle},
-		 {ITD_GAME_BORDER_ID, TASK_PRI_LEVEL_4, itd_game_border_handle},
+		{ITD_GAME_BORDER_ID, TASK_PRI_LEVEL_4, itd_game_border_handle},
         {ITD_GAME_SCREEN_ID, TASK_PRI_LEVEL_4, scr_game_in_the_depth_handle},
-
+		{ITD_GAME_SCREEN_ID, TASK_PRI_LEVEL_4, scr_game_menu_handle},
+		{ITD_GAME_SCREEN_ID, TASK_PRI_LEVEL_4, scr_game_setting_handle},
+		{ITD_GAME_SCREEN_ID, TASK_PRI_LEVEL_4, scr_game_ranking_handle},
 #if defined(TASK_ZIGBEE_EN)
 	{AC_TASK_ZIGBEE_ID, TASK_PRI_LEVEL_4, task_zigbee},
 #endif
