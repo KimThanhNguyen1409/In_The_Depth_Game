@@ -4,7 +4,7 @@ itd_game_bomb_t bombs[BOMB_NUMBER_MAX];
 uint8_t bomb_number = BOMB_INITAL_NUMBER + rand() % (BOMB_NUMBER_MAX - BOMB_INITAL_NUMBER + 1);
 static void itd_game_bomb_reset_all()
 {
-    for (int i = 0; i < BOMB_NUMBER_MAX; i++)
+    for (uint8_t i = 0; i < BOMB_NUMBER_MAX; i++)
     {
         bombs[i].x = 0;
         bombs[i].y = 0;
@@ -37,7 +37,7 @@ void itd_game_bomb_handle(ak_msg_t *msg)
             bomb_cooldown--; 
         } 
         else {
-            for (int i = 0; i < bomb_number; i++)
+            for (uint8_t i = 0; i < bomb_number; i++)
             {
                 if(bombs[i].visible == WHITE) 
                     continue;
@@ -49,7 +49,7 @@ void itd_game_bomb_handle(ak_msg_t *msg)
                 break; 
             }
         }
-        for (int i = 0; i < bomb_number; i++)
+        for (uint8_t i = 0; i < bomb_number; i++)
         {
             if (bombs[i].visible != WHITE)
                 continue;

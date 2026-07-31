@@ -6,7 +6,7 @@ uint8_t current_coin = 0;
 static void itd_game_coin_reset_all()
 {
     current_coin = 0;
-    for (int i = 0; i < COIN_NUMBER_MAX; i++)
+    for (uint8_t i = 0; i < COIN_NUMBER_MAX; i++)
     {
         coins[i].x = 0;
         coins[i].y = 0;
@@ -33,7 +33,7 @@ void itd_game_coin_handle(ak_msg_t *msg)
         }
         else
         {
-            for (int i = 0; i < coin_number; i++)
+            for (uint8_t i = 0; i < coin_number; i++)
             {
                 if (coins[i].visible == WHITE) 
                     continue;
@@ -44,7 +44,7 @@ void itd_game_coin_handle(ak_msg_t *msg)
                 break;
             }
         }
-        for (int i = 0; i < coin_number; i++)
+        for (uint8_t i = 0; i < coin_number; i++)
         {
             if (coins[i].visible != WHITE)
                 continue;

@@ -3,7 +3,7 @@
 itd_game_spike_t spikes[SPIKE_NUMBER];
 static void itd_game_spike_reset_all()
 {
-    for (int i = 0; i < SPIKE_NUMBER; i++)
+    for (uint8_t i = 0; i < SPIKE_NUMBER; i++)
     {
         spikes[i].x = 0;
         spikes[i].y = 0;
@@ -24,11 +24,11 @@ void itd_game_spike_handle(ak_msg_t *msg)
     case ITD_GAME_SPIKE_SPAWN:
     {
         APP_DBG_SIG("ITD_GAME_SPIKE_SPAWN");
-        for (int i = 0; i < SPIKE_NUMBER; i++)
+        for (uint8_t i = 0; i < SPIKE_NUMBER; i++)
         {
             if(spikes[i].visible == WHITE)
                 continue;
-            int type = 2 + rand() % 2;
+            uint8_t type = 2 + rand() % 2;
             if (type == 3)
             {
                 spikes[i].type = SPIKE_SHORT_TYPE;
@@ -44,7 +44,7 @@ void itd_game_spike_handle(ak_msg_t *msg)
                 spikes[i].visible = WHITE;
             }
         }
-        for (int i = 0; i < SPIKE_NUMBER; i++)
+        for (uint8_t i = 0; i < SPIKE_NUMBER; i++)
         {
             if (spikes[i].visible != WHITE)
                 continue;

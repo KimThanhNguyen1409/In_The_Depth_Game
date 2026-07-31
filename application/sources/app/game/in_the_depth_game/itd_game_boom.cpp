@@ -4,7 +4,7 @@ itd_game_boom_t boom[BOOM_NUMBER];
 
 static void itd_game_boom_reset_all()
 {
-    for (int i = 0; i < BOOM_NUMBER; i++)
+    for (uint8_t i = 0; i < BOOM_NUMBER; i++)
     {
         boom[i].x = 0;
         boom[i].y = 0;

@@ -4,7 +4,7 @@ itd_game_heart_t hearts[HEART_MAX_NUMBER];
 static void itd_game_heart_reset_all()
 {
     current_heart = 0;
-    for (int i = 0; i < HEART_MAX_NUMBER; i++)
+    for (uint8_t i = 0; i < HEART_MAX_NUMBER; i++)
     {
         hearts[i].x = 0;
         hearts[i].y = 0;

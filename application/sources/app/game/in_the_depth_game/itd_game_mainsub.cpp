@@ -152,7 +152,6 @@ void itd_game_mainsub_handle(ak_msg_t *msg)
                 if (spikes[i].visible == WHITE && itd_game_mainsub_check_hit_by_spike(i, spikes[i].type))
                 {
                     mainsub.invincibility_time = 60;
-                    bombs[i].visible = BLACK;
                     itd_game_boom_spawn(mainsub.x, mainsub.y);
                     BUZZER_PlaySound(BUZZER_SOUND_BANG);
                     mainsub.visible = BLACK;

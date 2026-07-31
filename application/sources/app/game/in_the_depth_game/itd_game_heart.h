@@ -17,13 +17,13 @@
 #include "itd_game_bomb.h"
 #include "itd_game_border.h"
 
-#define HEART_SIZE_BITMAP_X (12)
-#define HEART_SIZE_BITMAP_Y (12)
+#define HEART_SIZE_BITMAP_X (10)
+#define HEART_SIZE_BITMAP_Y (10)
 
 #define HEART_MAX_NUMBER (3)
 
 #define HEART_AXIS_X (2)
-#define HEART_AXIS_Y (2)
+#define HEART_AXIS_Y (3)
 
 
 

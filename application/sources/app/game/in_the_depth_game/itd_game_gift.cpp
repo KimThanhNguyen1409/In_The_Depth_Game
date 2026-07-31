@@ -5,7 +5,7 @@ uint8_t gift_number = GIFT_INITAL_NUMBER + rand() % (GIFT_NUMBER_MAX - GIFT_INIT
 
 void itd_game_gift_restet_all()
 {
-    for (int i = 0; i < gift_number; i++)
+    for (uint8_t i = 0; i < gift_number; i++)
     {
         gifts[i].x = 0;
         gifts[i].y = 0;
