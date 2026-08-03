@@ -145,7 +145,12 @@ After players press any button, they will transfer to **Main menu**, which offer
 
 ### IV. Basic Game Sequence Logic
 
-
+<table align="center">
+  <tr>
+    <td align="center"><img src="resources/images/design_sequence/basic_game_sequences.png" width="900"/></td>
+  </tr>
+</table>
+<p align="center"><strong><em>Figure 6:</em></strong> Basic game sequences </p>
 
 <h3>Contact Me</h3>
 <p>
