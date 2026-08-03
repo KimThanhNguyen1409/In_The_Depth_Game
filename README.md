@@ -75,7 +75,7 @@ The game opens on the **Welcome screen**, which has a title for the game and man
 
 <table align="center">
   <tr>
-    <td align="center"><img src="resources/images/screens/gamewelcome.png" width="900" style = "image-rendering: pixelated;" /></td>
+    <td align="center"><img src="resources/images/screens/gamewelcome.png" width="900"/></td>
   </tr>
 </table>
 <p align="center"><strong><em>Figure 3:</em></strong> Welcome Screen </p>
@@ -88,14 +88,14 @@ After players press any button, they will transfer to the **Main menu**, which o
 
 <table align="center">
   <tr>
-    <td align="center"><img src="resources/images/screens/gamemenu.png" width="900" width="900" style = "image-rendering: pixelated;/></td>
+    <td align="center"><img src="resources/images/screens/gamemenu.png" width="900"/></td>
   </tr>
 </table>
 <p align="center"><strong><em>Figure 4:</em></strong> Game main menu </p>
 
 <table align="center">
   <tr>
-    <td align="center"><img src="resources/images/screens/gameplay.png" width="900" width="900" style = "image-rendering: pixelated;/></td>
+    <td align="center"><img src="resources/images/screens/gameplay.png" width="900"/></td>
   </tr>
 </table>
 <p align="center"><strong><em>Figure 5:</em></strong> Game play </p>
@@ -105,13 +105,13 @@ After players press any button, they will transfer to the **Main menu**, which o
 
 |**Bit map**| **Object Name** | **Description** |
 |---|---|---|
-|<img src="resources/images/bitmap/mainsub.png" width="100" style = "image-rendering: pixelated;" /> | **Mainsub** | The main object of the game, positioned on the left side of the screen. Moves vertically from the screen border to the map's ground.|
-|<img src="resources/images/bitmap/bomb.gif" width="100" style = "image-rendering: pixelated;"/> | **Bomb**    | The most dangerous object in the game. Spawns randomly from the right edge of the screen. Moves extremely fast and can damage the mainsub. Their damage and speed can be configured in the game setting.|
-|<img src="resources/images/bitmap/spike_tall.png" width="100" style = "image-rendering: pixelated;"/> | **Spike tall** | Another object which can damage the mainsub, spawns from the right edge of the screen but below. Can be extremely dangerous due to its height.|
-|<img src="resources/images/bitmap/spike_short.png" width="100" style = "image-rendering: pixelated;"/> | **Spike short** | Like **Spike tall** but shorter. Players must be cautious when low diving.|
-|<img src="resources/images/bitmap/coin.png" width="100" style = "image-rendering: pixelated;"/> | **Coin**    | The coin's mechanic is like the bomb; these objects spawn randomly from the right edge of the screen and move kinda slow. Each coin contains 10 points. |
-|<img src="resources/images/bitmap/gift.png" width="100" style = "image-rendering: pixelated;"/> | **Gift**    | The most mysterious object in the game. Spawns randomly from the right edge of the screen with a small amount. This object contains 4 random rewards that can make the game easier.|
-|<img src="resources/images/bitmap/boom.gif" width="100" style = "image-rendering: pixelated;"/> | **Boom**    | A small animation, happens when there is a collision between the mainsub and bombs or spikes. Has no game effect itself.|
+|<img src="resources/images/bitmap/mainsub.png" width="100"/> | **Mainsub** | The main object of the game, positioned on the left side of the screen. Moves vertically from the screen border to the map's ground.|
+|<img src="resources/images/bitmap/bomb.gif" width="100"/> | **Bomb**    | The most dangerous object in the game. Spawns randomly from the right edge of the screen. Moves extremely fast and can damage the mainsub. Their damage and speed can be configured in the game setting.|
+|<img src="resources/images/bitmap/spike_tall.png" width="100"/> | **Spike tall** | Another object which can damage the mainsub, spawns from the right edge of the screen but below. Can be extremely dangerous due to its height.|
+|<img src="resources/images/bitmap/spike_short.png" width="100"/> | **Spike short** | Like **Spike tall** but shorter. Players must be cautious when low diving.|
+|<img src="resources/images/bitmap/coin.png" width="100"/> | **Coin**    | The coin's mechanic is like the bomb; these objects spawn randomly from the right edge of the screen and move kinda slow. Each coin contains 10 points. |
+|<img src="resources/images/bitmap/gift.png" width="100"/> | **Gift**    | The most mysterious object in the game. Spawns randomly from the right edge of the screen with a small amount. This object contains 4 random rewards that can make the game easier.|
+|<img src="resources/images/bitmap/boom.gif" width="100"/> | **Boom**    | A small animation, happens when there is a collision between the mainsub and bombs or spikes. Has no game effect itself.|
 
 
 ### III. How to Play:
@@ -130,14 +130,14 @@ After players press any button, they will transfer to the **Main menu**, which o
 
 <table align="center">
   <tr>
-    <td align="center"><img src="resources/images/screens/gamending.png" width="900" style = "image-rendering: pixelated;"/></td>
+    <td align="center"><img src="resources/images/screens/gamending.png" width="900"/></td>
   </tr>
 </table>
 <p align="center"><strong><em>Figure 6:</em></strong> Mainsub sinking </p>
 
 <table align="center">
   <tr>
-    <td align="center"><img src="resources/images/screens/gameover.png" width="900" style = "image-rendering: pixelated;" /></td>
+    <td align="center"><img src="resources/images/screens/gameover.png" width="900"/></td>
   </tr>
 </table>
 <p align="center"><strong><em>Figure 7:</em></strong> Game over </p>
