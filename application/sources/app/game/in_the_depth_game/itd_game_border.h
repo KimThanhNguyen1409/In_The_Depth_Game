@@ -15,7 +15,6 @@
 
 #include "itd_game_mainsub.h"
 #include "itd_game_bomb.h"
-#include "itd_game_heart.h"
 #include "itd_game_coin.h"
 
 extern uint16_t itd_game_score;

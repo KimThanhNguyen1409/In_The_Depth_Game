@@ -15,8 +15,8 @@
 
 #include "itd_game_bomb.h"
 #include "itd_game_coin.h"
-#include "itd_game_heart.h"
 #include "itd_game_spike.h"
+#include "itd_game_mainsub.h"
 
 #define GIFT_SIZE_BITMAP_X (8)
 #define GIFT_SIZE_BITMAP_Y (8)
@@ -29,28 +29,30 @@
 
 #define GIFT_STEP_AXIS_X (2)
 
-#define GIFT_SPAWN_AXIS_X_MAX (250)
-#define GIFT_SPAWN_AXIS_X_MIN (240)
+#define GIFT_SPAWN_AXIS_X_MAX (270)
+#define GIFT_SPAWN_AXIS_X_MIN (230)
 #define GIFT_SPAWN_AXIS_Y_MIN (20)
 #define GIFT_SPAWN_AXIS_Y_MAX (42)
 
 #define GIFT_SPAWN_TOP_OFFSET (2)
 #define GIFT_SPAWN_LEFT_OFFSET (2)
 
+#define SAFE_DISTANCE (20)
+
 typedef enum
 {
-    GET_HEART,
-    GET_SHIELD,
-    GET_BONUS_COIN,
-    GET_NUKE
+	GET_HEART,
+	GET_SHIELD,
+	GET_BONUS_COIN,
+	GET_NUKE
 } buff_type_t;
 
 typedef struct
 {
-    uint8_t x;
-    uint8_t y;
-    buff_type_t buff;
-    bool visible;
+	uint8_t x;
+	uint8_t y;
+	buff_type_t buff;
+	bool visible;
 } itd_game_gift_t;
 
 extern uint8_t gift_number;

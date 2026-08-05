@@ -15,11 +15,10 @@
 #include "task_list.h"
 #include "task_display.h"
 
+#define BOMB_SIZE_BITMAP_X (20)
+#define BOMB_SIZE_BITMAP_Y (8)
 
-#define BOMB_SIZE_BITMAP_X (18)
-#define BOMB_SIZE_BITMAP_Y (10)
-
-#define BOMB_NUMBER_MAX (7)
+#define BOMB_NUMBER_MAX (6)
 #define BOMB_INITAL_NUMBER (3)
 
 #define BOMB_DESPAWN_AXIS_X (10)
@@ -36,9 +35,10 @@
 
 typedef struct
 {
-    bool visible;
-    uint8_t x;
-    uint8_t y;
+	bool visible;
+	uint8_t x;
+	uint8_t y;
+	uint8_t action_image;
 } itd_game_bomb_t;
 extern uint8_t bonus_speed;
 extern uint8_t bomb_number;

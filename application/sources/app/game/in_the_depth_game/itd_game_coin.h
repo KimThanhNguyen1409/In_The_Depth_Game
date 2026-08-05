@@ -18,8 +18,8 @@
 #define COIN_SIZE_BITMAP_X (16)
 #define COIN_SIZE_BITMAP_Y (12)
 
-#define COIN_INITAL_NUMBER (3)
-#define COIN_NUMBER_MAX (5)
+#define COIN_INITAL_NUMBER (4)
+#define COIN_NUMBER_MAX (8)
 
 #define COIN_DESPAWN_AXIS_X (10)
 
@@ -32,6 +32,8 @@
 #define COIN_SPAWN_LEFT_OFFSET (2)
 
 #define COIN_STEP_AXIS_X (2)
+
+#define SAFE_DISTANCE (20)
 
 typedef struct
 {
