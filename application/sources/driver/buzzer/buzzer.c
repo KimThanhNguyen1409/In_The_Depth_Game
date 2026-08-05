@@ -36,6 +36,14 @@ static const buzzer_music_t buzzer_music_table[] = {
 	{BUZZER_SOUND_TONE_5,           sTone5},
 	{BUZZER_SOUND_TONE_6,           sTone6},
 	{BUZZER_SOUND_TONE_7,           sTone7},
+	{BUZZER_SOUND_COIN_COLLECT,		tones_coin_collect},
+	{BUZZER_SOUND_GIFT_COLLECT, 	tones_gift_collect},
+	{BUZZER_SOUND_GET_SHIELD,		tones_shield_collect},
+	{BUZZER_SOUND_GET_HEART,		tones_heart_collect},
+	{BUZZER_SOUND_GET_NUKE, 		tones_nuke_collect},
+	{BUZZER_SOUND_GET_BONUS_COIN, 	tones_bonus_coin_collect},
+	{BUZZER_SOUND_GAME_OVER, 		tones_game_over},
+	{BUZZER_SOUND_GAME_WELCOME, 	tones_game_welcome},
 	{BUZZER_SOUND_MAX,				(const Tone_TypeDef*)0}
 };
 

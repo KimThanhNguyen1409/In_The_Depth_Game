@@ -333,3 +333,55 @@ const Tone_TypeDef sTone7[] = {
 	{680, 4},	/*  680Hz,  40ms */
 	{0, 0}		/* end */
 };
+const Tone_TypeDef tones_coin_collect[] = {
+    {2200, 3},
+    {3200, 5},
+    {   0, 0}
+};
+const Tone_TypeDef tones_gift_collect[] = {
+    {1800, 2},
+    {2600, 2},
+    {3400, 2},
+    {4600, 5},
+    {   0, 0}
+};
+const Tone_TypeDef tones_shield_collect[] = {
+    {1200, 2},
+    {1800, 2},
+    {2600, 4},
+    {   0, 0}
+};
+const Tone_TypeDef tones_heart_collect[] = {
+    {1800, 3},
+    {2400, 3},
+    {3000, 5},
+    {   0, 0}
+};
+const Tone_TypeDef tones_nuke_collect[] = {
+    { 800, 2},
+    {1600, 2},
+    {3000, 2},
+    {4500, 6},
+    {   0, 0}
+};
+const Tone_TypeDef tones_bonus_coin_collect[] = {
+    {2600, 2},
+    {3400, 2},
+    {4300, 4},
+    {   0, 0}
+};
+const Tone_TypeDef tones_game_over[] = {
+	{2500, 2},
+    {1800, 2},
+    {1200, 4},
+    {   0, 0}
+};
+const Tone_TypeDef tones_game_welcome[] = {
+    { 784, 6},   // G5
+    { 988, 6},   // B5
+    {1175, 6},   // D6
+    {1568,10},   // G6
+    {1175, 6},   // D6
+    {1319,10},   // E6
+    {   0, 0}
+};
