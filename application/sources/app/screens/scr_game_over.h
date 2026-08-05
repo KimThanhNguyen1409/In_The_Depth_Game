@@ -25,12 +25,11 @@
 #include "scr_game_menu.h"
 #include "scr_game_ranking.h"
 
-#define HOME_BITMAP_AXIS_X  (24)
-#define HOME_BITMAP_AXIS_Y  (24)
-
+#define HOME_BITMAP_AXIS_X (24)
+#define HOME_BITMAP_AXIS_Y (24)
 
 extern view_dynamic_t dyn_view_item_game_over;
 extern view_screen_t scr_game_over;
-extern void scr_game_over_handle(ak_msg_t *msg);
+extern void scr_game_over_handle(ak_msg_t* msg);
 
 #endif /*_SCR_GAME_OVER_H_*/

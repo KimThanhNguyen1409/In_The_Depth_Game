@@ -28,18 +28,17 @@
 #define MENU_LOCATION_3 (2)
 #define MENU_LOCATION_4 (3)
 
-#define SETTING_BITMAP_AXIS_X   (24)
-#define SETTING_BITMAP_AXIS_Y   (24)
+#define SETTING_BITMAP_AXIS_X (24)
+#define SETTING_BITMAP_AXIS_Y (24)
 
-#define RANK_BITMAP_AXIS_X  (20)
-#define RANK_BITMAP_AXIS_Y  (22)
+#define RANK_BITMAP_AXIS_X (20)
+#define RANK_BITMAP_AXIS_Y (22)
 
-#define EXIT_BITMAP_AXIS_X  (20)
-#define EXIT_BITMAP_AXIS_Y  (22)
+#define EXIT_BITMAP_AXIS_X (20)
+#define EXIT_BITMAP_AXIS_Y (22)
 
 extern view_dynamic_t dyn_view_game_menu;
 extern view_screen_t scr_game_menu;
-extern void scr_game_menu_handle(ak_msg_t *msg);
-
+extern void scr_game_menu_handle(ak_msg_t* msg);
 
 #endif /*_SCR_GAME_MENU_H_*/
