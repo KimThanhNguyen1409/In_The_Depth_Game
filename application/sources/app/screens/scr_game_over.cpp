@@ -49,7 +49,6 @@ void view_scr_game_over()
 		uint8_t imgy = btn_cy - (btn_h[i] / 2);
 		view_render.drawBitmap(imgx, imgy, btn_icons[i], btn_w[i], btn_h[i], WHITE);
 	}
-	BUZZER_PlaySound(BUZZER_SOUND_GAME_OVER);
 }
 void game_ranking()
 {
@@ -81,6 +80,7 @@ void scr_game_over_handle(ak_msg_t* msg)
 		itd_game_setting_read(&settings);
 		timer_set(AC_TASK_DISPLAY_ID, AC_DISPLAY_ANIMATION_TICK, 100, TIMER_PERIODIC);
 		game_ranking();
+		BUZZER_PlaySound(BUZZER_SOUND_GAME_OVER);
 	}
 	break;
 	case AC_DISPLAY_BUTTON_MODE_PRESSED:

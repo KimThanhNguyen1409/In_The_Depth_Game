@@ -266,13 +266,13 @@ void scr_game_in_the_depth_handle(ak_msg_t* msg)
 		{
 			task_post_pure_msg(ITD_GAME_MAINSUB_ID, ITD_GAME_MAINSUB_GO_UP);
 		}
+		task_post_pure_msg(ITD_GAME_MAINSUB_ID, ITD_GAME_MAINSUB_UPDATE);
 		task_post_pure_msg(ITD_GAME_BOMB_ID, ITD_GAME_BOMB_SPAWN);
 		task_post_pure_msg(ITD_GAME_BOMB_ID, ITD_GAME_BOMB_UPDATE);
 		task_post_pure_msg(ITD_GAME_SPIKE_ID, ITD_GAME_SPIKE_SPAWN);
 		task_post_pure_msg(ITD_GAME_COIN_ID, ITD_GAME_COIN_SPAWN);
 		task_post_pure_msg(ITD_GAME_GIFT_ID, ITD_GAME_GIFT_SPAWN);
 		task_post_pure_msg(ITD_GAME_GIFT_ID, ITD_GAME_GIFT_UPDATE);
-		task_post_pure_msg(ITD_GAME_MAINSUB_ID, ITD_GAME_MAINSUB_UPDATE);
 		task_post_pure_msg(ITD_GAME_BOOM_ID, ITD_GAME_BOOM_UPDATE);
 		task_post_pure_msg(ITD_GAME_BORDER_ID, ITD_GAME_BORDER_CHECK_GAME_OVER);
 		task_post_pure_msg(ITD_GAME_BORDER_ID, ITD_GAME_BORDER_UPDATE);
@@ -287,6 +287,7 @@ void scr_game_in_the_depth_handle(ak_msg_t* msg)
 				break;
 			scores.score_now = itd_game_score;
 			time_last = itd_game_time;
+			itd_game_state = GAME_OVER;
 			timer_remove_attr(AC_TASK_DISPLAY_ID, ITD_GAME_TIME_TICK);
 			task_post_pure_msg(ITD_GAME_MAINSUB_ID, ITD_GAME_MAINSUB_RESET);
 			task_post_pure_msg(ITD_GAME_BOMB_ID, ITD_GAME_BOMB_RESET);
@@ -295,7 +296,7 @@ void scr_game_in_the_depth_handle(ak_msg_t* msg)
 			task_post_pure_msg(ITD_GAME_BORDER_ID, ITD_GAME_BORDER_RESET);
 			task_post_pure_msg(ITD_GAME_BOOM_ID, ITD_GAME_BOOM_RESET);
 			task_post_pure_msg(ITD_GAME_GIFT_ID, ITD_GAME_GIFT_RESET);
-			itd_game_state = GAME_OVER;
+			BUZZER_PlaySound(BUZZER_SOUND_GAME_OVER);
 			timer_set(AC_TASK_DISPLAY_ID,
 			          ITD_GAME_EXIT_GAME,
 			          ITD_GAME_TIME_EXIT_INTERVAL,
@@ -333,7 +334,6 @@ void scr_game_in_the_depth_handle(ak_msg_t* msg)
 	{
 		APP_DBG_SIG("ITD_GAME_EXIT_GAME\n");
 		itd_game_state = GAME_OVER;
-		BUZZER_PlaySound(BUZZER_SOUND_GAME_OVER);
 		SCREEN_TRAN(scr_game_over_handle, &scr_game_over);
 	}
 	break;

@@ -59,7 +59,7 @@ void view_scr_game_ranking()
 		if (text_score[j] == 10000)
 			num_digits = 5;
 		uint8_t score_w = num_digits * 6;
-		view_render.setCursor(c_x[j] - (score_w / 2), c_y[j] + 2);
+		view_render.setCursor(c_x[j] - (score_w / 2 + 6), c_y[j] + 2);
 		view_render.print(text_score[j]);
 	}
 
