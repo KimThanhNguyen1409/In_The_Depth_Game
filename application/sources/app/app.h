@@ -212,6 +212,7 @@ extern "C"
 	{
 		ITD_GAME_BOMB_SETUP = ITD_GAME_DEFIN_SIG,
 		ITD_GAME_BOMB_SPAWN,
+		ITD_GAME_BOMB_UPDATE,
 		ITD_GAME_BOMB_RESET
 	};
 	/*****************************************************************************/
@@ -227,18 +228,6 @@ extern "C"
 		ITD_GAME_BOOM_RESET
 	};
 	/*****************************************************************************/
-	/* In the depth game 'HEART' task define
-	 */
-	/*****************************************************************************/
-	/* define timer */
-	/* define signal */
-	enum
-	{
-		ITD_GAME_HEART_SETUP = ITD_GAME_DEFIN_SIG,
-		ITD_GAME_HEART_UPDATE,
-		ITD_GAME_HEART_RESET
-	};
-	/*****************************************************************************/
 	/* In the depth game 'GIFT' task define
 	 */
 	/*****************************************************************************/
@@ -248,6 +237,7 @@ extern "C"
 	{
 		ITD_GAME_GIFT_SETUP = ITD_GAME_DEFIN_SIG,
 		ITD_GAME_GIFT_SPAWN,
+		ITD_GAME_GIFT_UPDATE,
 		ITD_GAME_GIFT_RESET
 	};
 	/*****************************************************************************/
@@ -313,7 +303,7 @@ extern "C"
 
 	extern const app_info_t app_info;
 
-	extern void *app_get_boot_share_data();
+	extern void* app_get_boot_share_data();
 	extern int main_app();
 
 #ifdef __cplusplus

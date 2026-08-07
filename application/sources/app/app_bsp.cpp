@@ -11,6 +11,8 @@
 #include "task_list_if.h"
 #include "timer.h"
 
+#include "scr_game_in_the_depth.h"
+
 button_t btn_mode;
 button_t btn_up;
 button_t btn_down;
@@ -54,6 +56,7 @@ void btn_up_callback(void *b)
 		APP_DBG("[btn_up_callback] BUTTON_SW_STATE_PRESSED\n");
 		task_post_pure_msg(AC_TASK_DISPLAY_ID, AC_DISPLAY_BUTTON_UP_PRESSED);
 		timer_set(AC_TASK_DISPLAY_ID, AC_DISPLAY_SHOW_IDLE, AC_DISPLAY_IDLE_INTERVAL, TIMER_ONE_SHOT);
+
 	}
 	break;
 

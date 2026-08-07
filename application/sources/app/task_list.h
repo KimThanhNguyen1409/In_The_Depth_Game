@@ -33,10 +33,8 @@ enum
 	ITD_GAME_GIFT_ID,
 	ITD_GAME_COIN_ID,
 	ITD_GAME_BOOM_ID,
-	ITD_GAME_HEART_ID,
 	ITD_GAME_SPIKE_ID,
 	ITD_GAME_BORDER_ID,
-	ITD_GAME_SCREEN_ID,
 
 #if defined(TASK_ZIGBEE_EN)
 	AC_TASK_ZIGBEE_ID,
@@ -80,42 +78,38 @@ enum
  */
 /*****************************************************************************/
 /* APP TASKS */
-extern void task_system(ak_msg_t *);
-extern void task_fw(ak_msg_t *);
-extern void task_shell(ak_msg_t *);
-extern void task_life(ak_msg_t *);
-extern void task_if(ak_msg_t *);
-extern void task_rf24_if(ak_msg_t *);
-extern void task_uart_if(ak_msg_t *);
-extern void task_dbg(ak_msg_t *);
-extern void task_display(ak_msg_t *);
-extern void task_zigbee(ak_msg_t *);
+extern void task_system(ak_msg_t*);
+extern void task_fw(ak_msg_t*);
+extern void task_shell(ak_msg_t*);
+extern void task_life(ak_msg_t*);
+extern void task_if(ak_msg_t*);
+extern void task_rf24_if(ak_msg_t*);
+extern void task_uart_if(ak_msg_t*);
+extern void task_dbg(ak_msg_t*);
+extern void task_display(ak_msg_t*);
+extern void task_zigbee(ak_msg_t*);
 
 /*ITD_GAME TASK*/
-extern void itd_game_mainsub_handle(ak_msg_t *);
-extern void itd_game_bomb_handle(ak_msg_t *);
-extern void itd_game_heart_handle(ak_msg_t *);
-extern void itd_game_spike_handle(ak_msg_t *);
-extern void itd_game_boom_handle(ak_msg_t *);
-extern void itd_game_border_handle(ak_msg_t *);
-extern void itd_game_coin_handle(ak_msg_t *);
-extern void itd_game_gift_handle(ak_msg_t *);
-extern void scr_game_in_the_depth_handle(ak_msg_t *);
-extern void scr_game_menu_handle(ak_msg_t *);
-extern void scr_game_setting_handle(ak_msg_t *);
-extern void scr_game_ranking_handle(ak_msg_t *);
+extern void itd_game_mainsub_handle(ak_msg_t*);
+extern void itd_game_bomb_handle(ak_msg_t*);
+extern void itd_game_spike_handle(ak_msg_t*);
+extern void itd_game_boom_handle(ak_msg_t*);
+extern void itd_game_border_handle(ak_msg_t*);
+extern void itd_game_coin_handle(ak_msg_t*);
+extern void itd_game_gift_handle(ak_msg_t*);
+
 /* RF24 NETWORK TASK */
-extern void task_rf24_phy(ak_msg_t *);
-extern void task_rf24_mac(ak_msg_t *);
-extern void task_rf24_nwk(ak_msg_t *);
+extern void task_rf24_phy(ak_msg_t*);
+extern void task_rf24_mac(ak_msg_t*);
+extern void task_rf24_nwk(ak_msg_t*);
 
 /* LINK TASK */
-extern void task_link_phy(ak_msg_t *);
-extern void task_link_mac(ak_msg_t *);
-extern void task_link(ak_msg_t *);
+extern void task_link_phy(ak_msg_t*);
+extern void task_link_mac(ak_msg_t*);
+extern void task_link(ak_msg_t*);
 
 /* RF24 DEMO TASK */
-extern void task_rf24_demo(ak_msg_t *);
+extern void task_rf24_demo(ak_msg_t*);
 
 /*****************************************************************************/
 /*  DECLARE: Task polling
