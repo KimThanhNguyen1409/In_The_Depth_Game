@@ -4,12 +4,11 @@
 
 ## Documentation:
 | File | Description |
-|---|---|
+|---|---|   
 | [README.md](README.md) | Main project overview, hardware information, gameplay rules, and object descriptions. |
 | [docs/01-guide-getting-started.md](docs/01-guide-getting-started.md) | Game programming getting started guide. |
-| [docs/02-guide-coding-rules.md](docs/02-guide-coding-rules.md) | Some rules for coding game. |
-| [docs/03-design-sequence-object.md](docs/03-design-sequence-object.md) | Runtime sequence diagrams for gameplay objects: Gunner, Bullet, Zombie, Car, Bang, Tombstone, and Border. |
-| [docs/04-design-sequence-runtime.md](docs/04-design-sequence-runtime.md) | Runtime signal-processing flow for button input, AK task messages, timers, game-loop ticks, object updates, and Mermaid sequence diagrams. |
+| [docs/02-design-sequence-object.md](docs/02-design-sequence-object.md) | Runtime sequence diagrams for gameplay objects: Gunner, Bullet, Zombie, Car, Bang, Tombstone, and Border. |
+| [docs/03-design-sequence-runtime.md](docs/03-design-sequence-runtime.md) | Runtime signal-processing flow for button input, AK task messages, timers, game-loop ticks, object updates, and Mermaid sequence diagrams. |
 ## Introduction:
 In the depth is a runner game built on top of the AK Embedded Base Kit — a hands-on platform for embedded programming enthusiasts to explore event-driven design in depth. While building and playing In the depth, you put the following core concepts of modern embedded engineering into practice:
   - System design: Modelling complex logic flows with UML.
@@ -145,11 +144,97 @@ After players press any button, they will transfer to the **Main menu**, which o
 
 ### IV. Basic Game Sequence Logic
 
-<table align="center">
+<!-- <table align="center">
   <tr>
     <td align="center"><img src="resources/images/design_sequence/basic_game_sequences.png" width="900"/></td>
   </tr>
-</table>
+</table> -->
+```mermaid
+---
+config:
+  theme: dark
+---
+sequenceDiagram
+        participant Player
+        participant AK
+        participant Screen
+        participant Mainsub
+        participant Bomb
+        participant Spike
+        participant Coin
+        participant Gift
+        participant Boom
+        participant Border
+        rect rgb(30, 45, 30)
+            note over Player: SCREEN_ENTRY 
+            AK->>Screen: SCREEN_ENTRY
+            activate Screen
+            Screen->> Mainsub: ITD_GAME_MAINSUB_SETUP
+            Screen->> Bomb: ITD_GAME_BOMB_SETUP
+            Screen->> Spike: ITD_GAME_SPIKE_SETUP
+            Screen->>Coin: ITD_GAME_COIN_SETUP
+            Screen->>Gift: ITD_GAME_GIFT_SETUP
+            Screen->>Boom: ITD_GAME_BOOM_SETUP
+            Screen->>Border: ITD_GAME_BORDER_SETUP
+            Screen->>Screen: STATE(GAME_PLAY)
+            Screen->>Screen: STATE(MAINSUB_DIR_NONE)
+            Screen->>Screen: Remove timer - Show idle
+            Screen->>Screen: Setup timer - Time tick
+            deactivate Screen
+        end
+        rect rgb(40, 35, 40)
+            note over Player: GAME_PLAY
+            AK->>Screen: ITD_GAME_TIME_TICK
+            alt mainsub_dir == MAINSUB_UP:
+                Screen->>Mainsub: ITD_GAME_MAINSUB_GO_UP 
+            else mainsub_dir == MAINSUB_DOWN:
+                Screen->>Mainsub: ITD_GAME_MAINSUB_GO_DOWN
+            end
+            Screen->>Mainsub: ITD_GAME_MAINSUB_UPDATE 
+            Screen->>Bomb: ITD_GAME_BOMB_SPAWN
+	    Screen->>Bomb: ITD_GAME_BOMB_UPDATE
+            Screen->>Spike: ITD_GAME_SPIKE_SPAWN
+            Screen->>Coin: ITD_GAME_COIN_SPAWN
+            Screen->>Gift: ITD_GAME_GIFT_SPAWN
+            Screen->>Boom: ITD_GAME_BOOM_UPDATE
+            Screen->>Border: ITD_GAME_BORDER_UPDATE
+            Screen->>Border: ITD_GAME_BORDER_CHECK_GAME_OVER
+            Player->>Screen: Button[UP] - AC_DISPLAY_BUTTON_UP_PRESSED
+            Screen->>Screen: STATE(MAINSUB_UP)
+            Player->>Screen: Button[DOWN] - AC_DISPLAY_BUTTON_DOWN_PRESSED
+            Screen->>Screen: STATE(MAINSUB_DOWN)
+            alt Button[UP] release:
+                Player->>Screen: AC_DISPLAY_BUTTON_DOWN_RELEASE
+                Screen->>Screen: STATE(MAINSUB_NONE)
+            else Button[DOWN] release:
+                Player->>Screen: AC_DISPLAY_BUTTON_UP_RELEASE
+                Screen->>Screen: STATE(MAINSUB_NONE)
+            end
+        end
+        rect rgb(50, 45, 30)
+            note over Player: GAME_RESET
+            Border->>Screen: ITD_GAME_RESET 
+            Screen->>Screen: Remove time tick
+            Screen->>Mainsub: ITD_GAME_MAINSUB_RESET
+            Screen->>Bomb: ITD_GAME_BOMB_RESET
+            Screen->>Spike:ITD_GAME_SPIKE_RESET
+            Screen->>Coin: ITD_GAME_COIN_RESET
+            Screen->>Gift: ITD_GAME_GIFT_RESET
+            Screen->>Boom: ITD_GAME_BOOM_RESET
+            Screen->>Border: ITD_GAME_BORDER_RESET
+            Screen->>Screen: Save and reset Score
+            Screen->>Screen: STATE(GAME_OVER)
+            Screen->>Screen: Remove and setup Timer
+        end
+        rect rgb(30, 40, 60)
+            note over Player: GAME_EXIT
+            AK->>Screen: ITD_GAME_EXIT_GAME
+            Screen->>Screen: STATE(GAME_EXIT)
+            Screen->>Screen: Change screen - SCREEN_TRAN(itd_game_over_handle, &itd_game_over)
+        end
+
+```
+
 <p align="center"><strong><em>Figure 8:</em></strong> Basic game sequences </p>
 
 <h3>Contact Me</h3>
