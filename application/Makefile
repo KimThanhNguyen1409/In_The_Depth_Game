@@ -19,8 +19,8 @@ FLASH_BASE_ADDR_VAL = 0x08000000
 NAME_MODULE = In_the_depth_game-application
 PROJECT = $(NAME_MODULE)
 
-GCC_PATH            = C:/Users/Admin/Documents/Tools/GNU-Arm-Embedded-Toolchain/10-2021.10
-PROGRAMER_PATH      = C:/PROGRA~1/STMicroelectronics/STM32Cube/STM32CubeProgrammer/bin
+GCC_PATH            = /home/kthanh/Documents/workspace/tools/arm-gnu-toolchain-15.2.rel1-x86_64-arm-none-eabi
+# PROGRAMER_PATH      = C:/PROGRA~1/STMicroelectronics/STM32Cube/STM32CubeProgrammer/bin
 OPENOCD_CFG_PATH    = /usr/local/share/openocd/scripts/board/stm32ldiscovery.cfg
 
 # App start address, that need sync with declare in linker file and interrupt vector table.
@@ -96,11 +96,11 @@ LIBFPU		= $(GCC_PATH)/arm-none-eabi/lib/thumb/v7-m/nofp/libg.a
 LIBRDPMON	= $(GCC_PATH)/arm-none-eabi/lib/thumb/v7-m/nofp/librdpmon.a
 LIBSTDCPP_NANO	= $(GCC_PATH)/arm-none-eabi/lib/thumb/v7-m/nofp/libstdc++_nano.a
 
-LIBGCC		= $(GCC_PATH)/lib/gcc/arm-none-eabi/10.3.1/thumb/v7-m/nofp/libgcc.a
-LIBGCOV		= $(GCC_PATH)/lib/gcc/arm-none-eabi/10.3.1/thumb/v7-m/nofp/libgcov.a
+LIBGCC		= $(GCC_PATH)/lib/gcc/arm-none-eabi/15.2.1/thumb/v7-m/nofp/libgcc.a
+LIBGCOV		= $(GCC_PATH)/lib/gcc/arm-none-eabi/15.2.1/thumb/v7-m/nofp/libgcov.a
 
 LIB_PATH += -L$(GCC_PATH)/arm-none-eabi/lib/thumb/v7-m/nofp
-LIB_PATH += -L$(GCC_PATH)/lib/gcc/arm-none-eabi/10.3.1/thumb/v7-m/nofp
+LIB_PATH += -L$(GCC_PATH)/lib/gcc/arm-none-eabi/15.2.1/thumb/v7-m/nofp
 
 # The command for calling the compiler.
 CC		=	$(GCC_PATH)/bin/arm-none-eabi-gcc
@@ -173,13 +173,14 @@ HARDWARE_OPTION += \
 		-USH1106_DRIVER_EN
 
 # Console log compile option
-CONSOLE_OPTION +=			\
-		-DLOGIN_PRINT_EN	\
-		-DSYS_PRINT_EN		\
-		-DAPP_PRINT_EN		\
-		-DSYS_DBG_EN		\
-		-DAPP_DBG_EN		\
-		-DAPP_DBG_SIG_EN	\
+CONSOLE_OPTION +=           \
+        -DLOGIN_PRINT_EN    \
+        -USYS_PRINT_EN      \
+        -UAPP_PRINT_EN      \
+        -DSYS_DBG_EN        \
+        -UAPP_DBG_EN        \
+        -UAPP_DBG_SIG_EN    \
+
 
 GENERAL_FLAGS +=			\
 		$(RTOS_DEV_OPTION)	\
@@ -317,3 +318,4 @@ asm: $(TARGET)
 sym: $(TARGET)
 	$(Print) export object name $(<:.axf=.sym)
 	$(OBJNM) --size-sort --print-size $(<) >> $(<:.axf=.sym)
+
