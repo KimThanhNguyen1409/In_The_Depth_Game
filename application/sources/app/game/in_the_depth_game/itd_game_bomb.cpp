@@ -76,7 +76,7 @@ void itd_game_bomb_handle(ak_msg_t* msg)
 	case ITD_GAME_BOMB_UPDATE:
 	{
 		APP_DBG_SIG("ITD_GAME_BOMB_UPDATE");
-		for (uint8_t i = 0; i < 4; i++)
+		for (uint8_t i = 0; i < BOMB_NUMBER_MAX; i++)
 		{
 			if (bombs[i].visible == WHITE)
 			{

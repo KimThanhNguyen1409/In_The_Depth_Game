@@ -227,7 +227,6 @@ void itd_game_mainsub_handle(ak_msg_t* msg)
 				continue;
 			if (!itd_game_mainsub_check_get_gift(i))
 				continue;
-			BUZZER_PlaySound(BUZZER_SOUND_GIFT_COLLECT);
 			gifts[i].visible = BLACK;
 			gifts[i].x = 0;
 		}

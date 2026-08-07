@@ -105,6 +105,8 @@ void itd_game_gift_handle(ak_msg_t* msg)
 	{
 		for (uint8_t i = 0; i < GIFT_NUMBER_MAX; i++)
 		{
+			if (gifts[i].visible != WHITE)
+				continue;
 			if (!itd_game_mainsub_check_get_gift(i))
 				continue;
 			last_recieved_buff = gifts[i].buff;
@@ -137,26 +139,18 @@ void itd_game_gift_handle(ak_msg_t* msg)
 			break;
 			case GET_NUKE:
 			{
-				static uint8_t nuke_time_last = 20;
+
 				BUZZER_PlaySound(BUZZER_SOUND_GET_NUKE);
-				if (nuke_time_last > 0)
+				for (uint8_t i = 0; i < BOMB_NUMBER_MAX; i++)
 				{
-					nuke_time_last--;
-					for (uint8_t i = 0; i < BOMB_NUMBER_MAX; i++)
-					{
-						itd_game_boom_spawn(bombs[i].x, bombs[i].y);
-					}
-					task_post_pure_msg(ITD_GAME_BOMB_ID, ITD_GAME_BOMB_RESET);
-					for (uint8_t i = 0; i < SPIKE_NUMBER; i++)
-					{
-						itd_game_boom_spawn(spikes[i].x, spikes[i].y);
-					}
-					task_post_pure_msg(ITD_GAME_SPIKE_ID, ITD_GAME_SPIKE_RESET);
+					itd_game_boom_spawn(bombs[i].x, bombs[i].y);
 				}
-				else
+				task_post_pure_msg(ITD_GAME_BOMB_ID, ITD_GAME_BOMB_RESET);
+				for (uint8_t i = 0; i < SPIKE_NUMBER; i++)
 				{
-					nuke_time_last = 0;
+					itd_game_boom_spawn(spikes[i].x, spikes[i].y);
 				}
+				task_post_pure_msg(ITD_GAME_SPIKE_ID, ITD_GAME_SPIKE_RESET);
 			}
 			break;
 			}
