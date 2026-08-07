@@ -371,9 +371,11 @@ const Tone_TypeDef tones_bonus_coin_collect[] = {
     {   0, 0}
 };
 const Tone_TypeDef tones_game_over[] = {
-	{2500, 2},
-    {1800, 2},
-    {1200, 4},
+    {2200, 6},
+    {1800, 6},
+    {1400, 8},
+    {1000,10},
+    { 700,12},
     {   0, 0}
 };
 const Tone_TypeDef tones_game_welcome[] = {
