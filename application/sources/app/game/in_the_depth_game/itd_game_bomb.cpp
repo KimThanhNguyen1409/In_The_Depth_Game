@@ -1,7 +1,7 @@
 #include "itd_game_bomb.h"
 uint8_t bonus_speed = 0;
 itd_game_bomb_t bombs[BOMB_NUMBER_MAX];
-uint8_t bomb_number = BOMB_INITAL_NUMBER + rand() % (BOMB_NUMBER_MAX - BOMB_INITAL_NUMBER + 1);
+uint8_t bomb_number;
 static void itd_game_bomb_reset_all()
 {
 	for (uint8_t i = 0; i < BOMB_NUMBER_MAX; i++)
@@ -20,6 +20,7 @@ void itd_game_bomb_handle(ak_msg_t* msg)
 	{
 		APP_DBG_SIG("ITD_GAME_BOMB_SETUP");
 		itd_game_bomb_reset_all();
+		bomb_number = BOMB_INITAL_NUMBER + rand() % (BOMB_NUMBER_MAX - BOMB_INITAL_NUMBER + 1);
 		if (settings.speed_mode == ITD_GAME_SETTING_SPEED_NOR)
 		{
 			bonus_speed = 0;

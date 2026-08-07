@@ -1,7 +1,7 @@
 #include "itd_game_gift.h"
 
 itd_game_gift_t gifts[GIFT_NUMBER_MAX];
-uint8_t gift_number = GIFT_INITAL_NUMBER + rand() % (GIFT_NUMBER_MAX - GIFT_INITAL_NUMBER + 1);
+uint8_t gift_number;
 
 void itd_game_gift_restet_all()
 {
@@ -36,6 +36,18 @@ static bool check_spawn_overlap(uint8_t x, uint8_t y, uint8_t w, uint8_t h)
 			}
 		}
 	}
+	for (uint8_t i = 0; i < SPIKE_NUMBER; i++)
+	{
+		if (spikes[i].visible == WHITE)
+		{
+			uint8_t spike_w = (spikes[i].type == 2) ? SPIKE_TALL_SIZE_BITMAP_X : SPIKE_SHORT_SIZE_BITMAP_X;
+			uint8_t spike_h = (spikes[i].type == 2) ? SPIKE_TALL_SIZE_BITMAP_Y : SPIKE_SHORT_SIZE_BITMAP_Y;
+
+			if ((x + w > spikes[i].x) && (x < spikes[i].x + spike_w) &&
+			    (y + h > spikes[i].y) && (y < spikes[i].y + spike_h))
+				return true;
+		}
+	}
 	return false;
 }
 void itd_game_gift_handle(ak_msg_t* msg)
@@ -46,6 +58,7 @@ void itd_game_gift_handle(ak_msg_t* msg)
 	{
 		APP_DBG_SIG("ITD_GAME_GIFT_SETUP");
 		itd_game_gift_restet_all();
+		gift_number = GIFT_INITAL_NUMBER + rand() % (GIFT_NUMBER_MAX - GIFT_INITAL_NUMBER + 1);
 	}
 	break;
 	case ITD_GAME_GIFT_SPAWN:
@@ -153,7 +166,11 @@ void itd_game_gift_handle(ak_msg_t* msg)
 				task_post_pure_msg(ITD_GAME_SPIKE_ID, ITD_GAME_SPIKE_RESET);
 			}
 			break;
+			default:
+				break;
 			}
+			gifts[i].visible = BLACK;
+			gifts[i].x = 0;
 		}
 	}
 	break;

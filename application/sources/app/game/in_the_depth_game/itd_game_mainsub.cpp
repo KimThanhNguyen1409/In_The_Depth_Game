@@ -109,7 +109,7 @@ void itd_game_mainsub_handle(ak_msg_t* msg)
 		if (mainsub.invincibility_time > 0)
 		{
 			mainsub.invincibility_time--;
-			if (mainsub.invincibility_time % 4 == 0)
+			if (mainsub.invincibility_time % 2 == 0)
 			{
 				mainsub.visible = (mainsub.visible == WHITE) ? BLACK : WHITE;
 			}

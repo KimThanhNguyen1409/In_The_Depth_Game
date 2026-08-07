@@ -14,6 +14,8 @@
 #include "task_display.h"
 
 #include "itd_game_mainsub.h"
+#include "itd_game_gift.h"
+#include "itd_game_spike.h"
 
 #define COIN_SIZE_BITMAP_X (16)
 #define COIN_SIZE_BITMAP_Y (12)
@@ -37,9 +39,9 @@
 
 typedef struct
 {
-    uint8_t x;
-    uint8_t y;
-    bool visible;
+	uint8_t x;
+	uint8_t y;
+	bool visible;
 } itd_game_coin_t;
 
 extern uint8_t coin_number;

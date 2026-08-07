@@ -1,7 +1,7 @@
 #include "itd_game_coin.h"
 
 itd_game_coin_t coins[COIN_NUMBER_MAX];
-uint8_t coin_number = COIN_INITAL_NUMBER + rand() % (COIN_NUMBER_MAX - COIN_INITAL_NUMBER);
+uint8_t coin_number;
 uint8_t current_coin = 0;
 static void itd_game_coin_reset_all()
 {
@@ -37,6 +37,19 @@ static bool check_spawn_overlap(uint8_t x, uint8_t y, uint8_t w, uint8_t h)
 			}
 		}
 	}
+	for (uint8_t i = 0; i < SPIKE_NUMBER; i++)
+	{
+		if (spikes[i].visible == WHITE)
+		{
+			uint8_t spike_w = (spikes[i].type == 2) ? SPIKE_TALL_SIZE_BITMAP_X : SPIKE_SHORT_SIZE_BITMAP_X;
+			uint8_t spike_h = (spikes[i].type == 2) ? SPIKE_TALL_SIZE_BITMAP_Y : SPIKE_SHORT_SIZE_BITMAP_Y;
+
+			if ((x + w > spikes[i].x) && (x < spikes[i].x + spike_w) &&
+			    (y + h > spikes[i].y) && (y < spikes[i].y + spike_h))
+				return true;
+		}
+	}
+
 	return false;
 }
 void itd_game_coin_handle(ak_msg_t* msg)
@@ -47,6 +60,7 @@ void itd_game_coin_handle(ak_msg_t* msg)
 	{
 		APP_DBG_SIG("ITD_GAME_COIN_SETUP");
 		itd_game_coin_reset_all();
+		coin_number = COIN_INITAL_NUMBER + rand() % (COIN_NUMBER_MAX - COIN_INITAL_NUMBER + 1);
 	}
 	break;
 	case ITD_GAME_COIN_SPAWN:
