@@ -13,7 +13,7 @@
 |---|---|   
 | [README.md](README.md) | Main project overview, hardware information, gameplay rules, and object descriptions. |
 | [docs/01-guide-getting-started.md](docs/01-guide-getting-started.md) | Game programming getting started guide. |
-| [docs/02-design-sequence-object.md](docs/02-design-sequence-object.md) | Runtime sequence diagrams for gameplay objects: Gunner, Bullet, Zombie, Car, Bang, Tombstone, and Border. |
+| [docs/02-design-sequence-object.md](docs/02-design-sequence-object.md) | Runtime sequence diagrams for gameplay objects: Mainsub, Bomb, Spike, Coin, Gift, Boom, and Border. |
 | [docs/03-design-sequence-runtime.md](docs/03-design-sequence-runtime.md) | Runtime signal-processing flow for button input, AK task messages, timers, game-loop ticks, object updates, and Mermaid sequence diagrams. |
 ## Introduction:
 In the depth is a runner game built on top of the AK Embedded Base Kit — a hands-on platform for embedded programming enthusiasts to explore event-driven design in depth. While building and playing In the depth, you put the following core concepts of modern embedded engineering into practice:
