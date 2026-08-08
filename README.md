@@ -1,6 +1,12 @@
 # In the depth game - Game built on AK Embedded Base Kit
+<p align="center">
+  <img  alt="repo-ak" src="resources/images/screens/banner_real.jpg" style="width: auto; height: auto;" />
+</p>
 
 ## Gameplay Demo:
+<p align="center">
+  <video src="resources/videos/demo.mp4" controls width="600"></video>
+</p>
 
 ## Documentation:
 | File | Description |
