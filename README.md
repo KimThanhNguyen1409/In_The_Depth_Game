@@ -4,6 +4,7 @@
 </p>
 
 ## Gameplay Demo:
+
 <p align="center">
   <video src="resources/videos/demo.mp4" controls width="600"></video>
 </p>
