@@ -273,5 +273,5 @@ In "In The Depth", button callbacks always post `AC_DISPLAY_BUTTON_*` signals to
 |DOWN Pressed|`AC_DISPLAY_BUTTON_DOWN_PRESSED`->`AC_TASK_DISPLAY_ID`|`scr_game_in_the_depth`|`mainsub_dir = MAINSUB_DOWN`(no message posted)|
 |DOWN Released|`AC_DISPLAY_BUTTON_DOWN_RELEASED`->`AC_TASK_DISPLAY_ID`|`scr_game_in_the_depth`|If `(mainsub_dir == MAINSUB_DOWN)`:<br>`mainsub_dir = MAINSUB_NONE`|
 
-## V. Runtime Scheduling Notes
+
 

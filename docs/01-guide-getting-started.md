@@ -161,7 +161,7 @@ All game logic lives in the `application/sources/app` directory.
 ## References
 
 - Blog: [AK Embedded Software](https://epcb.vn/blogs/ak-embedded-software)
-
+- Github: [ak-base-kit-stm32l151](https://github.com/the-ak-foundation/ak-base-kit-stm32l151)
 ---
 
 ## Contact & Support
@@ -189,5 +189,5 @@ If you have any questions, suggestions, or feedback about this project or firmwa
 </p>
 
 <p align="center">
-  <i>Happy coding, and may you build some truly fun games!</i>
+  <i>Learn from mistake is the best way to learn</i>
 </p>
