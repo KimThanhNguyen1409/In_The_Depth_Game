@@ -5,9 +5,10 @@
 
 ## Gameplay Demo:
 
-<p align="center">
-  <video src="./resources/videos/demo_vid.mp4" controls width="600"></video>
-</p>
+<div align="center">
+  <video src="https://github.com/user-attachments/assets/cfe831c3-37cf-49ed-8cc5-cb4243dcc13c
+  " controls width="480"></video>
+</div>
 
 ## Documentations:
 
@@ -18,7 +19,7 @@
 | [docs/02-design-sequence-object.md](docs/02-design-sequence-object.md) | Runtime sequence diagrams for gameplay objects: Mainsub, Bomb, Spike, Coin, Gift, Boom, and Border. |
 | [docs/03-design-sequence-runtime.md](docs/03-design-sequence-runtime.md) | Runtime signal-processing flow for button input, AK task messages, timers, game-loop ticks, object updates, and Mermaid sequence diagrams. |
 ## Introduction:
-In the depth is a runner game built on top of the AK Embedded Base Kit. This game is all about diving in the sea, finding treasure and dodging obtiscals such as bomb, spikes. give player a feeling in the marinesub . On top of that, while making this game, you can learn from AK Embedded Base Kit such as: 
+In the depth is a runner-game built on top of the AK Embedded Base Kit. This game is all about diving in the sea, finding treasure and dodging underwater hazards such as bombs, spikes, experiencing the unique atmosphere of submarine. On top of that, while making this game, you can learn from AK Embedded Base Kit such as: 
   - Event-Driven Programming 
   - Using Tasks, Signals and Timer
 
