@@ -41,6 +41,7 @@
 #define MAINSUB_AXIS_Y_MIN (15)
 
 #define HEART_MAX_NUMBER (3)
+
 typedef struct
 {
 	uint8_t x;
@@ -55,8 +56,10 @@ typedef struct
 extern itd_game_mainsub_t mainsub;
 extern uint8_t last_recieved_buff;
 extern uint8_t buff_icon_display;
+
 extern bool itd_game_mainsub_check_hit_by_bomb(uint8_t bo);
 extern bool itd_game_mainsub_check_hit_by_spike(uint8_t sp, uint8_t type);
 extern bool itd_game_mainsub_check_get_coin(uint8_t co);
 extern bool itd_game_mainsub_check_get_gift(uint8_t gi);
+
 #endif /*_ITD_GAME_MAINSUB_H_*/

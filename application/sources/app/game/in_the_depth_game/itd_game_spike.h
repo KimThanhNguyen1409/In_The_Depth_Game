@@ -34,10 +34,10 @@
 
 typedef struct
 {
-    uint8_t x;
-    uint8_t y;
-    uint8_t type;
-    bool visible;
+	uint8_t x;
+	uint8_t y;
+	uint8_t type;
+	bool visible;
 } itd_game_spike_t;
 
 extern itd_game_spike_t spikes[SPIKE_NUMBER];

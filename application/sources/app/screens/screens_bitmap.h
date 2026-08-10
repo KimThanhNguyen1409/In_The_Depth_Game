@@ -48,6 +48,5 @@ extern const unsigned char PROGMEM home[];
 extern const unsigned char PROGMEM rank[];
 extern const unsigned char PROGMEM retry[];
 extern const unsigned char PROGMEM gameover_sub[];
-/*--------------------------------Rank game Objects--------------------------------*/
 
 #endif //__SCREENS_BITMAP_H__

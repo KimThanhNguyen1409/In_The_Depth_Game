@@ -1,7 +1,9 @@
 #include "itd_game_bomb.h"
+
 uint8_t bonus_speed = 0;
 itd_game_bomb_t bombs[BOMB_NUMBER_MAX];
 uint8_t bomb_number;
+
 static void itd_game_bomb_reset_all()
 {
 	for (uint8_t i = 0; i < BOMB_NUMBER_MAX; i++)
@@ -12,6 +14,8 @@ static void itd_game_bomb_reset_all()
 		bombs[i].action_image = 0;
 	}
 }
+
+/*-----------------------------Bomb handle-----------------------------*/
 void itd_game_bomb_handle(ak_msg_t* msg)
 {
 	switch (msg->sig)

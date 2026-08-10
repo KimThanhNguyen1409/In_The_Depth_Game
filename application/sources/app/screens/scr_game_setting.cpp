@@ -2,6 +2,7 @@
 
 static void view_scr_game_setting();
 static uint8_t game_setting_index = 0;
+
 view_dynamic_t dyn_view_game_setting = {
     {.item_type = ITEM_TYPE_DYNAMIC},
     view_scr_game_setting};
@@ -13,6 +14,7 @@ view_screen_t scr_game_setting = {
     .focus_item = 0,
 };
 
+/*-----------------------------Game setting display-----------------------------*/
 void view_scr_game_setting()
 {
 	static uint32_t bub_colddown = 0;
@@ -88,6 +90,8 @@ void view_scr_game_setting()
 	}
 	view_render.setTextColor(WHITE);
 }
+
+/*-----------------------------Game setting handle-----------------------------*/
 void scr_game_setting_handle(ak_msg_t* msg)
 {
 	switch (msg->sig)

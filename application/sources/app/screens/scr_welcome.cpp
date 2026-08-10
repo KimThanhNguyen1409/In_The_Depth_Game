@@ -20,6 +20,8 @@ view_screen_t scr_welcome = {
 
     .focus_item = 0,
 };
+
+/*-----------------------------Seagrass animation-----------------------------*/
 void itd_game_seagrass_display()
 {
 	const unsigned char* frame = seagrass_I;
@@ -53,6 +55,8 @@ void itd_game_seagrass_display()
 	view_render.drawBitmap(54, 46, frame, w, h, WHITE);
 	view_render.drawBitmap(84, 54, frame, w, h, WHITE);
 }
+
+/*-----------------------------Game welcome display-----------------------------*/
 void view_scr_welcome()
 {
 	static uint32_t wel_frame = 0;
@@ -81,6 +85,7 @@ void view_scr_welcome()
 	}
 }
 
+/*-----------------------------Game welcome handle-----------------------------*/
 void scr_welcome_handle(ak_msg_t* msg)
 {
 	switch (msg->sig)

@@ -6,6 +6,7 @@ uint16_t itd_game_time = 0;
 uint8_t itd_game_heart = 0;
 uint8_t itd_game_shield = 0;
 uint16_t time_last;
+
 void itd_game_border_reset_all()
 {
 	itd_game_score = 0;
@@ -15,6 +16,7 @@ void itd_game_border_reset_all()
 	is_game_over = false;
 }
 
+/*-----------------------------Border handle-----------------------------*/
 void itd_game_border_handle(ak_msg_t* msg)
 {
 	switch (msg->sig)

@@ -40,7 +40,9 @@ typedef struct
 	uint8_t y;
 	uint8_t action_image;
 } itd_game_bomb_t;
+
 extern uint8_t bonus_speed;
 extern uint8_t bomb_number;
 extern itd_game_bomb_t bombs[BOMB_NUMBER_MAX];
+
 #endif /*_ITD_GAME_BOMB_H_*/

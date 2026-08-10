@@ -11,6 +11,7 @@ static void itd_game_boom_reset_all()
 		boom[i].visible = BLACK;
 	}
 }
+/*-----------------------------Boom handle-----------------------------*/
 void itd_game_boom_spawn(uint16_t x, uint16_t y)
 {
 	for (uint8_t i = 0; i < BOOM_NUMBER; i++)
@@ -24,6 +25,7 @@ void itd_game_boom_spawn(uint16_t x, uint16_t y)
 		break;
 	}
 }
+
 void itd_game_boom_handle(ak_msg_t* msg)
 {
 	switch (msg->sig)

@@ -12,6 +12,8 @@ void itd_game_gift_restet_all()
 		gifts[i].visible = BLACK;
 	}
 }
+
+/*Check overlapped*/
 static bool check_spawn_overlap(uint8_t x, uint8_t y, uint8_t w, uint8_t h)
 {
 	for (uint8_t i = 0; i < GIFT_NUMBER_MAX; i++)
@@ -50,6 +52,8 @@ static bool check_spawn_overlap(uint8_t x, uint8_t y, uint8_t w, uint8_t h)
 	}
 	return false;
 }
+
+/*-----------------------------Gift handle-----------------------------*/
 void itd_game_gift_handle(ak_msg_t* msg)
 {
 	switch (msg->sig)

@@ -9,6 +9,23 @@ static uint8_t itd_game_state = GAME_OVER;
 static uint8_t grid_offset_x = 0;
 itd_game_setting_t settingsetup;
 
+static void view_scr_game_in_the_depth();
+
+view_dynamic_t dyn_view_in_the_depth = {
+    {
+     .item_type = ITEM_TYPE_DYNAMIC,
+     },
+    view_scr_game_in_the_depth
+};
+
+view_screen_t scr_game_in_the_depth = {
+    &dyn_view_in_the_depth,
+    ITEM_NULL,
+    ITEM_NULL,
+    .focus_item = 0,
+};
+
+/*-----------------------------Game background & Border display-----------------------------*/
 void itd_game_frame_display()
 {
 	view_render.setTextSize(1);
@@ -30,6 +47,7 @@ void itd_game_frame_display()
 	view_render.drawLine(0, 15, 128, 15, WHITE);
 	view_render.drawBitmap(0, 54, seabottom, SEABOTTOM_BITMAP_AXIS_X, SEABOTTOM_BITMAP_AXIS_Y, WHITE);
 }
+
 void itd_game_particle_display()
 {
 	for (uint8_t i = 0; i <= 128; i += 8)
@@ -39,21 +57,7 @@ void itd_game_particle_display()
 		view_render.drawPixel(i - grid_offset_x, 55, WHITE);
 	}
 }
-static void view_scr_game_in_the_depth();
-
-view_dynamic_t dyn_view_in_the_depth = {
-    {
-     .item_type = ITEM_TYPE_DYNAMIC,
-     },
-    view_scr_game_in_the_depth
-};
-
-view_screen_t scr_game_in_the_depth = {
-    &dyn_view_in_the_depth,
-    ITEM_NULL,
-    ITEM_NULL,
-    .focus_item = 0,
-};
+/*-----------------------------Game's objects display-----------------------------*/
 void itd_game_mainsub_display()
 {
 	if (mainsub.visible != WHITE)
@@ -104,6 +108,7 @@ void itd_game_spike_display()
 		}
 	}
 }
+
 void itd_game_coin_display()
 {
 	for (uint8_t i = 0; i < COIN_NUMBER_MAX; i++)
@@ -113,6 +118,7 @@ void itd_game_coin_display()
 		view_render.drawBitmap(coins[i].x, coins[i].y, coin, COIN_SIZE_BITMAP_X, COIN_SIZE_BITMAP_Y, WHITE);
 	}
 }
+
 void itd_game_boom_display()
 {
 	for (uint8_t i = 0; i < BOOM_NUMBER; i++)
@@ -145,6 +151,7 @@ void itd_game_boom_display()
 		view_render.drawBitmap(boom[i].x, boom[i].y, frame, w, h, WHITE);
 	}
 }
+
 void itd_game_gift_display()
 {
 	for (uint8_t i = 0; i < GIFT_NUMBER_MAX; i++)
@@ -154,49 +161,34 @@ void itd_game_gift_display()
 		view_render.drawBitmap(gifts[i].x, gifts[i].y, gift, GIFT_SIZE_BITMAP_X, GIFT_SIZE_BITMAP_Y, WHITE);
 	}
 }
+
+/*-----------------------------Gift's buff display-----------------------------*/
 void view_scr_game_buff()
 {
 	view_render.setTextSize(1);
 	view_render.setTextColor(BLACK);
+	const uint8_t* buff_icons[4] = {heart_buff, shield_buff, coin_buff, nuke};
 	if (buff_icon_display > 0)
 	{
-		switch (last_recieved_buff)
+		view_render.fillRoundRect(108, 18, 20, 12, 3, WHITE);
+		view_render.setCursor(111, 20);
+		view_render.print("+");
+		for (uint8_t i = 0; i < 4; i++)
 		{
-		case 0:
-		{
-			view_render.fillRoundRect(108, 18, 20, 12, 3, WHITE);
-			view_render.setCursor(111, 20);
-			view_render.print("+");
-			view_render.drawBitmap(117, 19, heart_buff, 10, 10, BLACK);
-		}
-		break;
-		case 1:
-		{
-			view_render.fillRoundRect(108, 18, 20, 12, 3, WHITE);
-			view_render.setCursor(111, 20);
-			view_render.print("+");
-			view_render.drawBitmap(117, 19, shield_buff, 10, 10, BLACK);
-		}
-		break;
-		case 2:
-			view_render.fillRoundRect(108, 18, 20, 12, 3, WHITE);
-			view_render.setCursor(111, 20);
-			view_render.print("+");
-			view_render.drawBitmap(117, 19, coin_buff, 10, 10, BLACK);
-			break;
-		case 3:
-		{
-			view_render.fillRoundRect(108, 18, 20, 12, 3, WHITE);
-			view_render.setCursor(111, 20);
-			view_render.print("+");
-			view_render.drawBitmap(117, 19, nuke, 10, 10, BLACK);
-		}
-		break;
-		default:
-			break;
+			if (last_recieved_buff == i)
+			{
+				view_render.drawBitmap(BUFF_ICON_AXIS_X,
+				                       BUFF_ICON_AXIS_Y,
+				                       buff_icons[i],
+				                       BUFF_ICON_BITMAP_SIZE_X,
+				                       BUFF_ICON_BITMAP_SIZE_Y,
+				                       BLACK);
+			}
 		}
 	}
 }
+
+/*-----------------------------Gameplay display-----------------------------*/
 void view_scr_game_in_the_depth()
 {
 	if (itd_game_state == GAME_PLAY)
@@ -223,6 +215,8 @@ void view_scr_game_in_the_depth()
 		view_render.print("YOU SINK");
 	}
 }
+
+/*-----------------------------Gameplay handle-----------------------------*/
 void scr_game_in_the_depth_handle(ak_msg_t* msg)
 {
 	switch (msg->sig)

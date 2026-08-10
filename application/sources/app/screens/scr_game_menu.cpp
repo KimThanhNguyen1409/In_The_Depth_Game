@@ -17,6 +17,7 @@ view_screen_t scr_game_menu = {
     ITEM_NULL,
     .focus_item = 0,
 };
+/*-----------------------------Seagrass animation-----------------------------*/
 void menu_seagrass_display()
 {
 	const unsigned char* frame = seagrass_I;
@@ -39,6 +40,7 @@ void menu_seagrass_display()
 	view_render.drawBitmap(54, 54, frame, w, h, WHITE);
 	view_render.drawBitmap(104, 46, frame, w, h, WHITE);
 }
+/*-----------------------------Game menu display-----------------------------*/
 void view_scr_game_menu()
 {
 	static uint32_t bub_colddown = 0;
@@ -83,6 +85,8 @@ void view_scr_game_menu()
 	}
 	menu_seagrass_display();
 }
+
+/*-----------------------------Game menu handle-----------------------------*/
 void scr_game_menu_handle(ak_msg_t* msg)
 {
 	switch (msg->sig)

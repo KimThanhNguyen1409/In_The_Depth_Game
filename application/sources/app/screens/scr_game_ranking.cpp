@@ -4,6 +4,7 @@
 #define RANKSUB_BITMAP_SIZE_Y (32)
 
 static void view_scr_game_ranking();
+
 static uint8_t grid_offset_x = 0;
 static uint8_t c1_y = 32;
 static int8_t c1_dir = 1;
@@ -11,6 +12,7 @@ static uint8_t c2_y = 24;
 static int8_t c2_dir = -1;
 static uint8_t c3_y = 32;
 static int8_t c3_dir = 1;
+
 view_dynamic_t dyn_view_item_game_ranking = {
     {.item_type = ITEM_TYPE_DYNAMIC},
     view_scr_game_ranking};
@@ -21,7 +23,7 @@ view_screen_t scr_game_ranking = {
     ITEM_NULL,
     .focus_item = 0,
 };
-
+/*-----------------------------Game ranking display-----------------------------*/
 void view_scr_game_ranking()
 {
 	const uint8_t c_x[3] = {20, 64, 108};
@@ -71,6 +73,8 @@ void view_scr_game_ranking()
 		}
 	}
 }
+
+/*-----------------------------Game ranking handle-----------------------------*/
 void scr_game_ranking_handle(ak_msg_t* msg)
 {
 	switch (msg->sig)

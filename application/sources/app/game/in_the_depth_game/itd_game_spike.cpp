@@ -1,6 +1,7 @@
 #include "itd_game_spike.h"
 
 itd_game_spike_t spikes[SPIKE_NUMBER];
+
 static void itd_game_spike_reset_all()
 {
 	for (uint8_t i = 0; i < SPIKE_NUMBER; i++)
@@ -11,6 +12,8 @@ static void itd_game_spike_reset_all()
 		spikes[i].visible = BLACK;
 	}
 }
+
+/*-----------------------------Spike handle-----------------------------*/
 void itd_game_spike_handle(ak_msg_t* msg)
 {
 	switch (msg->sig)

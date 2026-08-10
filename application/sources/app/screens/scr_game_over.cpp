@@ -15,6 +15,7 @@ view_screen_t scr_game_over = {
     .focus_item = 0,
 };
 
+/*-----------------------------Game over Display-----------------------------*/
 void view_scr_game_over()
 {
 	static uint32_t bub_cooldown = 0;
@@ -50,6 +51,7 @@ void view_scr_game_over()
 		view_render.drawBitmap(imgx, imgy, btn_icons[i], btn_w[i], btn_h[i], WHITE);
 	}
 }
+/*-----------------------------Game Ranking-----------------------------*/
 void game_ranking()
 {
 	if (scores.score_now > scores.score_1st)
@@ -68,6 +70,7 @@ void game_ranking()
 		scores.score_3rd = scores.score_now;
 	}
 }
+/*-----------------------------Game over handle-----------------------------*/
 void scr_game_over_handle(ak_msg_t* msg)
 {
 	switch (msg->sig)

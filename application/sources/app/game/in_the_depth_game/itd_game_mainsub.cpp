@@ -3,6 +3,8 @@
 itd_game_mainsub_t mainsub;
 uint8_t last_recieved_buff;
 uint8_t buff_icon_display;
+
+/*Check mainsub get hit by bombs*/
 bool itd_game_mainsub_check_hit_by_bomb(uint8_t bo)
 {
 	if (mainsub.invincibility_time > 0)
@@ -14,6 +16,8 @@ bool itd_game_mainsub_check_hit_by_bomb(uint8_t bo)
 	        (((int16_t)bombs[bo].y) + BOMB_SIZE_BITMAP_Y > mainsub.y + MAINSUB_HITBOX_TOP_OFFSET) &&
 	        (((int16_t)bombs[bo].y) < mainsub.y + MAINSUB_HITBOX_BOTTOM_OFFSET));
 }
+
+/*Check mainsub get hit by spikes*/
 bool itd_game_mainsub_check_hit_by_spike(uint8_t sp, uint8_t type)
 {
 	if (mainsub.invincibility_time > 0)
@@ -36,6 +40,8 @@ bool itd_game_mainsub_check_hit_by_spike(uint8_t sp, uint8_t type)
 	}
 	return 0;
 }
+
+/*Check mainsub get coins*/
 bool itd_game_mainsub_check_get_coin(uint8_t co)
 {
 	return ((((int16_t)coins[co].x) + COIN_SIZE_BITMAP_X > mainsub.x + MAINSUB_HITBOX_LEFT_OFFSET) &&
@@ -43,6 +49,8 @@ bool itd_game_mainsub_check_get_coin(uint8_t co)
 	        (((int16_t)coins[co].y) + COIN_SIZE_BITMAP_Y > mainsub.y + MAINSUB_HITBOX_TOP_OFFSET) &&
 	        (((int16_t)coins[co].y) < mainsub.y + MAINSUB_HITBOX_BOTTOM_OFFSET));
 }
+
+/*Check mainsub get gifts*/
 bool itd_game_mainsub_check_get_gift(uint8_t gi)
 {
 	return ((((int16_t)gifts[gi].x) + GIFT_SIZE_BITMAP_X > mainsub.x + MAINSUB_HITBOX_LEFT_OFFSET) &&
@@ -50,6 +58,8 @@ bool itd_game_mainsub_check_get_gift(uint8_t gi)
 	        (((int16_t)gifts[gi].y) + GIFT_SIZE_BITMAP_Y > mainsub.y + MAINSUB_HITBOX_TOP_OFFSET) &&
 	        (((int16_t)gifts[gi].y) < mainsub.y + MAINSUB_HITBOX_BOTTOM_OFFSET));
 }
+
+/*-----------------------------Mainsub handle-----------------------------*/
 void itd_game_mainsub_handle(ak_msg_t* msg)
 {
 	switch (msg->sig)

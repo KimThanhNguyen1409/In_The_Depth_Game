@@ -33,11 +33,18 @@
 #define SHIELD_BITMAP_SIZE_X (12)
 #define SHIELD_BITMAP_SIZE_Y (12)
 
+#define HEART_SIZE_BITMAP_X (10)
+#define HEART_SIZE_BITMAP_Y (10)
+
 #define SEABOTTOM_BITMAP_AXIS_X (128)
 #define SEABOTTOM_BITMAP_AXIS_Y (10)
 
-#define HEART_SIZE_BITMAP_X (10)
-#define HEART_SIZE_BITMAP_Y (10)
+#define BUFF_ICON_BITMAP_SIZE_X (10)
+#define BUFF_ICON_BITMAP_SIZE_Y (10)
+
+#define BUFF_ICON_AXIS_X (117)
+#define BUFF_ICON_AXIS_Y (19)
+
 extern view_dynamic_t dyn_view_in_the_depth;
 extern view_screen_t scr_game_in_the_depth;
 extern void scr_game_in_the_depth_handle(ak_msg_t* msg);

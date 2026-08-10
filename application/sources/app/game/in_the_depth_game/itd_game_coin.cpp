@@ -3,6 +3,7 @@
 itd_game_coin_t coins[COIN_NUMBER_MAX];
 uint8_t coin_number;
 uint8_t current_coin = 0;
+
 static void itd_game_coin_reset_all()
 {
 	current_coin = 0;
@@ -13,6 +14,8 @@ static void itd_game_coin_reset_all()
 		coins[i].visible = BLACK;
 	}
 }
+
+/*Check overlapped*/
 static bool check_spawn_overlap(uint8_t x, uint8_t y, uint8_t w, uint8_t h)
 {
 	for (uint8_t i = 0; i < GIFT_NUMBER_MAX; i++)
@@ -52,6 +55,8 @@ static bool check_spawn_overlap(uint8_t x, uint8_t y, uint8_t w, uint8_t h)
 
 	return false;
 }
+
+/*-----------------------------Coin handle-----------------------------*/
 void itd_game_coin_handle(ak_msg_t* msg)
 {
 	switch (msg->sig)
