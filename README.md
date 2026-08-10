@@ -6,7 +6,7 @@
 ## Gameplay Demo:
 
 <p align="center">
-  <video src="./resources/videos/demo.mp4" controls width="600"></video>
+  <video src="./resources/videos/demo_vid.mp4" controls width="600"></video>
 </p>
 
 ## Documentations:
