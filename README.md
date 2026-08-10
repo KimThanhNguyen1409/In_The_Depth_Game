@@ -6,8 +6,11 @@
 ## Gameplay Demo:
 
 <div align="center">
-  <video src="https://github.com/user-attachments/assets/cfe831c3-37cf-49ed-8cc5-cb4243dcc13c
-  " controls width="480"></video>
+  <video
+    src="https://github.com/user-attachments/assets/cfe831c3-37cf-49ed-8cc5-cb4243dcc13c"
+    controls
+    width="480">
+  </video>
 </div>
 
 ## Documentations:
