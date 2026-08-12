@@ -124,10 +124,14 @@ After players press any button, they will transfer to the **Main menu**, which o
 </table> -->
 ```mermaid
 %%{init: {
-  "theme": "base",
+  "themeVariables": {
+    "lineColor": "#888888",
+    "textColor": "#555555"
+  },
   "sequence": {
     "actorMargin": 50,
-    "noteMargin": 10
+    "noteMargin": 10,
+    "messageAlign": "center"
   }
 }}%%
 sequenceDiagram
