@@ -176,17 +176,18 @@ If you have any questions, suggestions, or feedback about this project or firmwa
 <h3>Contact Me</h3>
 <p>
   <a href="https://github.com/KimThanhNguyen1409">
-    <img src="https://img.shields.io/badge/GitHub-KimThanhNguyen-181717?style=for-the-badge&logo=github&logoColor=white"/>
+    <img src="https://img.shields.io/badge/GitHub-KimThanhNguyen-181717?style=flat&logo=github&logoColor=white"/>
   </a>
   
   <a href="https://www.linkedin.com/in/nguyenkimthanh1409/">
-    <img src="https://img.shields.io/badge/LinkedIn-Nguyễn%20Kim%20Thành-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white"/>
+    <img src="https://img.shields.io/badge/LinkedIn-Nguyễn%20Kim%20Thành-0A66C2?style=flat&logo=linkedin&logoColor=white"/>
   </a>
   
   <a href="mailto:nkimthanh47@gmail.com">
-    <img src="https://img.shields.io/badge/Gmail-nkimthanh47%40gmail.com-EA4335?style=for-the-badge&logo=gmail&logoColor=white"/>
+    <img src="https://img.shields.io/badge/Gmail-nkimthanh47%40gmail.com-EA4335?style=flat&logo=gmail&logoColor=white"/>
   </a>
 </p>
+
 
 <p align="center">
   <i>Learn from mistake is the best way to learn</i>

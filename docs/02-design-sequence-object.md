@@ -25,10 +25,13 @@ Mainsub owns the player position (`Mainsub`).
         - **Gift:** Collecting a gift immediately applies its buff effect to the player.
 - **Reset:** `ITD_GAME_MAINSUB_RESET` resets the position and hides Mainsub (`visible = BLACK`).
 ```mermaid
----
-config:
-  theme: dark
----
+%%{init: {
+  "theme": "base",
+  "sequence": {
+    "actorMargin": 50,
+    "noteMargin": 10
+  }
+}}%%
 sequenceDiagram
         participant Button
         participant Screen
@@ -97,10 +100,13 @@ The Bomb task manages the `bombs[BOMB_NUMBER_MAX]` array. Spawn rates are random
 - **Reset:** `ITD_GAME_BOMB_RESET` hides and parks all bombs at `(0, 0)`.
 
 ```mermaid
----
-config:
-  theme: dark
----
+%%{init: {
+  "theme": "base",
+  "sequence": {
+    "actorMargin": 50,
+    "noteMargin": 10
+  }
+}}%%
 sequenceDiagram
         participant Screen
         participant Bomb
@@ -142,10 +148,13 @@ The Spike task manages the `spikes[SPIKE_NUMBER]` array and their types.
     The new spike is set to `WHITE`. Active spikes are then moved left by `SPIKE_STEP_X`. If they cross the left border, they are despawned (`visible = BLACK`).
 - **Reset:** `ITD_GAME_SPIKE_RESET` hides and parks all spikes at `(0, 0)`.
 ```mermaid
----
-config:
-  theme: dark
----
+%%{init: {
+  "theme": "base",
+  "sequence": {
+    "actorMargin": 50,
+    "noteMargin": 10
+  }
+}}%%
 sequenceDiagram
         participant Screen
         participant Spike
@@ -179,10 +188,13 @@ The Coin task manages the `coins[COIN_NUMBER_MAX]` array.
 - **Per-tick:** `ITD_GAME_COIN_SPAWN` decrements `coin_cooldown`. If 0 and there are no overlapping objects, it spawns a new coin at a random location. It then moves all active coins left by `COIN_STEP_AXIS_X`, despawning them if they cross the left border.
 - **Reset:** `ITD_GAME_COIN_RESET` hides and parks all coins at `(0, 0)`.
 ```mermaid
----
-config:
-  theme: dark
----
+%%{init: {
+  "theme": "base",
+  "sequence": {
+    "actorMargin": 50,
+    "noteMargin": 10
+  }
+}}%%
 sequenceDiagram
         participant Screen
         participant Coins
@@ -222,10 +234,13 @@ The Gift task manages the `gifts[GIFT_NUMBER_MAX]` array.
 - **Reset:** `ITD_GAME_GIFT_RESET` hides and parks all gifts at `(0, 0)`.
 
 ```mermaid
----
-config:
-  theme: dark
----
+%%{init: {
+  "theme": "base",
+  "sequence": {
+    "actorMargin": 50,
+    "noteMargin": 10
+  }
+}}%%
 sequenceDiagram                                                                                                                                                                                                                                       
     participant Screen                                                                                                                                                                                                                              
     participant Gift
@@ -286,6 +301,13 @@ The Boom task handles the explosion animations when objects are destroyed.
 - **Reset:** `ITD_GAME_BOOM_RESET` hides and parks all boom instances at `(0, 0)`.
 
 ```mermaid
+%%{init: {
+  "theme": "base",
+  "sequence": {
+    "actorMargin": 50,
+    "noteMargin": 10
+  }
+}}%%
   sequenceDiagram                                                                                                                                                                                                                                       
         participant Screen                                                                                                                                                                                                                              
         participant Boom(n)
@@ -313,10 +335,13 @@ The Border task monitors the global game state, including player health, score, 
 - **Reset:** `ITD_GAME_BORDER_RESET` resets all tracked variables back to their initial states.
 
 ```mermaid
----
-config:
-  theme: dark
----
+%%{init: {
+  "theme": "base",
+  "sequence": {
+    "actorMargin": 50,
+    "noteMargin": 10
+  }
+}}%%
 sequenceDiagram                                                                                                                                                                                                                                       
     participant Screen                                                                                                                                                                                                                              
     participant Border

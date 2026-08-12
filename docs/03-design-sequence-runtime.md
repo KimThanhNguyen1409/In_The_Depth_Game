@@ -42,10 +42,13 @@ Main runtime flow:
 #### 1. Game Start
 
 ```mermaid
----
-config:
-  theme: dark
----
+%%{init: {
+  "theme": "base",
+  "sequence": {
+    "actorMargin": 50,
+    "noteMargin": 10
+  }
+}}%%
 sequenceDiagram
     participant Screen
     participant EEPROM    
@@ -97,10 +100,13 @@ sequenceDiagram
 #### 2. Game Playing
 
 ```mermaid
----
-config:
-  theme: dark
----
+%%{init: {
+  "theme": "base",
+  "sequence": {
+    "actorMargin": 50,
+    "noteMargin": 10
+  }
+}}%%
 sequenceDiagram
     participant Button
     participant Timer
@@ -183,10 +189,13 @@ sequenceDiagram
 #### 3. Game Reset
 
 ```mermaid
----
-config:
-  theme: dark
----
+%%{init: {
+  "theme": "base",
+  "sequence": {
+    "actorMargin": 50,
+    "noteMargin": 10
+  }
+}}%%
 sequenceDiagram
     participant Border
     participant AKOS 
