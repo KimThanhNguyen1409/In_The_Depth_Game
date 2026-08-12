@@ -43,10 +43,14 @@ Main runtime flow:
 
 ```mermaid
 %%{init: {
-  "theme": "base",
+  "themeVariables": {
+    "lineColor": "#888888",
+    "textColor": "#555555"
+  },
   "sequence": {
     "actorMargin": 50,
-    "noteMargin": 10
+    "noteMargin": 10,
+    "messageAlign": "center"
   }
 }}%%
 sequenceDiagram
@@ -101,10 +105,14 @@ sequenceDiagram
 
 ```mermaid
 %%{init: {
-  "theme": "base",
+  "themeVariables": {
+    "lineColor": "#888888",
+    "textColor": "#555555"
+  },
   "sequence": {
     "actorMargin": 50,
-    "noteMargin": 10
+    "noteMargin": 10,
+    "messageAlign": "center"
   }
 }}%%
 sequenceDiagram
@@ -190,10 +198,14 @@ sequenceDiagram
 
 ```mermaid
 %%{init: {
-  "theme": "base",
+  "themeVariables": {
+    "lineColor": "#888888",
+    "textColor": "#555555"
+  },
   "sequence": {
     "actorMargin": 50,
-    "noteMargin": 10
+    "noteMargin": 10,
+    "messageAlign": "center"
   }
 }}%%
 sequenceDiagram

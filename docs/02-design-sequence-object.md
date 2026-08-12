@@ -26,10 +26,14 @@ Mainsub owns the player position (`Mainsub`).
 - **Reset:** `ITD_GAME_MAINSUB_RESET` resets the position and hides Mainsub (`visible = BLACK`).
 ```mermaid
 %%{init: {
-  "theme": "base",
+  "themeVariables": {
+    "lineColor": "#888888",
+    "textColor": "#555555"
+  },
   "sequence": {
     "actorMargin": 50,
-    "noteMargin": 10
+    "noteMargin": 10,
+    "messageAlign": "center"
   }
 }}%%
 sequenceDiagram
@@ -101,10 +105,14 @@ The Bomb task manages the `bombs[BOMB_NUMBER_MAX]` array. Spawn rates are random
 
 ```mermaid
 %%{init: {
-  "theme": "base",
+  "themeVariables": {
+    "lineColor": "#888888",
+    "textColor": "#555555"
+  },
   "sequence": {
     "actorMargin": 50,
-    "noteMargin": 10
+    "noteMargin": 10,
+    "messageAlign": "center"
   }
 }}%%
 sequenceDiagram
@@ -149,10 +157,14 @@ The Spike task manages the `spikes[SPIKE_NUMBER]` array and their types.
 - **Reset:** `ITD_GAME_SPIKE_RESET` hides and parks all spikes at `(0, 0)`.
 ```mermaid
 %%{init: {
-  "theme": "base",
+  "themeVariables": {
+    "lineColor": "#888888",
+    "textColor": "#555555"
+  },
   "sequence": {
     "actorMargin": 50,
-    "noteMargin": 10
+    "noteMargin": 10,
+    "messageAlign": "center"
   }
 }}%%
 sequenceDiagram
@@ -189,10 +201,14 @@ The Coin task manages the `coins[COIN_NUMBER_MAX]` array.
 - **Reset:** `ITD_GAME_COIN_RESET` hides and parks all coins at `(0, 0)`.
 ```mermaid
 %%{init: {
-  "theme": "base",
+  "themeVariables": {
+    "lineColor": "#888888",
+    "textColor": "#555555"
+  },
   "sequence": {
     "actorMargin": 50,
-    "noteMargin": 10
+    "noteMargin": 10,
+    "messageAlign": "center"
   }
 }}%%
 sequenceDiagram
@@ -235,10 +251,14 @@ The Gift task manages the `gifts[GIFT_NUMBER_MAX]` array.
 
 ```mermaid
 %%{init: {
-  "theme": "base",
+  "themeVariables": {
+    "lineColor": "#888888",
+    "textColor": "#555555"
+  },
   "sequence": {
     "actorMargin": 50,
-    "noteMargin": 10
+    "noteMargin": 10,
+    "messageAlign": "center"
   }
 }}%%
 sequenceDiagram                                                                                                                                                                                                                                       
@@ -302,10 +322,14 @@ The Boom task handles the explosion animations when objects are destroyed.
 
 ```mermaid
 %%{init: {
-  "theme": "base",
+  "themeVariables": {
+    "lineColor": "#888888",
+    "textColor": "#555555"
+  },
   "sequence": {
     "actorMargin": 50,
-    "noteMargin": 10
+    "noteMargin": 10,
+    "messageAlign": "center"
   }
 }}%%
   sequenceDiagram                                                                                                                                                                                                                                       
@@ -336,10 +360,14 @@ The Border task monitors the global game state, including player health, score, 
 
 ```mermaid
 %%{init: {
-  "theme": "base",
+  "themeVariables": {
+    "lineColor": "#888888",
+    "textColor": "#555555"
+  },
   "sequence": {
     "actorMargin": 50,
-    "noteMargin": 10
+    "noteMargin": 10,
+    "messageAlign": "center"
   }
 }}%%
 sequenceDiagram                                                                                                                                                                                                                                       
