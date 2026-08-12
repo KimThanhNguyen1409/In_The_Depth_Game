@@ -2,8 +2,8 @@
 #define _SCR_GAME_RANKING_H_
 
 #include "fsm.h"
-#include "port.h"
 #include "message.h"
+#include "port.h"
 #include "timer.h"
 
 #include "sys_ctrl.h"
@@ -11,13 +11,13 @@
 
 #include "app.h"
 #include "app_dbg.h"
-#include "task_list.h"
 #include "task_display.h"
+#include "task_list.h"
 #include "view_render.h"
 
+#include "scr_game_menu.h"
 #include "screens.h"
 #include "screens_bitmap.h"
-#include "scr_game_menu.h"
 
 #define CHAIN_BITMAP_AXIS_X (10)
 #define CHAIN_BITMAP_AXIS_Y (40)
