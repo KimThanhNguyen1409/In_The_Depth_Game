@@ -8,75 +8,75 @@ extern "C"
 
 #include <stdint.h>
 
-	// Single tone definition. Duration unit is 10 ms.
-	typedef struct
-	{
-		uint16_t frequency;
-		uint8_t duration;
-	} Tone_TypeDef;
+    // Single tone definition. Duration unit is 10 ms.
+    typedef struct
+    {
+        uint16_t frequency;
+        uint8_t duration;
+    } Tone_TypeDef;
 
-	typedef enum
-	{
-		BUZZER_SOUND_CLICK = 0,
-		BUZZER_SOUND_BANG,
-		BUZZER_SOUND_USB_CONNECTED,
-		BUZZER_SOUND_USB_DISCONNECTED,
-		BUZZER_SOUND_LETS_GO,
-		BUZZER_SOUND_STARTUP,
-		BUZZER_SOUND_3BEEP,
-		BUZZER_SOUND_WELCOME,
-		BUZZER_SOUND_GOODBYE,
-		BUZZER_SOUND_HIGHSCORE,
-		BUZZER_SOUND_LOWSCORE,
-		BUZZER_SOUND_SUPER_MARIO,
-		BUZZER_SOUND_MERRY_CHRISTMAS,
-		BUZZER_SOUND_TONE_1,
-		BUZZER_SOUND_TONE_2,
-		BUZZER_SOUND_TONE_3,
-		BUZZER_SOUND_TONE_4,
-		BUZZER_SOUND_TONE_5,
-		BUZZER_SOUND_TONE_6,
-		BUZZER_SOUND_TONE_7,
-		BUZZER_SOUND_COIN_COLLECT,
-		BUZZER_SOUND_GIFT_COLLECT,
-		BUZZER_SOUND_GET_SHIELD,
-		BUZZER_SOUND_GET_HEART,
-		BUZZER_SOUND_GET_NUKE,
-		BUZZER_SOUND_GET_BONUS_COIN,
-		BUZZER_SOUND_GAME_OVER,
-		BUZZER_SOUND_GAME_WELCOME,
-		BUZZER_SOUND_MAX
+    typedef enum
+    {
+        BUZZER_SOUND_CLICK = 0,
+        BUZZER_SOUND_BANG,
+        BUZZER_SOUND_USB_CONNECTED,
+        BUZZER_SOUND_USB_DISCONNECTED,
+        BUZZER_SOUND_LETS_GO,
+        BUZZER_SOUND_STARTUP,
+        BUZZER_SOUND_3BEEP,
+        BUZZER_SOUND_WELCOME,
+        BUZZER_SOUND_GOODBYE,
+        BUZZER_SOUND_HIGHSCORE,
+        BUZZER_SOUND_LOWSCORE,
+        BUZZER_SOUND_SUPER_MARIO,
+        BUZZER_SOUND_MERRY_CHRISTMAS,
+        BUZZER_SOUND_TONE_1,
+        BUZZER_SOUND_TONE_2,
+        BUZZER_SOUND_TONE_3,
+        BUZZER_SOUND_TONE_4,
+        BUZZER_SOUND_TONE_5,
+        BUZZER_SOUND_TONE_6,
+        BUZZER_SOUND_TONE_7,
+        BUZZER_SOUND_COIN_COLLECT,
+        BUZZER_SOUND_GIFT_COLLECT,
+        BUZZER_SOUND_GET_SHIELD,
+        BUZZER_SOUND_GET_HEART,
+        BUZZER_SOUND_GET_NUKE,
+        BUZZER_SOUND_GET_BONUS_COIN,
+        BUZZER_SOUND_GAME_OVER,
+        BUZZER_SOUND_GAME_WELCOME,
+        BUZZER_SOUND_MAX
 
-	} buzzer_sound_t;
+    } buzzer_sound_t;
 
-	extern const Tone_TypeDef tones_click[];
-	extern const Tone_TypeDef tones_bang[];
-	extern const Tone_TypeDef tones_usb_connected[];
-	extern const Tone_TypeDef tones_usb_disconnected[];
-	extern const Tone_TypeDef tones_lets_go[];
-	extern const Tone_TypeDef tones_startup[];
-	extern const Tone_TypeDef tones_3beep[];
-	extern const Tone_TypeDef tones_welcome[];
-	extern const Tone_TypeDef tones_goodbye[];
-	extern const Tone_TypeDef tones_highscore[];
-	extern const Tone_TypeDef tones_lowscore[];
-	extern const Tone_TypeDef tones_supper_mario_bros[];
-	extern const Tone_TypeDef tones_merry_christmas[];
-	extern const Tone_TypeDef sTone1[];
-	extern const Tone_TypeDef sTone2[];
-	extern const Tone_TypeDef sTone3[];
-	extern const Tone_TypeDef sTone4[];
-	extern const Tone_TypeDef sTone5[];
-	extern const Tone_TypeDef sTone6[];
-	extern const Tone_TypeDef sTone7[];
-	extern const Tone_TypeDef tones_coin_collect[];
-	extern const Tone_TypeDef tones_gift_collect[];
-	extern const Tone_TypeDef tones_shield_collect[];
-	extern const Tone_TypeDef tones_heart_collect[];
-	extern const Tone_TypeDef tones_nuke_collect[];
-	extern const Tone_TypeDef tones_bonus_coin_collect[];
-	extern const Tone_TypeDef tones_game_over[];
-	extern const Tone_TypeDef tones_game_welcome[];
+    extern const Tone_TypeDef tones_click[];
+    extern const Tone_TypeDef tones_bang[];
+    extern const Tone_TypeDef tones_usb_connected[];
+    extern const Tone_TypeDef tones_usb_disconnected[];
+    extern const Tone_TypeDef tones_lets_go[];
+    extern const Tone_TypeDef tones_startup[];
+    extern const Tone_TypeDef tones_3beep[];
+    extern const Tone_TypeDef tones_welcome[];
+    extern const Tone_TypeDef tones_goodbye[];
+    extern const Tone_TypeDef tones_highscore[];
+    extern const Tone_TypeDef tones_lowscore[];
+    extern const Tone_TypeDef tones_supper_mario_bros[];
+    extern const Tone_TypeDef tones_merry_christmas[];
+    extern const Tone_TypeDef sTone1[];
+    extern const Tone_TypeDef sTone2[];
+    extern const Tone_TypeDef sTone3[];
+    extern const Tone_TypeDef sTone4[];
+    extern const Tone_TypeDef sTone5[];
+    extern const Tone_TypeDef sTone6[];
+    extern const Tone_TypeDef sTone7[];
+    extern const Tone_TypeDef tones_coin_collect[];
+    extern const Tone_TypeDef tones_gift_collect[];
+    extern const Tone_TypeDef tones_shield_collect[];
+    extern const Tone_TypeDef tones_heart_collect[];
+    extern const Tone_TypeDef tones_nuke_collect[];
+    extern const Tone_TypeDef tones_bonus_coin_collect[];
+    extern const Tone_TypeDef tones_game_over[];
+    extern const Tone_TypeDef tones_game_welcome[];
 #ifdef __cplusplus
 }
 #endif
