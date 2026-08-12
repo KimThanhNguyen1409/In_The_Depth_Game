@@ -123,16 +123,19 @@ After players press any button, they will transfer to the **Main menu**, which o
   </tr>
 </table> -->
 ```mermaid
----
-config:
-  theme: dark
----
+%%{init: {
+  "theme": "base",
+  "sequence": {
+    "actorMargin": 50,
+    "noteMargin": 10
+  }
+}}%%
 sequenceDiagram
         participant Player
         participant AK
         participant Screen
         participant Mainsub
-        participant Bomb
+        participant Bomb  
         participant Spike
         participant Coin
         participant Gift
@@ -205,14 +208,14 @@ sequenceDiagram
 <h3>Contact Me</h3>
 <p>
   <a href="https://github.com/KimThanhNguyen1409">
-    <img src="https://img.shields.io/badge/GitHub-KimThanhNguyen-181717?style=for-the-badge&logo=github&logoColor=white"/>
+    <img src="https://img.shields.io/badge/GitHub-KimThanhNguyen-181717?style=flat&logo=github&logoColor=white"/>
   </a>
   
   <a href="https://www.linkedin.com/in/nguyenkimthanh1409/">
-    <img src="https://img.shields.io/badge/LinkedIn-Nguyễn%20Kim%20Thành-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white"/>
+    <img src="https://img.shields.io/badge/LinkedIn-Nguyễn%20Kim%20Thành-0A66C2?style=flat&logo=linkedin&logoColor=white"/>
   </a>
   
   <a href="mailto:nkimthanh47@gmail.com">
-    <img src="https://img.shields.io/badge/Gmail-nkimthanh47%40gmail.com-EA4335?style=for-the-badge&logo=gmail&logoColor=white"/>
+    <img src="https://img.shields.io/badge/Gmail-nkimthanh47%40gmail.com-EA4335?style=flat&logo=gmail&logoColor=white"/>
   </a>
 </p>
