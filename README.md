@@ -1,6 +1,6 @@
 # In the depth - Game built on AK Embedded Base Kit
 <p align="center">
-  <img  alt="repo-ak" src="resources/images/screens/game_banner.png" style="width: auto; height: auto;" />
+  <img  alt="repo-ak" src="resources/images/screens/gamebanner.gif" style="width: auto; height: auto;" />
 </p>
 
 ## Gameplay Demo:
@@ -45,7 +45,7 @@ The game opens on the **Welcome screen**, which has a title for the game and man
 
 <table align="center">
   <tr>
-    <td align="center"><img src="./resources/images/screens/screen_welcome.png" style = "height: auto width: auto"  /></td>
+    <td align="center"><img src="./resources/images/screens/screen_gamewelcome.png" style = "height: auto width: auto"  /></td>
   </tr>
 </table>
 <p align="center"><strong><em>Figure 3:</em></strong> Welcome Screen </p>
