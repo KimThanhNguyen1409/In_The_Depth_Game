@@ -4,23 +4,23 @@
 #include <stdio.h>
 
 #include "fsm.h"
-#include "port.h"
 #include "message.h"
+#include "port.h"
 #include "timer.h"
 
 #include "app.h"
 #include "app_dbg.h"
-#include "task_list.h"
 #include "task_display.h"
+#include "task_list.h"
 
-#include "eeprom.h"
 #include "app_eeprom.h"
+#include "eeprom.h"
 
 #include "itd_game_bomb.h"
 #include "itd_game_boom.h"
-#include "itd_game_spike.h"
 #include "itd_game_coin.h"
 #include "itd_game_gift.h"
+#include "itd_game_spike.h"
 
 #include "scr_game_in_the_depth.h"
 
@@ -44,13 +44,13 @@
 
 typedef struct
 {
-	uint8_t x;
-	uint8_t y;
-	bool visible;
-	uint8_t shield_heart = 0;
-	uint8_t current_heart = 0;
-	uint8_t invincibility_time = 0;
-	uint8_t damage_taken = 1;
+    uint8_t x;
+    uint8_t y;
+    bool visible;
+    uint8_t shield_heart       = 0;
+    uint8_t current_heart      = 0;
+    uint8_t invincibility_time = 0;
+    uint8_t damage_taken       = 1;
 } itd_game_mainsub_t;
 
 extern itd_game_mainsub_t mainsub;

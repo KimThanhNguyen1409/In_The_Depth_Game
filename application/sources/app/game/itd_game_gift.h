@@ -4,19 +4,19 @@
 #include <stdio.h>
 
 #include "fsm.h"
-#include "port.h"
 #include "message.h"
+#include "port.h"
 #include "timer.h"
 
 #include "app.h"
 #include "app_dbg.h"
-#include "task_list.h"
 #include "task_display.h"
+#include "task_list.h"
 
 #include "itd_game_bomb.h"
 #include "itd_game_coin.h"
-#include "itd_game_spike.h"
 #include "itd_game_mainsub.h"
+#include "itd_game_spike.h"
 
 #define GIFT_SIZE_BITMAP_X (8)
 #define GIFT_SIZE_BITMAP_Y (8)
@@ -41,21 +41,21 @@
 
 typedef enum
 {
-	GET_HEART,
-	GET_SHIELD,
-	GET_BONUS_COIN,
-	GET_NUKE
+    GET_HEART,
+    GET_SHIELD,
+    GET_BONUS_COIN,
+    GET_NUKE
 } buff_type_t;
 
 typedef struct
 {
-	uint8_t x;
-	uint8_t y;
-	buff_type_t buff;
-	bool visible;
+    uint8_t x;
+    uint8_t y;
+    buff_type_t buff;
+    bool visible;
 } itd_game_gift_t;
 
-extern uint8_t gift_number;
 extern itd_game_gift_t gifts[GIFT_NUMBER_MAX];
+extern uint8_t gift_number;
 
 #endif /*_ITD_GAME_GIFT_H_*/

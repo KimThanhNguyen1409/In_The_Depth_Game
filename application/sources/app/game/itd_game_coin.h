@@ -1,20 +1,20 @@
 #ifndef _ITD_GAME_COIN_H_
 #define _ITD_GAME_COIN_H_
 
+#include "fsm.h"
+#include "message.h"
+#include "port.h"
+#include "timer.h"
 #include <stdio.h>
 #include <stdlib.h>
-#include "fsm.h"
-#include "port.h"
-#include "message.h"
-#include "timer.h"
 
 #include "app.h"
 #include "app_dbg.h"
-#include "task_list.h"
 #include "task_display.h"
+#include "task_list.h"
 
-#include "itd_game_mainsub.h"
 #include "itd_game_gift.h"
+#include "itd_game_mainsub.h"
 #include "itd_game_spike.h"
 
 #define COIN_SIZE_BITMAP_X (16)
@@ -39,13 +39,13 @@
 
 typedef struct
 {
-	uint8_t x;
-	uint8_t y;
-	bool visible;
+    uint8_t x;
+    uint8_t y;
+    bool visible;
 } itd_game_coin_t;
 
+extern itd_game_coin_t coins[COIN_NUMBER_MAX];
 extern uint8_t coin_number;
 extern uint8_t current_coin;
-extern itd_game_coin_t coins[COIN_NUMBER_MAX];
 
 #endif
