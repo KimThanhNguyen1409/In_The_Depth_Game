@@ -11,7 +11,7 @@ Welcome to the game programming project on the STM32L151 microcontroller! This r
 - [III. Game Programming Workflow](#iii-game-programming-workflow)
   - [Basic Workflow](#basic-workflow)
   - [Modify the Game](#modify-the-game)
-  - [Example: Displaying the welcome screen ](#displaying-the-welcome-screen)
+  - [Example: Displaying the welcome screen ](#example-displaying-the-welcome-screen)
 
 ---
 
