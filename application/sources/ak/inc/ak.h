@@ -17,8 +17,8 @@ extern "C"
 #include <string.h>
 
 #include "fsm.h"
-#include "task.h"
 #include "port.h"
+#include "task.h"
 
 /*****************************************************************************
  * DEFINITION: active kernel
