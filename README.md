@@ -75,13 +75,13 @@ After players press any button, they will transfer to the **Main menu**, which o
 
 |**Bit map**| **Object Name** | **Description** |
 |---|---|---|
-|<img src="resources/images/bitmap/mainsub.png" width="100"/> | **Mainsub** | The main object of the game, positioned on the left side of the screen. Moves vertically from the screen border to the map's ground.|
-|<img src="resources/images/bitmap/bomb.gif" width="100"/> | **Bomb**    | The most dangerous object in the game. Spawns randomly from the right edge of the screen. Moves extremely fast and can damage the mainsub. Their damage and speed can be configured in the game setting.|
-|<img src="resources/images/bitmap/spike_tall.png" width="100"/> | **Spike tall** | Another object which can damage the mainsub, spawns from the right edge of the screen but below. Can be extremely dangerous due to its height.|
-|<img src="resources/images/bitmap/spike_short.png" width="100"/> | **Spike short** | Like **Spike tall** but shorter. Players must be cautious when low diving.|
-|<img src="resources/images/bitmap/coin.png" width="100"/> | **Coin**    | The coin's mechanic is like the bomb; these objects spawn randomly from the right edge of the screen and move kinda slow. Each coin contains 10 points. |
-|<img src="resources/images/bitmap/gift.png" width="100"/> | **Gift**    | The most mysterious object in the game. Spawns randomly from the right edge of the screen with a small amount. This object contains 4 random rewards that can make the game easier.|
-|<img src="resources/images/bitmap/boom.gif" width="100"/> | **Boom**    | A small animation, happens when there is a collision between the mainsub and bombs or spikes. Has no game effect itself.|
+|<img src="resources/images/bitmap/bitmap_mainsub.png" width="100"/> | **Mainsub** | The main object of the game, positioned on the left side of the screen. Moves vertically from the screen border to the map's ground.|
+|<img src="resources/images/bitmap/bitmap_bomb.gif" width="100"/> | **Bomb**    | The most dangerous object in the game. Spawns randomly from the right edge of the screen. Moves extremely fast and can damage the mainsub. Their damage and speed can be configured in the game setting.|
+|<img src="resources/images/bitmap/bitmap_spike_tall.png" width="100"/> | **Spike tall** | Another object which can damage the mainsub, spawns from the right edge of the screen but below. Can be extremely dangerous due to its height.|
+|<img src="resources/images/bitmap/bitmap_spike_short.png" width="100"/> | **Spike short** | Like **Spike tall** but shorter. Players must be cautious when low diving.|
+|<img src="resources/images/bitmap/bitmap_coin.png" width="100"/> | **Coin**    | The coin's mechanic is like the bomb; these objects spawn randomly from the right edge of the screen and move kinda slow. Each coin contains 10 points. |
+|<img src="resources/images/bitmap/bitmap_gift.png" width="100"/> | **Gift**    | The most mysterious object in the game. Spawns randomly from the right edge of the screen with a small amount. This object contains 4 random rewards that can make the game easier.|
+|<img src="resources/images/bitmap/bitmap_boom.gif" width="100"/> | **Boom**    | A small animation, happens when there is a collision between the mainsub and bombs or spikes. Has no game effect itself.|
 
 
 ### III. How to Play:
