@@ -46,8 +46,8 @@
 #define BUFF_ICON_AXIS_Y (19)
 
 extern view_dynamic_t dyn_view_in_the_depth;
-extern view_screen_t  scr_game_in_the_depth;
-extern void           scr_game_in_the_depth_handle(ak_msg_t* msg);
+extern view_screen_t scr_game_in_the_depth;
+extern void scr_game_in_the_depth_handle(ak_msg_t* msg);
 
 extern itd_game_setting_t settingsetup;
 
