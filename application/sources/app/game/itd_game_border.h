@@ -17,10 +17,10 @@
 #include "itd_game_coin.h"
 #include "itd_game_mainsub.h"
 
-extern uint16_t itd_game_score;
-extern uint16_t itd_game_time;
 extern uint8_t itd_game_heart;
 extern uint8_t itd_game_shield;
+extern uint16_t itd_game_score;
+extern uint16_t itd_game_time;
 extern uint16_t time_last;
 
 #endif /*_ITD_GAME_BORDER_H_*/

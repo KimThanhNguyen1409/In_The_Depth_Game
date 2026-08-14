@@ -25,8 +25,8 @@
 #define SPIKE_NUMBER (3)
 
 #define SPIKE_SHORT_SPAWN_X (190)
-#define SPIKE_TALL_SPAWN_X (210)
 #define SPIKE_SHORT_SPAWN_Y (42)
+#define SPIKE_TALL_SPAWN_X (210)
 #define SPIKE_TALL_SPAWN_Y (30)
 #define SPIKE_STEP_X (2)
 
