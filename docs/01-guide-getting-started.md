@@ -29,13 +29,13 @@ Click the **Fork** button in the top-right corner to create a copy of the projec
 You can also click the **Star** button next to **Fork** to support the author.
 
 <p align="center">
-  <img alt="repo-ak" src="../resources/images/guide_getting_started/Fork_ak_foundation.png" style="width: auto; height: auto;" />
+  <img alt="repo-ak" src="../resources/images/guide_getting_started/getting_started_fork_ak_foundation.png" style="width: auto; height: auto;" />
 </p>
 
 ### 3. Create the fork
 
 <p align="center">
-  <img alt="repo-ak" src="../resources/images/guide_getting_started/name_your_repo.png" style="width: auto; height: auto;" />
+  <img alt="repo-ak" src="../resources/images/guide_getting_started/getting_started_name_your_repo.png" style="width: auto; height: auto;" />
 </p>
 
 > **Note:**
@@ -45,7 +45,7 @@ You can also click the **Star** button next to **Fork** to support the author.
 Once the fork is created, GitHub redirects you to the new repository — this is the "skeleton" you will use to develop and complete your game:
 
 <p align="center">
-  <img  alt="repo-ak" src="../resources/images/guide_getting_started/your_repo.png" style="width: auto; height: auto;" />
+  <img  alt="repo-ak" src="../resources/images/guide_getting_started/getting_started_your_repo.png" style="width: auto; height: auto;" />
 </p>
 
 ---
@@ -90,14 +90,14 @@ Open **VSCode** on Linux, then open the freshly cloned repository to start codin
 First, set your game's name in the `Makefile.mk` file located in the `application/` directory:
 
 <p align="center">
-  <img alt="repo-ak" src="../resources/images/guide_getting_started/makfile.png" 
+  <img alt="repo-ak" src="../resources/images/guide_getting_started/getting_started_makfile.png" 
   style="width: auto; height: auto;"/>
 </p>
 
 All game logic lives in the `application/sources/app` directory.
 
 <p align="center">
-  <img alt="repo-ak" src="../resources/images/guide_getting_started/file_cointain_game_logic.png" style="width: auto; height: auto;"/>
+  <img alt="repo-ak" src="../resources/images/guide_getting_started/getting_started_file_cointain_game_logic.png" style="width: auto; height: auto;"/>
 </p>
 
 ### Example: Displaying the welcome screen 
@@ -105,7 +105,7 @@ All game logic lives in the `application/sources/app` directory.
 #### Step 1: Create or reuse header file `scr_welcome.h` and `scr_welcome.cpp` in the `screens/` directory to handle the bitmap data and render the welcome screen: 
 
 <p align="center">
-  <img alt="repo-ak" src="../resources/images/guide_getting_started/scr_welcome_h_and_cpp.png" 
+  <img alt="repo-ak" src="../resources/images/guide_getting_started/getting_started_scr_welcome_h_and_cpp.png" 
   style="width: auto; height: auto;"/>
 </p>
 
@@ -114,46 +114,45 @@ All game logic lives in the `application/sources/app` directory.
   - If you want to create your own model, animation... You can visit `https://www.pixilart.com`. 
 
 <p align="center">
-  <img alt="repo-ak" src="../resources/images/guide_getting_started/screen_bitmap_h_and_cpp.png" style="width: auto; height: auto;"/>
+  <img alt="repo-ak" src="../resources/images/guide_getting_started/getting_started_screen_bitmap_h_and_cpp.png" style="width: auto; height: auto;"/>
 </p>
 
 <p align="center">
-  <img alt="repo-ak" src="../resources/images/guide_getting_started/screen_bitmap_cpp.png" style="width: auto; height: auto;"/>
+  <img alt="repo-ak" src="../resources/images/guide_getting_started/getting_started_screen_bitmap_cpp.png" style="width: auto; height: auto;"/>
 </p>
 
 #### Step 3: Declare all handles and function in `screens.h`
 
 <p align="center">
-  <img alt="repo-ak" src="../resources/images/guide_getting_started/screens_h.png" style="width: auto; height: auto;"/>
+  <img alt="repo-ak" src="../resources/images/guide_getting_started/getting_started_screens_h.png" style="width: auto; height: auto;"/>
 </p>
 
 #### Step 4: Declare all objects size and remember to include `screens.h` in `scr_welcome.h`
 
 <p align="center">
-  <img alt="repo-ak" src="../resources/images/guide_getting_started/scr_welcome_h.png" style="width: auto; height: auto;"/>
+  <img alt="repo-ak" src="../resources/images/guide_getting_started/getting_started_scr_welcome_h.png" style="width: auto; height: auto;"/>
 </p>
 
 #### Step 5: Write all your code logic, object's position in `scr_welcome.cpp` and handle button callback which help `SCREEN_TRAN`
 
 <p align="center">
-  <img alt="repo-ak" src="../resources/images/guide_getting_started/scr_welcome_cpp.png" style="width: auto; height: auto;"/>
+  <img alt="repo-ak" src="../resources/images/guide_getting_started/getting_started_scr_welcome_cpp.png" style="width: auto; height: auto;"/>
 </p>
 
 <p align="center">
-  <img alt="repo-ak" src="../resources/images/guide_getting_started/scr_welcome_cpp_button.png" style="width: auto; height: auto;"/>
+  <img alt="repo-ak" src="../resources/images/guide_getting_started/getting_started_scr_welcome_cpp_button.png" style="width: auto; height: auto;"/>
 </p>
 
 #### Step 6: Remember to mention `scr_welcom.cpp` in `Makefile` from `screens` directory
 
 <p align="center">
-  <img alt="repo-ak" src="../resources/images/guide_getting_started/screens_makefile.png" style="width: auto; height: auto;"/>
+  <img alt="repo-ak" src="../resources/images/guide_getting_started/getting_started_screens_makefile.png" style="width: auto; height: auto;"/>
 </p>
 
 #### Step 7: After all previous step, when you compile, the LCD screen of AK should show something like this: 
 
 <p align="center">
-  <img alt="repo-ak" src="../resources/images/screens/gamewelcome.png" 
-  style="width: auto; height: auto;"/>
+  <img alt="repo-ak" src="../resources/images/guide_getting_started/getting_started_gamewelcome.png" style="width: auto; height: auto;"/>
 </p>
 
 ---
