@@ -1,3 +1,17 @@
+<div align="center">
+  
+![Repo Traffic](https://komarev.com/ghpvc/?username=In-The-Depth-Game&label=Repo+Traffic&color=blue&style=flat-square)
+
+</div>
+
+<p align="center">
+  <img src="https://img.shields.io/badge/language-C%2B%2B-blue?style=flat-square&logo=c%2B%2B" alt="Language">
+  <img src="https://img.shields.io/badge/mcu-STM32L151-blue?style=flat-square" alt="MCU">
+  <img src="https://img.shields.io/badge/framework-Active%20Kernel-blue?style=flat-square" alt="Framework">
+  <img src="https://img.shields.io/badge/hardware-AK%20Base%20Kit-blue?style=flat-square" alt="Hardware">
+</p>
+
+
 # In the depth - Game built on AK Embedded Base Kit
 <p align="center">
   <img  alt="repo-ak" src="resources/images/screens/gamebanner.gif" style="width: auto; height: auto;" />
@@ -35,7 +49,7 @@ In the depth is a runner-game built on top of the AK Embedded Base Kit. This gam
 </table>
 <p align="center"><strong><em>Figure 1:</em></strong> AK Embedded Base Kit - STM32L151</p>
 
-[AK Embedded Base Kit](https://epcb.vn/products/ak-embedded-base-kit-lap-trinh-nhung-vi-dieu-khien-mcu) is an evaluation kit aimed at intermediate and advanced embedded software learners. *You can learn more in the following link:*  [ak-base-kit-stm32l151](https://github.com/the-ak-foundation/ak-base-kit-stm32l151)
+[AK Embedded Base Kit](https://epcb.vn/products/ak-embedded-base-kit-lap-trinh-nhung-vi-dieu-khien-mcu) is an evaluation kit aimed at intermediate and advanced embedded software learners. You can learn more in the following link: [ak-base-kit-stm32l151](https://github.com/the-ak-foundation/ak-base-kit-stm32l151)
 
 ### II. Game Description and Objects:
 
@@ -45,10 +59,10 @@ The game opens on the **Welcome screen**, which has a title for the game and man
 
 <table align="center">
   <tr>
-    <td align="center"><img src="./resources/images/screens/screen_gamewelcome.png" style = "height: auto width: auto"  /></td>
+    <td align="center"><img src="./resources/images/screens/screen_gamemenu(gif).gif" style = "height: auto width: auto"  /></td>
   </tr>
 </table>
-<p align="center"><strong><em>Figure 3:</em></strong> Welcome Screen </p>
+<p align="center"><strong><em>Figure 2:</em></strong> Welcome Screen </p>
 
 After players press any button, they will transfer to the **Main menu**, which offers the following options: 
 - **Dive**: start a new match
@@ -61,14 +75,14 @@ After players press any button, they will transfer to the **Main menu**, which o
     <td align="center"><img src="./resources/images/screens/screen_gamemenu.png" style = "height: auto width: auto"  /></td>
   </tr>
 </table>
-<p align="center"><strong><em>Figure 4:</em></strong> Game main menu </p>
+<p align="center"><strong><em>Figure 3:</em></strong> Game main menu </p>
 
 <table align="center">
   <tr>
-    <td align="center"><img src="./resources/images/screens/screen_gameplay.png" style = "height: auto width: auto"  /></td>
+    <td align="center"><img src="./resources/images/screens/screen_gameplay(gif).gif" style = "height: auto width: auto"  /></td>
   </tr>
 </table>
-<p align="center"><strong><em>Figure 5:</em></strong> Game play </p>
+<p align="center"><strong><em>Figure 4:</em></strong> Gameplay </p>
 
 
 **Objects in the Game:**
@@ -105,14 +119,14 @@ After players press any button, they will transfer to the **Main menu**, which o
     <td align="center"><img src="./resources/images/screens/screen_gameending.png" style = "height: auto width: auto"  /></td>
   </tr>
 </table>
-<p align="center"><strong><em>Figure 6:</em></strong> Mainsub sinking </p>
+<p align="center"><strong><em>Figure 5:</em></strong> Mainsub sinking </p>
 
 <table align="center">
   <tr>
     <td align="center"><img src="./resources/images/screens/screen_gameover.png" style = "height: auto width: auto"  /></td>
   </tr>
 </table>
-<p align="center"><strong><em>Figure 7:</em></strong> Game over </p>
+<p align="center"><strong><em>Figure 6:</em></strong> Gameover </p>
 
 
 ### IV. Basic Game Sequence Logic
@@ -207,7 +221,16 @@ sequenceDiagram
 
 ```
 
-<p align="center"><strong><em>Figure 8:</em></strong> Basic game sequences </p>
+<p align="center"><strong><em>Figure 7:</em></strong> Basic game sequences </p>
+
+## Contact & Support
+
+<p style="font-size: 20px;"><strong>Nguyen Kim Thanh</strong> - Firmware Engineer - Embedded Systems</p>
+
+``` Note
+Thank you for visiting this repository.
+If you have any questions, suggestions, or feedback about this project or firmware development, feel free to contact me directly.
+```
 
 <h3>Contact Me</h3>
 <p>
@@ -218,8 +241,5 @@ sequenceDiagram
   <a href="https://www.linkedin.com/in/nguyenkimthanh1409/">
     <img src="https://img.shields.io/badge/LinkedIn-Nguyễn%20Kim%20Thành-0A66C2?style=flat&logo=linkedin&logoColor=white"/>
   </a>
-  
-  <a href="mailto:nkimthanh47@gmail.com">
-    <img src="https://img.shields.io/badge/Gmail-nkimthanh47%40gmail.com-EA4335?style=flat&logo=gmail&logoColor=white"/>
-  </a>
+
 </p>
