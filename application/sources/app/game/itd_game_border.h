@@ -23,4 +23,4 @@ extern uint16_t itd_game_score;
 extern uint16_t itd_game_time;
 extern uint16_t time_last;
 
-#endif /*_ITD_GAME_BORDER_H_*/
+#endif //_ITD_GAME_BORDER_H_

@@ -48,4 +48,4 @@ extern itd_game_coin_t coins[COIN_NUMBER_MAX];
 extern uint8_t coin_number;
 extern uint8_t current_coin;
 
-#endif
+#endif //_ITD_GAME_COIN_H_

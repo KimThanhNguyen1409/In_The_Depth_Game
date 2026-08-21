@@ -1,5 +1,6 @@
 #ifndef _ITD_GAME_BOMB_H_
 #define _ITD_GAME_BOMB_H_
+
 #include "fsm.h"
 #include "message.h"
 #include "port.h"
@@ -45,4 +46,4 @@ extern itd_game_bomb_t bombs[BOMB_NUMBER_MAX];
 extern uint8_t bonus_speed;
 extern uint8_t bomb_number;
 
-#endif /*_ITD_GAME_BOMB_H_*/
+#endif //_ITD_GAME_BOMB_H_

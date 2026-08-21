@@ -1,5 +1,6 @@
 #ifndef _ITD_GAME_BOOM_H_
 #define _ITD_GAME_BOOM_H_
+
 #include "fsm.h"
 #include "message.h"
 #include "port.h"
@@ -32,4 +33,4 @@ extern itd_game_boom_t boom[BOOM_NUMBER];
 
 extern void itd_game_boom_spawn(uint16_t x, uint16_t y);
 
-#endif
+#endif //_ITD_GAME_BOOM_H_

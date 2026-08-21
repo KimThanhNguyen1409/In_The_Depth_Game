@@ -47,10 +47,10 @@ typedef struct
     uint8_t x;
     uint8_t y;
     bool visible;
-    uint8_t shield_heart       = 0;
-    uint8_t current_heart      = 0;
-    uint8_t invincibility_time = 0;
-    uint8_t damage_taken       = 1;
+    uint8_t shield_heart;
+    uint8_t current_heart;
+    uint8_t invincibility_time;
+    uint8_t damage_taken;
 } itd_game_mainsub_t;
 
 extern itd_game_mainsub_t mainsub;
@@ -62,4 +62,4 @@ extern bool itd_game_mainsub_check_hit_by_spike(uint8_t sp, uint8_t type);
 extern bool itd_game_mainsub_check_get_coin(uint8_t co);
 extern bool itd_game_mainsub_check_get_gift(uint8_t gi);
 
-#endif /*_ITD_GAME_MAINSUB_H_*/
+#endif //_ITD_GAME_MAINSUB_H_

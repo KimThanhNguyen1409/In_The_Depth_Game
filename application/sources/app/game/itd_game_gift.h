@@ -58,4 +58,4 @@ typedef struct
 extern itd_game_gift_t gifts[GIFT_NUMBER_MAX];
 extern uint8_t gift_number;
 
-#endif /*_ITD_GAME_GIFT_H_*/
+#endif //_ITD_GAME_GIFT_H_
