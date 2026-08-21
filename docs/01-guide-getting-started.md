@@ -165,7 +165,7 @@ All game logic lives in the `application/sources/app` directory.
 
 ## Contact & Support
 
-<p style="font-size: 20px;"><strong>Nguyen Kim Thanh</strong> - Software Engineer - Embedded Systems</p>
+<p style="font-size: 20px;"><strong>Nguyen Kim Thanh</strong> - Firmware Engineer - Embedded Systems</p>
 
 ``` Note
 Thank you for visiting this repository.
@@ -182,9 +182,6 @@ If you have any questions, suggestions, or feedback about this project or firmwa
     <img src="https://img.shields.io/badge/LinkedIn-Nguyễn%20Kim%20Thành-0A66C2?style=flat&logo=linkedin&logoColor=white"/>
   </a>
   
-  <a href="mailto:nkimthanh47@gmail.com">
-    <img src="https://img.shields.io/badge/Gmail-nkimthanh47%40gmail.com-EA4335?style=flat&logo=gmail&logoColor=white"/>
-  </a>
 </p>
 
 
