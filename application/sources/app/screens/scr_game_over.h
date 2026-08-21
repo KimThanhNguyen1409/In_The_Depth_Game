@@ -32,4 +32,4 @@ extern view_dynamic_t dyn_view_item_game_over;
 extern view_screen_t scr_game_over;
 extern void scr_game_over_handle(ak_msg_t* msg);
 
-#endif /*_SCR_GAME_OVER_H_*/
+#endif //_SCR_GAME_OVER_H_

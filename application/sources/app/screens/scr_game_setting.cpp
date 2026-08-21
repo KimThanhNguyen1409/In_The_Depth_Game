@@ -107,7 +107,7 @@ void scr_game_setting_handle(ak_msg_t* msg)
         break;
         case AC_DISPLAY_BUTTON_DOWN_PRESSED:
         {
-            APP_DBG_SIG("AC_DISPLAY_BTTON_DOWN_PRESSED");
+            APP_DBG_SIG("AC_DISPLAY_BUTTON_DOWN_PRESSED");
             if (game_setting_index < 3)
             {
                 game_setting_index++;
@@ -121,7 +121,7 @@ void scr_game_setting_handle(ak_msg_t* msg)
         break;
         case AC_DISPLAY_BUTTON_UP_PRESSED:
         {
-            APP_DBG_SIG("AC_DISPLAY_BTTON_UP_PRESSED");
+            APP_DBG_SIG("AC_DISPLAY_BUTTON_UP_PRESSED");
             if (game_setting_index > 0)
             {
                 game_setting_index--;
@@ -135,7 +135,7 @@ void scr_game_setting_handle(ak_msg_t* msg)
         break;
         case AC_DISPLAY_BUTTON_MODE_PRESSED:
         {
-            APP_DBG_SIG("AC_DISPLAY_BTTON_MODE_PRESSED");
+            APP_DBG_SIG("AC_DISPLAY_BUTTON_MODE_PRESSED");
             switch (game_setting_index)
             {
                 case SETTING_LOCATION_1:

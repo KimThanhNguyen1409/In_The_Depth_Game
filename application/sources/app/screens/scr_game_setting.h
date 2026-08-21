@@ -46,4 +46,4 @@ extern view_dynamic_t dyn_view_game_setting;
 extern view_screen_t scr_game_setting;
 extern void scr_game_setting_handle(ak_msg_t* msg);
 
-#endif /*_SCR_GAME_SETTING_H_*/
+#endif //_SCR_GAME_SETTING_H_

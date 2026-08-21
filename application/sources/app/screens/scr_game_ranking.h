@@ -26,4 +26,4 @@ extern view_dynamic_t dyn_view_item_game_ranking;
 extern view_screen_t scr_game_ranking;
 extern void scr_game_ranking_handle(ak_msg_t* msg);
 
-#endif /*_SCR_GAME_RANKING_H_*/
+#endif //_SCR_GAME_RANKING_H_

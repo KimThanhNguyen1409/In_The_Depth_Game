@@ -1,12 +1,12 @@
 #ifndef __SCR_WELCOME_H__
 #define __SCR_WELCOME_H__
 
-#include "screens.h"
 #include "scr_game_in_the_depth.h"
 #include "scr_game_menu.h"
+#include "screens.h"
 
-#include "eeprom.h"
 #include "app_eeprom.h"
+#include "eeprom.h"
 
 #define SEAGRASS_BITMAP_AXIS_X (16)
 #define SEAGRASS_BITMAP_AXIS_Y (16)
@@ -23,4 +23,4 @@
 #define CRAB_BITMAP_AXIS_X (32)
 #define CRAB_BITMAP_AXIS_Y (32)
 
-#endif	  //__SCR_WELCOME_H__
+#endif //__SCR_WELCOME_H__

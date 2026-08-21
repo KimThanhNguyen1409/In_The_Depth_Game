@@ -57,4 +57,4 @@ extern void itd_game_boom_display();
 extern void itd_game_spike_display();
 extern void itd_game_coin_display();
 
-#endif /*_SCR_GAME_IN_THE_DEPTH_H_*/
+#endif //_SCR_GAME_IN_THE_DEPTH_H_
